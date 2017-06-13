@@ -1,8 +1,8 @@
 Package: multgee
 Type: Package
 Title: GEE Solver for Correlated Nominal or Ordinal Multinomial Responses
-Version: 1.5.3
-Date: 2016-02-03
+Version: 1.5.4
+Date: 2017-06-13
 Author: Anestis Touloumis <A.Touloumis@brighton.ac.uk>
 Maintainer: Anestis Touloumis <A.Touloumis@brighton.ac.uk>
 Depends: R (>= 2.15.0), gnm, VGAM

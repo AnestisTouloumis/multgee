@@ -3,7 +3,7 @@
 \usepackage{amsbsy}
 \usepackage{thumbpdf}
 
-\author{Anestis Touloumis\\ School of Computing, Engeneering and Mathematics, University of Brighton}
+\author{Anestis Touloumis\\ School of Computing, Engineering and Mathematics, University of Brighton}
 \title{\proglang{R} Package \pkg{multgee}: A Generalized Estimating Equations Solver for Multinomial Responses}
 
 \Plainauthor{Anestis Touloumis} 
@@ -11,15 +11,15 @@
 \Shorttitle{\pkg{multgee}: GEE for Multinomial Responses} 
 
 \Abstract{
-This introduction to the \proglang{R} package \pkg{multgee} is a slightly modified version of \cite{Touloumis2015}, published in the Journal of Statistical Software. To cite \pkg{multgee} in publications, please use \cite{Touloumis2015}. To cite the GEE methodology implemeted in \pkg{multgee}, please use \cite{Touloumis2012}.
+This introduction to the \proglang{R} package \pkg{multgee} is a slightly modified version of \cite{Touloumis2015}, published in the Journal of Statistical Software. To cite \pkg{multgee} in publications, please use \cite{Touloumis2015}. To cite the GEE methodology implemented in \pkg{multgee}, please use \cite{Touloumis2012}.
 
-The \proglang{R} package \pkg{multgee} implements the local odds ratios generalized estimating equations (GEE) approach proposed by \cite{Touloumis2012}, a GEE approach for correlated multinomial responses that circumvents theoretical and practical limitations of the GEE method. A main strength of \pkg{multgee} is that it provides GEE routines for both ordinal (\code{ordLORgee}) and nominal (\code{nomLORgee}) responses, while relevant softwares in \proglang{R} and \proglang{SAS} are restricted to ordinal responses under a marginal cumulative link model specification. In addition, \pkg{multgee} offers a marginal adjacent categories logit model for ordinal responses and a marginal baseline category logit model for nominal. Further, utility functions are available to ease the local odds ratios structure selection (\code{intrinsic.pars}) and to perform a Wald type goodness-of-fit test between two nested GEE models (\code{waldts}). We demonstrate the application of \pkg{multgee} through a clinical trial with clustered ordinal multinomial responses.
+The \proglang{R} package \pkg{multgee} implements the local odds ratios generalized estimating equations (GEE) approach proposed by \cite{Touloumis2012}, a GEE approach for correlated multinomial responses that circumvents theoretical and practical limitations of the GEE method. A main strength of \pkg{multgee} is that it provides GEE routines for both ordinal (\code{ordLORgee}) and nominal (\code{nomLORgee}) responses, while relevant software in \proglang{R} and \proglang{SAS} are restricted to ordinal responses under a marginal cumulative link model specification. In addition, \pkg{multgee} offers a marginal adjacent categories logit model for ordinal responses and a marginal baseline category logit model for nominal. Further, utility functions are available to ease the local odds ratios structure selection (\code{intrinsic.pars}) and to perform a Wald type goodness-of-fit test between two nested GEE models (\code{waldts}). We demonstrate the application of \pkg{multgee} through a clinical trial with clustered ordinal multinomial responses.
 }
 \Keywords{generalized estimating equations, nominal and ordinal multinomial responses, local odds ratios, \proglang{R}}
 \Plainkeywords{generalized estimating equations, nominal and ordinal multinomial responses, local odds ratios, R} 
 \Address{
   Anestis Touloumis\\
-  School of Computing, Engeneering and Mathematics\\
+  School of Computing, Engineering and Mathematics\\
   University of Brighton\\
   Moulsecoome, Brighton, BN2 4GJ, UK\\
   E-mail: \email{A.Touloumis@brighton.cam.ac.uk}
@@ -232,7 +232,7 @@ ordLORgee(formula = y ~ factor(time) + factor(trt) + factor(baseline),
 
 Summary of residuals:
       Min.    1st Qu.     Median       Mean    3rd Qu.       Max. 
--0.5161000 -0.2399000 -0.0749700  0.0000219 -0.0066990  0.9933000 
+-0.5161111 -0.2399227 -0.0749670  0.0000219 -0.0066995  0.9932912 
 
 Number of Iterations: 5 
 
