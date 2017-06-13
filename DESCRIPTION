@@ -10,4 +10,5 @@ Imports: utils, stats
 Description: GEE solver for correlated nominal or ordinal multinomial responses using a local odds ratios parameterization.
 License: GPL-2 | GPL-3
 LazyLoad: yes
-
+URL: http://github.com/AnestisTouloumis/multgee
+BugReports: http://github.com/AnestisTouloumis/multgee/issues
