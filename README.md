@@ -146,7 +146,7 @@ summary(fitord)
 Getting help
 ------------
 
-Details about the methods implemented in *multgee* can be found in Touloumis, Agresti, and Kateri (2013). A detailed description of *multgee* can be found in Touloumis (2015). An updated version of this paper also serves as vignette for *multgee* which can be accessed by executing the following R commands:
+Details about the methods implemented in **multgee** can be found in Touloumis, Agresti, and Kateri (2013). A detailed description of **multgee** can be found in Touloumis (2015). An updated version of this paper also serves as vignette for **multgee** which can be accessed by executing the following R commands:
 
 ``` r
 browseVignettes("multgee")
