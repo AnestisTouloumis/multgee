@@ -106,11 +106,11 @@ Returns an object of the class \code{"LORgee"}. This has components:
 Generic \link{coef}, \link{summary}, \link{print}, \link{fitted} and \link{residuals} methods are available. The \code{pvalue of the Null model} corresponds to the hypothesis \eqn{H_0: \beta_1=...=\beta_{J-1}=0} based on the Wald test statistic. 
 }
 \references{
-Touloumis, A. (2011). \emph{GEE for multinomial responses}. PhD dissertation, University of Florida.
+Touloumis, A. (2011) \emph{GEE for multinomial responses}. PhD dissertation, University of Florida.
 
-Touloumis, A., Agresti, A. and Kateri, M. (2013). GEE for multinomial responses using a local odds ratios parameterization. \emph{Biometrics}, \bold{69}, 633-640.
+Touloumis, A., Agresti, A. and Kateri, M. (2013) GEE for multinomial responses using a local odds ratios parameterization. \emph{Biometrics}, \bold{69}, 633-640.
 
-Touloumis, A. (2015). R Package multgee: A Generalized Estimating Equations Solver for Multinomial Responses. \emph{Journal of Statistical Software}, \bold{64}, 1-14.
+Touloumis, A. (2015) R Package multgee: A Generalized Estimating Equations Solver for Multinomial Responses. \emph{Journal of Statistical Software}, \bold{64}, 1-14.
 }
 \author{
 Anestis Touloumis

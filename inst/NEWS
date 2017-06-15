@@ -1,5 +1,6 @@
 Version 1.5.5 [2017-06-15]
- * Added a README file.
+ * Added README.Rmd.
+ * Using proposed reference style in help files. 
 
 Version 1.5.4 [2017-06-13]
  * Fixed typos in the vignette.

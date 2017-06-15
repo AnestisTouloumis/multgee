@@ -18,7 +18,7 @@ Housing status for 362 severely mentally ill homeless subjects measured at basel
   }
 }
 \source{
-Hulrburt M.S., Wood, P.A. and Hough, R.L. (1996). Providing independent housing for the homeless mentally ill: a novel approach to evaluating longitudinal housing patterns. \emph{Journal of Community Psychology}, \bold{24}, 291--310.
+Hulrburt M.S., Wood, P.A. and Hough, R.L. (1996) Providing independent housing for the homeless mentally ill: a novel approach to evaluating longitudinal housing patterns. \emph{Journal of Community Psychology}, \bold{24}, 291--310.
 }
 \examples{
 data(housing)
