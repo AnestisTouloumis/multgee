@@ -1,6 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.travis\.yml$
-^README\.Rmd$ 
-^README\.Rmd$
-^README-.*\.png$
+Makefile
+README.Rmd
+README.md
