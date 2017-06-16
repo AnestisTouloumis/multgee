@@ -72,20 +72,24 @@ School of Computing, Engineering and Mathematics, University of Brighton.
 
 ## Installation
 
-You can install the release version of the **multgee** package from CRAN:
+You can install the release version of the **multgee** package:
 
 ```{r eval=FALSE}
 install.packages("multgee")
 ```
 
-or the development version from github:
+The source code for the release version of **multgee** is available on CRAN at:
+
+- https://CRAN.R-project.org/package=multgee
+
+Or you can install the development version of the **multgee** package:
 
 ```{r eval=FALSE}
 install.packages("devtools") # if you have not installed "devtools" package
 devtools::install_github("AnestisTouloumis/multgee")
 ```
 
-The source code for the **multgee** package is available on github at
+The source code for the development version of **multgee** is available on github at
 
 - https://github.com/AnestisTouloumis/multgee.
 
@@ -95,9 +99,9 @@ To use **multgee**, you should load the package as follows:
 library(multgee)
 ```
 
-## Usage and functions
+## Usage
 
-The **multgee** package provides a generalized estimating equations (GEE) solver for fitting marginal regression models with correlated nominal or ordinal multinomial responses based on a local odds ratios parameterization for the association structure [@Touloumis2015].
+The **multgee** package provides a generalized estimating equations (GEE) solver for fitting marginal regression models with correlated nominal or ordinal multinomial responses based on a local odds ratios parameterization for the association structure [@Touloumis2013].
 
 
 The package contains two core functions that fit GEE models for correlated multinomial responses:
@@ -134,7 +138,7 @@ summary(fitord)
 ```
 
 ## Getting help
-Details about the methods implemented in **multgee** can be found in @Touloumis2013. A detailed description of **multgee** can be found in @Touloumis2015. An updated version of this paper also serves as vignette for **multgee** which can be accessed by executing the following R commands: 
+Details about the statistical methods implemented in **multgee** can be found in @Touloumis2013. A detailed description of **multgee** can be found in @Touloumis2015. An updated version of this paper also serves as a vignette for **multgee** which can be accessed by executing the following R commands: 
 
 ```{r, eval=FALSE}
 browseVignettes("multgee")

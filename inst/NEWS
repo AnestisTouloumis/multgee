@@ -1,13 +1,16 @@
+Version 1.5.6 [2017-06-16]
+ * Updated README.Rmd - links to CRAN.
+
 Version 1.5.5 [2017-06-15]
  * Added README.Rmd.
- * Using proposed reference style in help files. 
+ * Updated documentation - proposed reference style. 
 
 Version 1.5.4 [2017-06-13]
- * Fixed typos in the vignette.
- * Updated DESCRIPTION to add links to GitHub site.
+ * Updated vignette - typos.
+ * Updated DESCRIPTION - links to github.
 
 Version 1.5.3 [2016-02-03]
- * Fixed the citations in the vignette.
+ * Updated vignette - fixed references.
 
 Version 1.5.2 [2015-09-08]
  * Updated maintainer's email address.
@@ -28,24 +31,24 @@ Version 1.5.0 [2014-11-02]
 Version 1.4 [2013-12-03]
  * Made optional the argument repeated in the functions nomLORgee, ordLORgee and intrinsic.pars.
  * Modified the arguments of the function intrinsic.pars. 
- * Updated CITATION file and references in the documentation.
+ * Updated CITATION and references in the documentation.
  * Updated maintainer's email address.
 
 Version 1.3 [2013-06-21]
- * Changed the licence to GLP-2 | GLP-3.
+ * Changed licence to GLP-2 | GLP-3.
 
 Version 1.2 [2013-05-30]
- * Added the function waldts for testing goodness of fit between nested GEE models.
- * The arguments id and repeated in the functions nomLORgee and ordLORgee should not be provided in character string.
+ * Added function waldts for testing goodness of fit between nested GEE models.
+ * The arguments id and repeated in functions nomLORgee and ordLORgee should not be provided in character string.
  * Made optional the data argument in the functions nomLORgee and ordLORgee.
  * Minor changes in the class "LORgee".
  * Updated documentation.
- * Created a CITATION file.
+ * Created a CITATION.
 
 Version 1.1 [2012-11-07]
  * Added an R(>=2.15.0) dependency.
- * Minor changes in the function fitLORgee.
- * Fixed contrasts in the functions nomLORgee and ordLORgee.
+ * Minor changes in function fitLORgee.
+ * Fixed contrasts in functions nomLORgee and ordLORgee.
  * Added information regarding the "LORgee" class.
 
 Version 1.0 [2012-11-07]
