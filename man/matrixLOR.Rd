@@ -4,7 +4,7 @@
 Creating A Probability Matrix With Specified Local Odds Ratios
 }
 \description{
-Utility function to create a square probability matrix that satifies the specified local odds ratios structure.
+Utility function to create a square probability matrix that satisfies the specified local odds ratios structure.
 }
 \usage{
 matrixLOR(x)
