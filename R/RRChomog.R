@@ -1,20 +1,17 @@
-RRChomog <-
-function (fmla, data, ncategories) 
-{
+RRChomog <- function(fmla, data, ncategories) {
     Consmat <- RCconstrains(ncategories, TRUE)
     datax <- factor(data$x)
     datay <- factor(data$y)
     dev <- stop.constrains <- Inf
-    noglm <- length(Consmat$nodf[Consmat$nodf < (nlevels(datax) - 
-        2)])
-    fmla <- update(fmla, ~. - MultHomog(x,y) + MultHomog(z1,z2))
+    noglm <- length(Consmat$nodf[Consmat$nodf < (nlevels(datax) - 2)])
+    fmla <- update(fmla, ~. - MultHomog(x, y) + MultHomog(z1, z2))
     for (i in 1:noglm) {
         data$z1 <- datax
         data$z2 <- datay
         levels(data$z1) <- levels(data$z2) <- pickcoefind <- Consmat$parscores[i, 
             ]
-        suppressWarnings(RRCmod <- gnm(fmla, family = poisson, 
-            data = data, verbose = FALSE, model = FALSE))
+        suppressWarnings(RRCmod <- gnm(fmla, family = poisson, data = data, 
+            verbose = FALSE, model = FALSE))
         if (!is.null(RRCmod)) {
             if (deviance(RRCmod) < dev & RRCmod$conv) {
                 pickcoef <- pickCoef(RRCmod, "MultHomog")
@@ -32,8 +29,7 @@ function (fmla, data, ncategories)
             break
     }
     if (!is.finite(dev)) {
-        fmla <- update(fmla, ~. - MultHomog(z1,z2) + 
-            x1:x2)
+        fmla <- update(fmla, ~. - MultHomog(z1, z2) + x1:x2)
         data$x1 <- as.numeric(datax1)
         data$x2 <- as.numeric(datay1)
         for (i in (noglm + 1):length(Consmat$nodf)) datax1 <- datax

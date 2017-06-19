@@ -1,10 +1,8 @@
-datacounts <-
-function (response, id, repeated, ncategories) 
-{
+datacounts <- function(response, id, repeated, ncategories) {
     response <- as.numeric(factor(response))
     data <- data.frame(cbind(response, id, repeated))
-    data <- reshape(data, v.names = "response", idvar = "id", 
-        timevar = "repeated", direction = "wide")
+    data <- reshape(data, v.names = "response", idvar = "id", timevar = "repeated", 
+        direction = "wide")
     data <- data[, -1]
     data[is.na(data)] <- 0
     ntimes <- ncol(data)
@@ -18,8 +16,8 @@ function (response, id, repeated, ncategories)
         for (categ2 in 1:ncategories) {
             for (ind_2 in 1:(ntimes - 1)) {
                 for (ind_3 in (ind_2 + 1):ntimes) {
-                  counts[ind_1] <- sum((data[, ind_2] == categ1) & 
-                    (data[, ind_3] == categ2))
+                  counts[ind_1] <- sum((data[, ind_2] == categ1) & (data[, 
+                    ind_3] == categ2))
                   ind_1 <- ind_1 + 1
                 }
             }

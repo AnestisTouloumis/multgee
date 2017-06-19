@@ -1,7 +1,5 @@
-LORgee.default <-
-function(x,...) 
-{
-    object <- list() 
+LORgee.default <- function(x, ...) {
+    object <- list()
     object$title <- x$title
     object$version <- x$version
     object$link <- x$link
@@ -9,7 +7,7 @@ function(x,...)
     object$terms <- x$terms
     object$contrasts <- x$contrasts
     object$nobs <- x$nobs
-    object$convergence <-  x$convergence
+    object$convergence <- x$convergence
     object$coefficients <- x$coefficients
     object$linear.predictors <- x$linear.predictors
     object$fitted.values <- x$fitted.values
@@ -23,7 +21,7 @@ function(x,...)
     object$xnames <- x$xnames
     object$categories <- x$categories
     object$occasions <- x$occasions
-    object$LORgee.control <- x$LORgee.control 
+    object$LORgee.control <- x$LORgee.control
     object$ipfp.control <- x$ipfp.control
     object$inverse.method <- x$inverse.method
     object$adding.constant <- x$adding.constant

@@ -1,9 +1,7 @@
-fitLORgee <-
-function (Y, X_mat, coeffs, ncategories, id, repeated, offset, 
-    link, LORterm, marpars, ipfp.ctrl, control, IM, LORem = LORem, 
-    LORstr = LORstr, add) 
-{
-    inversematrix <- function(x) inversemat(x,IM)
+fitLORgee <- function(Y, X_mat, coeffs, ncategories, id, repeated, offset, 
+    link, LORterm, marpars, ipfp.ctrl, control, IM, LORem = LORem, LORstr = LORstr, 
+    add) {
+    inversematrix <- function(x) inversemat(x, IM)
     tol <- control$tolerance
     maxiter <- control$maxiter
     verbose <- control$verbose
@@ -39,25 +37,22 @@ function (Y, X_mat, coeffs, ncategories, id, repeated, offset,
         LORterm <- prop.table(LORterm, 1)
     }
     if (LORstr == "independence") {
-        LORterm <- matrix(1/ncategories^2, noccasionpairs, 
-            ncategories^2)
+        LORterm <- matrix(1/ncategories^2, noccasionpairs, ncategories^2)
     }
     formals(ipfp)$dimension <- ncategories
     formals(ipfp)$tol <- ipfp.ctrl$tol
     formals(ipfp)$maxit <- ipfp.ctrl$maxit
-    index_mat <- matrix(seq.int(ncategoriesm1 * noccasions), 
-        noccasions, ncategoriesm1, TRUE)
-    extindex_mat <- matrix(seq.int(ncategories * noccasions), 
-        noccasions, ncategories, TRUE)
+    index_mat <- matrix(seq.int(ncategoriesm1 * noccasions), noccasions, 
+        ncategoriesm1, TRUE)
+    extindex_mat <- matrix(seq.int(ncategories * noccasions), noccasions, 
+        ncategories, TRUE)
     id_vector <- split(seq.int(nrow(X_mat)), id)
     extid_vector <- split(seq.int(ncategories * nobs), rep.int(seq.int(Nsubs), 
         Ti_vector * ncategories))
     deriv_mat <- if (link == "acl") 
-        derivacl
-    else if (link == "bcl") {
+        derivacl else if (link == "bcl") {
         derivbcl
-    }
-    else {
+    } else {
         derivmclm
     }
     eta <- drop(X_mat %*% coeffs) + offset
@@ -68,133 +63,119 @@ function (Y, X_mat, coeffs, ncategories, id, repeated, offset,
             stop("Please insert initial values")
         fitprob <- fitproball[-probexclude]
         dummy <- mu.eta(eta)
-    }
-    else {
-        fitprob <- exp(matrix(eta, length(eta)/ncategoriesm1, 
-            ncategoriesm1, TRUE))
-        fitprob <- fitprob/(1 + .rowSums(fitprob, nobs, ncategoriesm1,FALSE))
+    } else {
+        fitprob <- exp(matrix(eta, length(eta)/ncategoriesm1, ncategoriesm1, 
+            TRUE))
+        fitprob <- fitprob/(1 + .rowSums(fitprob, nobs, ncategoriesm1, 
+            FALSE))
         fitproball <- as.vector(t(cbind(fitprob, 1 - .rowSums(fitprob, 
-            nobs, ncategoriesm1,FALSE))))
+            nobs, ncategoriesm1, FALSE))))
         if (!validmu(fitproball)) 
             stop("Please insert initial values")
         fitprob <- as.vector(t(fitprob))
         dummy <- fitprob
     }
-   if (verbose) 
- cat(format("Iteration", digits = 5, trim = TRUE, 
-           justify = "centre", scientific = FALSE, nsmall = 0, 
-           width = 8), "\t", format("Criterion", digits = 5, 
-           trim = TRUE, justify = "centre", scientific = FALSE, 
-           nsmall = 5, width = 8), "\n")
+    if (verbose) 
+        cat(format("Iteration", digits = 5, trim = TRUE, justify = "centre", 
+            scientific = FALSE, nsmall = 0, width = 8), "\t", format("Criterion", 
+            digits = 5, trim = TRUE, justify = "centre", scientific = FALSE, 
+            nsmall = 5, width = 8), "\n")
     beta_mat <- matrix(coeffs)
     crit_vector <- 20
     I0_mat <- I1_mat <- matrix(0, p, p, FALSE)
     H_mat <- matrix(0, p, 1, FALSE)
-        for (iter in 1:maxiter) {
-            resids <- Y - fitprob
-            D_mat <- deriv_mat(dummy, ncategoriesm1, X_mat)
-            for (i in 1:Nsubs) {
-                Ti <- Ti_vector[[i]]
-                id_ind <- id_vector[[i]]
-                prob <- fitprob[id_ind]
-                mat1 <- diagmod(prob)
-                if (Ti == 1) {
-                  V_mat <- inversematrix(mat1 - tcrossprod(prob, 
-                    prob))
-                }
-                else if (Ti == noccasions) {
-                  proball <- fitproball[extid_vector[[i]]]
-                  for (j in 1:(noccasions - 1)) {
-                    t1 <- index_mat[j, ]
-                    t2 <- extindex_mat[j, ]
-                    probrow <- proball[t2]
-                    for (k in (j + 1):noccasions) {
-                      t3 <- extindex_mat[k, ]
-                      index <- code_mat[code_mat[, 1] == j & 
-                        code_mat[, 2] == k, 3]
-                      ipfpfit <- ipfp(LORterm[index, ], probrow, 
-                        proball[t3])
-                      mat1[t1, index_mat[k, ]] <- ipfpfit[-ncategories, 
-                        -ncategories]
-                    }
+    for (iter in 1:maxiter) {
+        resids <- Y - fitprob
+        D_mat <- deriv_mat(dummy, ncategoriesm1, X_mat)
+        for (i in 1:Nsubs) {
+            Ti <- Ti_vector[[i]]
+            id_ind <- id_vector[[i]]
+            prob <- fitprob[id_ind]
+            mat1 <- diagmod(prob)
+            if (Ti == 1) {
+                V_mat <- inversematrix(mat1 - tcrossprod(prob, prob))
+            } else if (Ti == noccasions) {
+                proball <- fitproball[extid_vector[[i]]]
+                for (j in 1:(noccasions - 1)) {
+                  t1 <- index_mat[j, ]
+                  t2 <- extindex_mat[j, ]
+                  probrow <- proball[t2]
+                  for (k in (j + 1):noccasions) {
+                    t3 <- extindex_mat[k, ]
+                    index <- code_mat[code_mat[, 1] == j & code_mat[, 2] == 
+                      k, 3]
+                    ipfpfit <- ipfp(LORterm[index, ], probrow, proball[t3])
+                    mat1[t1, index_mat[k, ]] <- ipfpfit[-ncategories, -ncategories]
                   }
-                  mat1[sel_mat[[noccasions - 1]]] <- aperm(mat1, 
-                    c(2, 1))[sel_mat[[noccasions - 1]]]
-                  V_mat <- inversematrix(mat1 - tcrossprod(prob, 
-                    prob))
                 }
-                else {
-                  Tiid <- times_mat[[i]]
-                  proball <- fitproball[extid_vector[[i]]]
-                  for (j in 1:(Ti - 1)) {
-                    t1 <- index_mat[j, ]
-                    t2 <- extindex_mat[Tiid[j], ]
-                    probrow <- proball[extindex_mat[j, ]]
-                    for (k in (j + 1):Ti) {
-                      t3 <- extindex_mat[Tiid[k], ]
-                      index <- code_mat[code_mat[, 1] == Tiid[j] & 
-                        code_mat[, 2] == Tiid[k], 3]
-                      ipfpfit <- ipfp(LORterm[index, ], probrow, 
-                        proball[extindex_mat[k, ]])
-                      mat1[t1, index_mat[k, ]] <- ipfpfit[-ncategories, 
-                        -ncategories]
-                    }
+                mat1[sel_mat[[noccasions - 1]]] <- aperm(mat1, c(2, 1))[sel_mat[[noccasions - 
+                  1]]]
+                V_mat <- inversematrix(mat1 - tcrossprod(prob, prob))
+            } else {
+                Tiid <- times_mat[[i]]
+                proball <- fitproball[extid_vector[[i]]]
+                for (j in 1:(Ti - 1)) {
+                  t1 <- index_mat[j, ]
+                  t2 <- extindex_mat[Tiid[j], ]
+                  probrow <- proball[extindex_mat[j, ]]
+                  for (k in (j + 1):Ti) {
+                    t3 <- extindex_mat[Tiid[k], ]
+                    index <- code_mat[code_mat[, 1] == Tiid[j] & code_mat[, 
+                      2] == Tiid[k], 3]
+                    ipfpfit <- ipfp(LORterm[index, ], probrow, proball[extindex_mat[k, 
+                      ]])
+                    mat1[t1, index_mat[k, ]] <- ipfpfit[-ncategories, -ncategories]
                   }
-                  mat1[sel_mat[[Ti - 1]]] <- aperm(mat1, c(2, 
-                    1))[sel_mat[[Ti - 1]]]
-                  V_mat <- inversematrix(mat1 - tcrossprod(prob, 
-                    prob))
                 }
-                D_mat1 <- D_mat[id_ind, ]
-                help_mat1 <- crossprod(D_mat1, V_mat)
-                help_mat2 <- help_mat1 %*% resids[id_ind]
-                I0_mat <- help_mat1 %*% D_mat1 + I0_mat
-                H_mat <- help_mat2 + H_mat
-                I1_mat <- tcrossprod(help_mat2, help_mat2) + 
-                  I1_mat
+                mat1[sel_mat[[Ti - 1]]] <- aperm(mat1, c(2, 1))[sel_mat[[Ti - 
+                  1]]]
+                V_mat <- inversematrix(mat1 - tcrossprod(prob, prob))
             }
-            naive_mat <- solve(I0_mat)
-            robust_mat <- naive_mat %*% I1_mat %*% naive_mat
-            if (any(eigen(robust_mat,TRUE,only.values=TRUE)$values<=0)) 
-                stop("Robust covariance matrix is not positive definite")
-            coeffsnew <- coeffs + naive_mat %*% H_mat
-            crit <- max(abs(coeffs - coeffsnew)/pmax.int(abs(coeffs), 
-                1e-06))
-            crit_vector <- c(crit_vector, crit)
-            beta_mat <- cbind(beta_mat, coeffsnew)
-            coeffs <- coeffsnew
-            eta <- drop(X_mat %*% coeffs) + offset
-            if (link != "acl" & link != "bcl") {
-                probexclude <- seq(ncategories, nobs * ncategories, 
-                  ncategories)
-                fitproball <- muprob(linkinv(eta), nobs, ncategoriesm1)
-                if (!validmu(fitproball)) 
-                  stop("Please insert initial values")
-                fitprob <- fitproball[-probexclude]
-                dummy <- mu.eta(eta)
-            }
-            else {
-                fitprob <- exp(matrix(eta, length(eta)/ncategoriesm1, 
-                  ncategoriesm1, TRUE))
-                fitprob <- fitprob/(1 + .rowSums(fitprob, nobs, 
-                  ncategoriesm1,FALSE))
-                fitproball <- as.vector(t(cbind(fitprob, 1 - 
-                  .rowSums(fitprob, nobs, ncategoriesm1,FALSE))))
-                if (!validmu(fitproball)) 
-                  stop("Please insert initial values")
-                fitprob <- as.vector(t(fitprob))
-                dummy <- fitprob
-            }
-            I0_mat[, ] <- I1_mat[, ] <- H_mat[, ] <- 0
-            if (verbose) 
-                cat(format(round(iter, 0), digits = 5, trim = TRUE, 
-                  justify = "centre", scientific = FALSE, nsmall = 0, 
-                  width = 8), "\t", format(round(crit, 5), digits = 5, 
-                  trim = TRUE, justify = "centre", scientific = FALSE, 
-                  nsmall = 5, width = 8), "\n")
-            if (crit <= tol) 
-                break
+            D_mat1 <- D_mat[id_ind, ]
+            help_mat1 <- crossprod(D_mat1, V_mat)
+            help_mat2 <- help_mat1 %*% resids[id_ind]
+            I0_mat <- help_mat1 %*% D_mat1 + I0_mat
+            H_mat <- help_mat2 + H_mat
+            I1_mat <- tcrossprod(help_mat2, help_mat2) + I1_mat
         }
+        naive_mat <- solve(I0_mat)
+        robust_mat <- naive_mat %*% I1_mat %*% naive_mat
+        if (any(eigen(robust_mat, TRUE, only.values = TRUE)$values <= 0)) 
+            stop("Robust covariance matrix is not positive definite")
+        coeffsnew <- coeffs + naive_mat %*% H_mat
+        crit <- max(abs(coeffs - coeffsnew)/pmax.int(abs(coeffs), 1e-06))
+        crit_vector <- c(crit_vector, crit)
+        beta_mat <- cbind(beta_mat, coeffsnew)
+        coeffs <- coeffsnew
+        eta <- drop(X_mat %*% coeffs) + offset
+        if (link != "acl" & link != "bcl") {
+            probexclude <- seq(ncategories, nobs * ncategories, ncategories)
+            fitproball <- muprob(linkinv(eta), nobs, ncategoriesm1)
+            if (!validmu(fitproball)) 
+                stop("Please insert initial values")
+            fitprob <- fitproball[-probexclude]
+            dummy <- mu.eta(eta)
+        } else {
+            fitprob <- exp(matrix(eta, length(eta)/ncategoriesm1, ncategoriesm1, 
+                TRUE))
+            fitprob <- fitprob/(1 + .rowSums(fitprob, nobs, ncategoriesm1, 
+                FALSE))
+            fitproball <- as.vector(t(cbind(fitprob, 1 - .rowSums(fitprob, 
+                nobs, ncategoriesm1, FALSE))))
+            if (!validmu(fitproball)) 
+                stop("Please insert initial values")
+            fitprob <- as.vector(t(fitprob))
+            dummy <- fitprob
+        }
+        I0_mat[, ] <- I1_mat[, ] <- H_mat[, ] <- 0
+        if (verbose) 
+            cat(format(round(iter, 0), digits = 5, trim = TRUE, justify = "centre", 
+                scientific = FALSE, nsmall = 0, width = 8), "\t", format(round(crit, 
+                5), digits = 5, trim = TRUE, justify = "centre", scientific = FALSE, 
+                nsmall = 5, width = 8), "\n")
+        if (crit <= tol) 
+            break
+    }
     resids <- Y - fitprob
     D_mat <- deriv_mat(dummy, ncategoriesm1, X_mat)
     for (i in 1:Nsubs) {
@@ -204,38 +185,34 @@ function (Y, X_mat, coeffs, ncategories, id, repeated, offset,
         mat1 <- diagmod(prob)
         if (Ti == 1) {
             V_mat <- inversematrix(mat1 - tcrossprod(prob, prob))
-        }
-        else if (Ti == noccasions) {
+        } else if (Ti == noccasions) {
             proball <- fitproball[extid_vector[[i]]]
             for (j in 1:(noccasions - 1)) {
                 t1 <- index_mat[j, ]
                 probrow <- proball[extindex_mat[j, ]]
                 for (k in (j + 1):noccasions) {
-                  index <- code_mat[code_mat[, 1] == j & code_mat[, 
-                    2] == k, 3]
-                  ipfpfit <- ipfp(LORterm[index, ], probrow, 
-                    proball[extindex_mat[k, ]])
-                  mat1[t1, index_mat[k, ]] <- ipfpfit[-ncategories, 
-                    -ncategories]
+                  index <- code_mat[code_mat[, 1] == j & code_mat[, 2] == 
+                    k, 3]
+                  ipfpfit <- ipfp(LORterm[index, ], probrow, proball[extindex_mat[k, 
+                    ]])
+                  mat1[t1, index_mat[k, ]] <- ipfpfit[-ncategories, -ncategories]
                 }
             }
-            mat1[sel_mat[[noccasions - 1]]] <- aperm(mat1, c(2, 
-                1))[sel_mat[[noccasions - 1]]]
+            mat1[sel_mat[[noccasions - 1]]] <- aperm(mat1, c(2, 1))[sel_mat[[noccasions - 
+                1]]]
             V_mat <- inversematrix(mat1 - tcrossprod(prob, prob))
-        }
-        else {
+        } else {
             Tiid <- times_mat[[i]]
             proball <- fitproball[extid_vector[[i]]]
             for (j in 1:(Ti - 1)) {
                 t1 <- index_mat[j, ]
                 probrow <- proball[extindex_mat[j, ]]
                 for (k in (j + 1):Ti) {
-                  index <- code_mat[code_mat[, 1] == Tiid[j] & 
-                    code_mat[, 2] == Tiid[k], 3]
-                  ipfpfit <- ipfp(LORterm[index, ], probrow, 
-                    proball[extindex_mat[k, ]])
-                  mat1[t1, index_mat[k, ]] <- ipfpfit[-ncategories, 
-                    -ncategories]
+                  index <- code_mat[code_mat[, 1] == Tiid[j] & code_mat[, 
+                    2] == Tiid[k], 3]
+                  ipfpfit <- ipfp(LORterm[index, ], probrow, proball[extindex_mat[k, 
+                    ]])
+                  mat1[t1, index_mat[k, ]] <- ipfpfit[-ncategories, -ncategories]
                 }
             }
             mat1[sel_mat[[Ti - 1]]] <- aperm(mat1, c(2, 1))[sel_mat[[Ti - 
@@ -248,11 +225,11 @@ function (Y, X_mat, coeffs, ncategories, id, repeated, offset,
         I0_mat <- help_mat1 %*% D_mat1 + I0_mat
         I1_mat <- tcrossprod(help_mat2, help_mat2) + I1_mat
     }
-    if (any(eigen(I0_mat,TRUE,only.values=TRUE)$values<=0)) 
+    if (any(eigen(I0_mat, TRUE, only.values = TRUE)$values <= 0)) 
         warning("'Naive' covariance matrix is not positive definite")
     naive_mat <- solve(I0_mat)
     robust_mat <- naive_mat %*% I1_mat %*% naive_mat
-    if (any(eigen(robust_mat,TRUE,only.values=TRUE)$values<=0)) 
+    if (any(eigen(robust_mat, TRUE, only.values = TRUE)$values <= 0)) 
         stop("Robust covariance matrix is not positive definite")
     result <- list()
     result$beta_mat <- beta_mat
@@ -264,8 +241,8 @@ function (Y, X_mat, coeffs, ncategories, id, repeated, offset,
     k <- 1
     for (i in 1:(noccasions - 1)) {
         for (j in (i + 1):noccasions) {
-            ans[seq(ncategoriesm1) + ncategoriesm1 * (i - 1), 
-                seq(ncategoriesm1) + ncategoriesm1 * (j - 1)] <- odds.ratio(matrix(LORterm[k, 
+            ans[seq(ncategoriesm1) + ncategoriesm1 * (i - 1), seq(ncategoriesm1) + 
+                ncategoriesm1 * (j - 1)] <- odds.ratio(matrix(LORterm[k, 
                 ], ncategories, ncategories))
             k <- k + 1
         }

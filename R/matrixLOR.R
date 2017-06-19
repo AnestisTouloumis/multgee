@@ -1,11 +1,9 @@
-matrixLOR <-
-function (x) 
-{
+matrixLOR <- function(x) {
     if (!is.matrix(x)) 
         stop("'x' must be a matrix")
-    if (nrow(x)!=ncol(x)) 
+    if (nrow(x) != ncol(x)) 
         stop("'x' must be a square matrix")
-    if (any(x < 0) )
+    if (any(x < 0)) 
         stop("all elements of 'x' must be > 0")
     y <- matrix(1, nrow(x) + 1, ncol(x) + 1)
     for (i in 1:nrow(x)) {
