@@ -171,7 +171,7 @@ nomLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
     fit$convergence$niter <- fitmod$iter
     fit$convergence$criterion <- fitmod$crit[fitmod$iter]
     fit$convergence$conv <- fitmod$conv
-    xnames <- paste("beta0", 1:(ncategories - 1), sep = "")
+    xnames <- paste0("beta", 1:(ncategories - 1), "0")
     if (length(xxnames) > 1) {
         xxnames <- c(xnames, xxnames[-1])
         if (length(xxnames) > length(xnames)) {

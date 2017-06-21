@@ -1,5 +1,7 @@
 Version 1.5.8 [2017-06-21]
  * Updated R code - minor improvements.
+ * Updated R code - Notational consistency with SimCorMultRes.
+ * Updated documentation - Notational consistency with SimCorMultRes.
 
 Version 1.5.7 [2017-06-19]
  * Updated R code - minor improvements.

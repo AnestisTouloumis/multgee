@@ -145,17 +145,17 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
         X_mat1 <- model.matrix(~factor(Intercept) - 1)
         X_mat <- cbind(X_mat1, X_mat)
         X_mat <- matrix(X_mat, ncol = ncol(X_mat), dimnames = NULL)
-        xnames <- c(paste("beta0", 1:(ncategories - 1), sep = ""), xnames[-1])
+        xnames <- c(paste0("beta", 1:(ncategories - 1), "0"), xnames[-1])
     } else if (ncol(X_mat) == 2) {
         xnames <- colnames(X_mat)
         X_mat <- rep(X_mat[, -1], each = ncategories - 1)
         X_mat1 <- model.matrix(~factor(Intercept) - 1)
         X_mat <- cbind(X_mat1, X_mat)
         X_mat <- matrix(X_mat, ncol = ncol(X_mat), dimnames = NULL)
-        xnames <- c(paste("beta0", 1:(ncategories - 1), sep = ""), xnames[-1])
+        xnames <- c(paste0("beta", 1:(ncategories - 1), "0"), xnames[-1])
     } else {
         X_mat <- model.matrix(~factor(Intercept) - 1)
-        xnames <- c(paste("beta0", 1:(ncategories - 1), sep = ""))
+        xnames <- c(paste0("beta", 1:(ncategories - 1), "0"))
     }
     if (link == "acl") {
         dummy <- ncategories - 1

@@ -62,22 +62,22 @@ where $Y_{itj}=1$ if the response for subject $i$ at time $t$ falls at category 
 \subsection{Marginal models for correlated multinomial responses}
 The choice of the marginal model depends on the nature of the response scale. For ordinal multinomial responses, the family of cumulative link models
 \begin{equation}
-F^{-1}\left[\Prob(Y_{it}\leq j|\mathbf x_i)\right]=\beta_{0j}+ {\boldsymbol \beta}_{\ast}^{\top} \mathbf{x}_{it}
+F^{-1}\left[\Prob(Y_{it}\leq j|\mathbf x_i)\right]=\beta_{j0}+ {\boldsymbol \beta}_{\ast}^{\top} \mathbf{x}_{it}
 \label{ABMCLM}
 \end{equation}
 or the adjacent categories logit model  
 \begin{equation}
-\log\left(\frac{\pi_{itj}}{\pi_{it(j+1)}} \right)=\beta_{0j}+ {\boldsymbol \beta}_{\ast}^{\top} \mathbf{x}_{it}
+\log\left(\frac{\pi_{itj}}{\pi_{it(j+1)}} \right)=\beta_{j0}+ {\boldsymbol \beta}_{\ast}^{\top} \mathbf{x}_{it}
 \label{ABMACLM}
 \end{equation}
-can be used, where $F$ is the cumulative distribution function of a continuous distribution and $\{\beta_{0j}:j=1,\ldots,J-1\}$ are the category specific intercepts. For nominal multinomial responses, the baseline category logit model
+can be used, where $F$ is the cumulative distribution function of a continuous distribution and $\{\beta_{j0}:j=1,\ldots,J-1\}$ are the category specific intercepts. For nominal multinomial responses, the baseline category logit model
 \begin{equation}
-\log\left(\frac{\pi_{itj}}{\pi_{itJ}}\right)=\beta_{0j}+{\boldsymbol {\beta}}_{j}^{\top} \mathbf{x}_{it}
+\log\left(\frac{\pi_{itj}}{\pi_{itJ}}\right)=\beta_{j0}+{\boldsymbol {\beta}}_{j}^{\top} \mathbf{x}_{it}
 \label{ABMBCLM}
 \end{equation}
 can be used, where $\boldsymbol {\beta}_{j}$ is the $j$-th category specific parameter vector.
 
-It is worth mentioning that the linear predictor differs in the above marginal models. First, the category specific intercepts need to satisfy a monotonicity condition $\beta_{01}\leq\beta_{02}\leq \ldots \leq \beta_{0(J-1)}$ only when the family of cumulative link models in (\ref{ABMCLM}) is employed. Second, the regression parameter coefficients of the covariates $\mathbf x_{it}$ are category specific only in the marginal baseline category logit model~(\ref{ABMBCLM}) and not in the ordinal marginal models (\ref{ABMCLM}) and (\ref{ABMACLM}).
+It is worth mentioning that the linear predictor differs in the above marginal models. First, the category specific intercepts need to satisfy a monotonicity condition $\beta_{10}\leq\beta_{20}\leq \ldots \leq \beta_{(J-1)0}$ only when the family of cumulative link models in (\ref{ABMCLM}) is employed. Second, the regression parameter coefficients of the covariates $\mathbf x_{it}$ are category specific only in the marginal baseline category logit model~(\ref{ABMBCLM}) and not in the ordinal marginal models (\ref{ABMCLM}) and (\ref{ABMACLM}).
 
 \subsection{Estimation of the marginal regression parameter vector}
 To unify the notation, let $\boldsymbol \beta$ be the $p$-variate parameter vector that includes all the regression parameters in (\ref{ABMCLM}), (\ref{ABMACLM}) or (\ref{ABMBCLM}). To obtain $\boldsymbol {\widehat \beta_G}$, a GEE estimator of $\boldsymbol \beta$, \cite{Touloumis2012} solved the estimating equations
@@ -179,7 +179,7 @@ The single-argument function \code{matrixLOR} creates a two-way probability tabl
 \section{Example}\label{Example}
 To illustrate the main features of the package \pkg{multgee}, we follow the GEE analysis performed in \cite{Touloumis2012}. The data came from a randomized clinical trial \citep{Lipsitz1994} that aimed to evaluate the effectiveness of the drug Auranofin versus the placebo therapy for the treatment of rheumatoid arthritis. The five-level (1=poor, \ldots, 5=very good) ordinal multinomial response variable was the self-assessment of rheumatoid arthritis recorded at one ($t=1$), three ($t=2$) and five ($t=3$) follow-up months. To acknowledge the ordinal response scale, the marginal cumulative logit model 
 \begin{align}
-\log \left(\frac{\Prob(Y_{it}\leq j|\mathbf x_i)}{1-\Prob(Y_{it}\leq j|\mathbf x_i)}\right)&=\beta_{0j}+\beta_1 I(time_i=3)+\beta_2 I(time_i=5) +\beta_3 trt_i   \nonumber\\ 
+\log \left(\frac{\Prob(Y_{it}\leq j|\mathbf x_i)}{1-\Prob(Y_{it}\leq j|\mathbf x_i)}\right)&=\beta_{j0}+\beta_1 I(time_i=3)+\beta_2 I(time_i=5) +\beta_3 trt_i   \nonumber\\ 
                                                      &+\beta_4 I(b_i=2)+\beta_5 I(b_i=3)+\beta_6 I(b_i=4)+\beta_7 I(b_i=5).
 \label{MarginalModelData}
 \end{align} 

@@ -78,11 +78,11 @@ The argument \code{repeated} can be ignored only when \code{data} is written in 
 The variables \code{id} and \code{repeated} do not need to be pre-sorted. Instead the function reshapes \code{data} in an ascending order of \code{id} and \code{repeated}.
 
 The fitted marginal cumulative link model is  
-\deqn{Pr(Y_{it}\le j |x_{it})=F(\beta_{0j} +\beta^{'} x_{it})}
-where \eqn{Y_{it}} is the \eqn{t}-th multinomial response for cluster \eqn{i}, \eqn{x_{it}} is the associated covariates vector, \eqn{F} is the cumulative distribution function determined by \code{link}, \eqn{\beta_{j}} is the \eqn{j}-th response category specific intercept and \eqn{\beta} is the marginal regression parameter vector excluding intercepts.
+\deqn{Pr(Y_{it}\le j |x_{it})=F(\beta_{j0} +\beta^{'} x_{it})}
+where \eqn{Y_{it}} is the \eqn{t}-th multinomial response for cluster \eqn{i}, \eqn{x_{it}} is the associated covariates vector, \eqn{F} is the cumulative distribution function determined by \code{link}, \eqn{\beta_{j0}} is the \eqn{j}-th response category specific intercept and \eqn{\beta} is the marginal regression parameter vector excluding intercepts.
 
 The marginal adjacent categories logit model
-\deqn{log \frac{Pr(Y_{it}=j |x_{it})}{Pr(Y_{it}=j+1 |x_{it})}=\beta_{0j} +\beta^{'} x_{it}}
+\deqn{log \frac{Pr(Y_{it}=j |x_{it})}{Pr(Y_{it}=j+1 |x_{it})}=\beta_{j0} +\beta^{'} x_{it}}
 is fitted if and only if \code{link="acl"}. In contrast to a marginal cumulative link model, here the intercepts do not need to be monotone increasing.
      
 The \code{LORterm} argument must be an \eqn{L} x \eqn{J^2} matrix, where \eqn{L} is the number of level pairs of \code{repeated}. These are ordered as \eqn{(1,2), (1,3),\ldots,(1,T), (2,3),\ldots,(T-1,T)} and the rows of \code{LORterm} are supposed to preserve this order. Each row is assumed to contain the vectorized form of a probability table that satisfies the desired local odds ratios structure.
