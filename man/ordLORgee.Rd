@@ -84,6 +84,8 @@ where \eqn{Y_{it}} is the \eqn{t}-th multinomial response for cluster \eqn{i}, \
 The marginal adjacent categories logit model
 \deqn{log \frac{Pr(Y_{it}=j |x_{it})}{Pr(Y_{it}=j+1 |x_{it})}=\beta_{j0} +\beta^{'} x_{it}}
 is fitted if and only if \code{link="acl"}. In contrast to a marginal cumulative link model, here the intercepts do not need to be monotone increasing.
+
+The formulae are easier to read from either the Vignette or the Reference Manual (both available \href{https://CRAN.R-project.org/package=multgee}{here}).
      
 The \code{LORterm} argument must be an \eqn{L} x \eqn{J^2} matrix, where \eqn{L} is the number of level pairs of \code{repeated}. These are ordered as \eqn{(1,2), (1,3),\ldots,(1,T), (2,3),\ldots,(T-1,T)} and the rows of \code{LORterm} are supposed to preserve this order. Each row is assumed to contain the vectorized form of a probability table that satisfies the desired local odds ratios structure.
 }
@@ -119,9 +121,9 @@ Returns an object of the class \code{"LORgee"}. This has components:
 Generic \link{coef}, \link{summary}, \link{print}, \link{fitted} and \link{residuals} methods are available. The \code{pvalue of the Null model} corresponds to the hypothesis \eqn{H_0: \beta=0} based on the Wald test statistic.  
 }
 \references{
-Touloumis, A., Agresti, A. and Kateri, M. (2013). GEE for multinomial responses using a local odds ratios parameterization. \emph{Biometrics}, \bold{69}, 633-640.
+Touloumis, A., Agresti, A. and Kateri, M. (2013) GEE for multinomial responses using a local odds ratios parameterization. \emph{Biometrics}, \bold{69}, 633-640.
 
-Touloumis, A. (2015). R Package multgee: A Generalized Estimating Equations Solver for Multinomial Responses. \emph{Journal of Statistical Software}, \bold{64}, 1-14.
+Touloumis, A. (2015) R Package multgee: A Generalized Estimating Equations Solver for Multinomial Responses. \emph{Journal of Statistical Software}, \bold{64}, 1-14.
 }
 \author{
 Anestis Touloumis

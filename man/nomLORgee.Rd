@@ -72,6 +72,8 @@ The fitted marginal baseline category logit model is
 \deqn{log \frac{Pr(Y_{it}=j |x_{it})}{Pr(Y_{it}=J |x_{it})}=\beta_{j0} +\beta^{'}_j x_{it}}
 where \eqn{Y_{it}} is the \eqn{t}-th multinomial response for cluster \eqn{i}, \eqn{x_{it}} is the associated covariates vector, \eqn{\beta_{j0}} is the \eqn{j}-th response category specific intercept and \eqn{\beta_{j}} is the \eqn{j}-th response category specific parameter vector.
 
+The formula is easier to read from either the Vignette or the Reference Manual (both available \href{https://CRAN.R-project.org/package=multgee}{here}).
+
 The \code{LORterm} argument must be an \eqn{L} x \eqn{J^2} matrix, where \eqn{L} is the number of level pairs of \code{repeated}. These are ordered as \eqn{(1,2), (1,3), ...,(1,T), (2,3),...,(T-1,T)} and the rows of \code{LORterm} are supposed to preserve this order. Each row is assumed to contain the vectorized form of a probability table that satisfies the desired local odds ratios structure.
 }
 \value{
