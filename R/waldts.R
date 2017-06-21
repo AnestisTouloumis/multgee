@@ -22,7 +22,8 @@ waldts <- function(object0, object1) {
     if (length(setdiff(names0, names1)) != 0) 
         stop("The two models must be nested")
     index <- rep(0, length(namestest))
-    for (i in 1:length(namestest)) index[i] <- which(namestest[i] == names1)
+    for (i in seq_len(length(namestest))) index[i] <- which(namestest[i] == 
+        names1)
     coefftest <- obj1$coefficients[index]
     vartest <- obj1$robust.variance[index, index]
     waldtest <- t(coefftest) %*% solve(vartest) %*% coefftest

@@ -29,9 +29,8 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
         stop("response variable and 'id' are not of same length")
     repeated <- model.extract(m, "repeated")
     if (is.null(repeated)) {
-        index <- order(unlist(split(1:length(id), id)))
-        repeated <- c(unlist(sapply(unlist(lapply(split(id, id), length)), 
-            function(x) 1:x)))
+        index <- order(unlist(split(seq_len(length(id)), id)))
+        repeated <- c(unlist(lapply(split(id, id), function(x) seq_len(length(x)))))
         repeated <- repeated[index]
     }
     if (length(repeated) != length(Y)) 
@@ -128,7 +127,7 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
         if (verbose) {
             cat("\nGEE FOR ORDINAL MULTINOMIAL RESPONSES\n")
             cat("\nrunning 'vglm' function to get initial regression estimates\n")
-            print(matrix(coeffs, ncol = 1, dimnames = list(1:length(coeffs), 
+            print(matrix(coeffs, ncol = 1, dimnames = list(seq_len(length(coeffs)), 
                 "Initial.Values")))
         }
     }
@@ -177,7 +176,7 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
         if (verbose) {
             cat("\nGEE FOR ORDINAL MULTINOMIAL RESPONSES\n")
             cat("\nuser's initial regression estimate\n")
-            print(matrix(coeffs, ncol = 1, dimnames = list(1:length(coeffs), 
+            print(matrix(coeffs, ncol = 1, dimnames = list(seq_len(length(coeffs)), 
                 "Initial.Values")))
         }
     }
@@ -212,17 +211,17 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
     names(fit$coefficients) <- xnames
     fit$linear.predictors <- matrix(fitmod$linear.predictor, ncol = ncategories - 
         1, byrow = TRUE)
-    rownames(fit$linear.predictors) <- 1:nrow(fit$linear.predictors)
+    rownames(fit$linear.predictors) <- seq_len(nrow(fit$linear.predictors))
     colnames(fit$linear.predictors) <- 1:(ncategories - 1)
     fitted.values <- fitmod$fitted.values
     fitted.values.1 <- matrix(fitted.values, ncol = ncategories - 1, byrow = TRUE)
     fitted.values.2 <- 1 - rowSums(fitted.values.1)
     fitted.values <- cbind(fitted.values.1, fitted.values.2)
-    rownames(fitted.values) <- 1:nrow(fitted.values.1)
+    rownames(fitted.values) <- seq_len(nrow(fitted.values.1))
     colnames(fitted.values) <- 1:ncategories
     fit$fitted.values <- fitted.values
     fit$residuals <- matrix(fitmod$residuals, ncol = ncategories - 1, byrow = TRUE)
-    rownames(fit$residuals) <- 1:nrow(fit$residuals)
+    rownames(fit$residuals) <- seq_len(nrow(fit$residuals))
     colnames(fit$residuals) <- 1:(ncategories - 1)
     y <- Y
     y <- apply(matrix(y, ncol = ncategories - 1, byrow = TRUE), 1, function(x) which(x == 

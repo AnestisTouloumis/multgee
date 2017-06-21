@@ -2,7 +2,7 @@
 multgee: GEE Solver for Correlated Nominal or Ordinal Multinomial Responses
 ===========================================================================
 
-[![Travis-CI Build Status](https://travis-ci.org/AnestisTouloumis/multgee.svg?branch=master)](https://travis-ci.org/AnestisTouloumis/multgee) [![develVersion](https://img.shields.io/badge/devel%20version-1.5.6-brightgreen.svg?style=flat)](https://github.com/AnestisTouloumis/multgee) [![Project Status: Active The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![Last-changedate](https://img.shields.io/badge/last%20change-2017--06--16-brightgreen.svg)](/commits/master)
+[![Travis-CI Build Status](https://travis-ci.org/AnestisTouloumis/multgee.svg?branch=master)](https://travis-ci.org/AnestisTouloumis/multgee) [![develVersion](https://img.shields.io/badge/devel%20version-1.5.8-brightgreen.svg?style=flat)](https://github.com/AnestisTouloumis/multgee) [![Project Status: Active The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![Last-changedate](https://img.shields.io/badge/last%20change-2017--06--21-brightgreen.svg)](/commits/master)
 
 [![CRAN Version](http://www.r-pkg.org/badges/version/multgee?color=blue)](https://cran.r-project.org/package=multgee) [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/grand-total/multgee?color=blue)](http://cranlogs.r-pkg.org/badges/grand-total/multgee) [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/multgee)](http://cran.rstudio.com/web/packages/multgee/index.html)
 

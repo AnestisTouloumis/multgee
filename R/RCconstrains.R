@@ -3,7 +3,7 @@ RCconstrains <- function(ncategories, homogeneous) {
     nodf <- helpvec <- rep.int(0, ncategories1)
     for (i in 1:(ncategories1 - 1)) {
         helpmat <- t(combn(c(1:ncategories1), i))
-        for (j in 1:nrow(helpmat)) {
+        for (j in seq_len(nrow(helpmat))) {
             helpvec <- rep.int(0, ncategories1)
             helpvec[helpmat[j, ]] <- 1
             nodf <- rbind(nodf, helpvec)
