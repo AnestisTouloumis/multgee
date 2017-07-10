@@ -197,7 +197,7 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
     fit <- list()
     fit$call <- call
     fit$title <- "GEE FOR ORDINAL MULTINOMIAL RESPONSES"
-    fit$version <- "version 1.5.1 modified 2015-03-09"
+    fit$version <- "version 1.6.0 modified 2017-07-10"
     fit$link <- if (link == "acl") 
         paste("Adjacent Category Logit") else 
           paste("Cumulative", link, sep = " ")
