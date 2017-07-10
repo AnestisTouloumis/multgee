@@ -65,7 +65,7 @@ knitr::opts_chunk$set(
 
 ## Author
 
-Anestis Touloumis <https://brighton.academia.edu/AnestisTouloumis>
+Anestis Touloumis: <https://brighton.academia.edu/AnestisTouloumis>
 
 School of Computing, Engineering and Mathematics, University of Brighton. 
 
@@ -91,7 +91,7 @@ devtools::install_github("AnestisTouloumis/multgee")
 
 The source code for the development version of **multgee** is available on github at:
 
-- https://github.com/AnestisTouloumis/multgee.
+- https://github.com/AnestisTouloumis/multgee
 
 To use **multgee**, you should load the package as follows:
 
@@ -111,10 +111,10 @@ There are two core functions to fit GEE models for correlated multinomial respon
 
 The main arguments in both functions are: 
 
-- an optional data frame `data`,
-- a model formula `formula`,
-- a cluster identifier variable `id`,
-- an optional vector that identifies the order of the observations within each cluster `repeated`.
+- an optional data frame (`data`),
+- a model formula (`formula`),
+- a cluster identifier variable (`id`),
+- an optional vector that identifies the order of the observations within each cluster (`repeated`).
 
 
 The association structure among the correlated multinomial responses is expressed via marginalized local odds ratios [@Touloumis2013]. The estimating procedure for the local odds ratios can be summarized as follows: For each level pair of the `repeated` variable, the available responses are aggregated across clusters to form a square marginalized contingency table. Treating these tables as independent, an RC-G(1) type model is fitted in order to estimate the marginalized local odds ratios. The `LORstr` argument determines the form of the marginalized local odds ratios structure. Since the general RC-G(1) model is closely related to the family of association models, one can instead fit an association model to each of the marginalized contingency tables by setting `LORem="2way"` in the core functions. 
