@@ -4,8 +4,8 @@ derivbcl <- function(fitprob, ncategoriesm1, X_mat) {
     fitprob1 <- matrix(fitprob, n1/ncategoriesm1, ncategoriesm1, TRUE)
     mat1 <- matrix(0, n1, ncategoriesm1)
     for (i in seq_len(nrow(fitprob1))) {
-        mat1[((i - 1) * ncategoriesm1 + 1):(i * ncategoriesm1), ] <- diagmod(fitprob1[i, 
-            ]) - tcrossprod(fitprob1[i, ])
+        mat1[((i - 1) * ncategoriesm1 + 1):(i * ncategoriesm1), ] <- 
+          diagmod(fitprob1[i, ]) - tcrossprod(fitprob1[i, ])
     }
     if (n2 == ncategoriesm1) 
         ans <- mat1 else {

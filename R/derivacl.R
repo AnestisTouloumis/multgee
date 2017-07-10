@@ -11,7 +11,8 @@ derivacl <- function(fitprob, ncategoriesm1, X_mat) {
             TRUE)
         mat3 <- 1 - mat2
         mat2[lower.tri(mat2)] <- -mat3[lower.tri(mat3)]
-        mat4[((i - 1) * ncategoriesm1 + 1):(i * ncategoriesm1), 1:ncategoriesm1] <- mat2
+        mat4[((i - 1) * ncategoriesm1 + 1):(i * ncategoriesm1), 
+             1:ncategoriesm1] <- mat2
     }
     if (n2 > ncategoriesm1) {
         dummy2 <- (ncategoriesm1 + 1):n2
@@ -19,8 +20,8 @@ derivacl <- function(fitprob, ncategoriesm1, X_mat) {
             mat2 <- X_mat[, dummy2] * mat1[, dummy2]
             for (i in seq_len(nrow(fitprob1))) {
                 dummy <- ((i - 1) * ncategoriesm1 + 1):(i * ncategoriesm1)
-                mat4[dummy, dummy2] <- X_mat[dummy, dummy2] - rep(sum(mat2[dummy]), 
-                  ncategoriesm1)
+                mat4[dummy, dummy2] <- X_mat[dummy, dummy2] - 
+                  rep(sum(mat2[dummy]), ncategoriesm1)
             }
         } else {
             dummy3 <- n2 - ncategoriesm1

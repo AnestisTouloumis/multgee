@@ -32,7 +32,8 @@ nomLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
     repeated <- model.extract(m, "repeated")
     if (is.null(repeated)) {
         index <- order(unlist(split(seq_len(length(id)), id)))
-        repeated <- c(unlist(lapply(split(id, id), function(x) seq_len(length(x)))))
+        repeated <- c(unlist(lapply(split(id, id), 
+                                    function(x) seq_len(length(x)))))
         repeated <- repeated[index]
     }
     if (length(repeated) != length(Y)) 
@@ -106,9 +107,11 @@ nomLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
             stop("Please insert initial values")
         if (verbose) {
             cat("\nGEE FOR NOMINAL MULTINOMIAL RESPONSES\n")
-            cat("\nrunning 'vglm' function to get initial regression estimates\n")
-            print(matrix(coeffs, ncol = 1, dimnames = list(seq_len(length(coeffs)), 
-                "Initial.Values")))
+            cat("\nrunning 'vglm' function",
+                "to get initial regression estimates\n", sep = "")
+            print(matrix(coeffs, ncol = 1, dimnames = 
+                           list(seq_len(length(coeffs)), 
+                                "Initial.Values")))
         }
     }
     Y <- rep(Y, each = ncategories - 1)
@@ -142,8 +145,9 @@ nomLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
         if (verbose) {
             cat("\nGEE FOR NOMINAL MULTINOMIAL RESPONSES\n")
             cat("\nuser's initial regression estimate\n")
-            print(matrix(coeffs, ncol = 1, dimnames = list(seq_len(length(coeffs)), 
-                "Initial.Values")))
+            print(matrix(coeffs, ncol = 1,
+                         dimnames = list(seq_len(length(coeffs)), 
+                                         "Initial.Values")))
         }
     }
     ordindex <- order(id, repeated)
@@ -184,23 +188,25 @@ nomLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
     }
     fit$coefficients <- fitmod$beta_mat[, fitmod$iter + 1]
     names(fit$coefficients) <- xnames
-    fit$linear.predictors <- matrix(fitmod$linear.predictor, ncol = ncategories - 
-        1, byrow = TRUE)
+    fit$linear.predictors <- matrix(fitmod$linear.predictor, 
+                                    ncol = ncategories - 1, byrow = TRUE)
     rownames(fit$linear.predictors) <- seq_len(nrow(fit$linear.predictors))
     colnames(fit$linear.predictors) <- 1:(ncategories - 1)
     fitted.values <- fitmod$fitted.values
-    fitted.values.1 <- matrix(fitted.values, ncol = ncategories - 1, byrow = TRUE)
+    fitted.values.1 <- matrix(fitted.values, ncol = ncategories - 1,
+                              byrow = TRUE)
     fitted.values.2 <- 1 - rowSums(fitted.values.1)
     fitted.values <- cbind(fitted.values.1, fitted.values.2)
     rownames(fitted.values) <- seq_len(nrow(fitted.values.1))
     colnames(fitted.values) <- 1:ncategories
     fit$fitted.values <- fitted.values
-    fit$residuals <- matrix(fitmod$residuals, ncol = ncategories - 1, byrow = TRUE)
+    fit$residuals <- matrix(fitmod$residuals, ncol = ncategories - 1,
+                            byrow = TRUE)
     rownames(fit$residuals) <- seq_len(nrow(fit$residuals))
     colnames(fit$residuals) <- 1:(ncategories - 1)
     y <- Y
-    y <- apply(matrix(y, ncol = ncategories - 1, byrow = TRUE), 1, function(x) which(x == 
-        1))
+    y <- apply(matrix(y, ncol = ncategories - 1, byrow = TRUE), 1, function(x) 
+      which(x == 1))
     y <- as.numeric(y)
     y[is.na(y)] <- ncategories
     fit$y <- y
@@ -227,8 +233,8 @@ nomLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
     if (length(xxnames) == (ncategories - 1)) 
         fit$pvalue <- NULL else {
         dummy <- seq(1, length(xxnames), ncategories - 1)
-        waldts <- fit$coefficients[-dummy] %*% solve((fit$robust.variance)[-dummy, 
-            -dummy])
+        waldts <- fit$coefficients[-dummy] %*% 
+          solve((fit$robust.variance)[-dummy, -dummy])
         waldts <- waldts %*% fit$coefficients[-dummy]
         fit$pvalue <- 1 - pchisq(waldts, length(xxnames) - length(dummy))
     }

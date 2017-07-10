@@ -1,8 +1,8 @@
 datacounts <- function(response, id, repeated, ncategories) {
     response <- as.numeric(factor(response))
     data <- data.frame(cbind(response, id, repeated))
-    data <- reshape(data, v.names = "response", idvar = "id", timevar = "repeated", 
-        direction = "wide")
+    data <- reshape(data, v.names = "response", idvar = "id",
+                    timevar = "repeated", direction = "wide")
     data <- data[, -1]
     data[is.na(data)] <- 0
     ntimes <- ncol(data)

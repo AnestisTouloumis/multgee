@@ -1,7 +1,8 @@
 ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id, 
     repeated = NULL, link = "logit", bstart = NULL, LORstr = "category.exch", 
-    LORem = "3way", LORterm = NULL, add = 0, homogeneous = TRUE, restricted = FALSE, 
-    control = LORgee.control(), ipfp.ctrl = ipfp.control(), IM = "solve") {
+    LORem = "3way", LORterm = NULL, add = 0, homogeneous = TRUE,
+    restricted = FALSE, control = LORgee.control(), ipfp.ctrl = ipfp.control(),
+    IM = "solve") {
     options(contrasts = c("contr.treatment", "contr.poly"))
     call <- match.call()
     mcall <- match.call(expand.dots = FALSE)
@@ -30,7 +31,8 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
     repeated <- model.extract(m, "repeated")
     if (is.null(repeated)) {
         index <- order(unlist(split(seq_len(length(id)), id)))
-        repeated <- c(unlist(lapply(split(id, id), function(x) seq_len(length(x)))))
+        repeated <- c(unlist(lapply(split(id, id), function(x) 
+          seq_len(length(x)))))
         repeated <- repeated[index]
     }
     if (length(repeated) != length(Y)) 
@@ -100,7 +102,8 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
     links <- c("logit", "probit", "cloglog", "cauchit", "acl")
     icheck <- as.integer(match(link, links, -1))
     if (icheck < 1) {
-        stop("'link' must be \"logit\", \"probit\", \"cloglog\", \"cauchit\" or \"acl\"")
+        stop("'link' must be \"logit\", \"probit\", \"cloglog\",
+             \"cauchit\" or \"acl\"")
     }
     if (is.null(bstart)) {
         if (link == "acl") 
@@ -126,9 +129,9 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
             stop("Please insert initial values")
         if (verbose) {
             cat("\nGEE FOR ORDINAL MULTINOMIAL RESPONSES\n")
-            cat("\nrunning 'vglm' function to get initial regression estimates\n")
-            print(matrix(coeffs, ncol = 1, dimnames = list(seq_len(length(coeffs)), 
-                "Initial.Values")))
+            print(matrix(coeffs, ncol = 1, 
+                         dimnames = list(seq_len(length(coeffs)), 
+                                         "Initial.Values")))
         }
     }
     Y <- rep(Y, each = ncategories - 1)
@@ -161,7 +164,8 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
         dummy <- ncategories - 1
         dummy.matrix <- diagmod(rep.int(1, dummy))
         dummy.matrix[upper.tri(dummy.matrix)] <- 1
-        X_mat[, 1:dummy] <- kronecker(rep.int(1, nrow(X_mat)/dummy), dummy.matrix)
+        X_mat[, 1:dummy] <- 
+          kronecker(rep.int(1, nrow(X_mat)/dummy), dummy.matrix)
         if (dummy != ncol(X_mat)) {
             X_mat[, -c(1:dummy)] <- X_mat[, -c(1:dummy)] * rep(dummy:1, 
                 nrow(X_mat)/dummy)
@@ -176,8 +180,9 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
         if (verbose) {
             cat("\nGEE FOR ORDINAL MULTINOMIAL RESPONSES\n")
             cat("\nuser's initial regression estimate\n")
-            print(matrix(coeffs, ncol = 1, dimnames = list(seq_len(length(coeffs)), 
-                "Initial.Values")))
+            print(matrix(coeffs, ncol = 1, 
+                         dimnames = list(seq_len(length(coeffs)), 
+                                         "Initial.Values")))
         }
     }
     ordindex <- order(id, repeated)
@@ -194,7 +199,8 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
     fit$title <- "GEE FOR ORDINAL MULTINOMIAL RESPONSES"
     fit$version <- "version 1.5.1 modified 2015-03-09"
     fit$link <- if (link == "acl") 
-        paste("Adjacent Category Logit") else paste("Cumulative", link, sep = " ")
+        paste("Adjacent Category Logit") else 
+          paste("Cumulative", link, sep = " ")
     fit$local.odds.ratios <- list()
     fit$local.odds.ratios$structure <- LORstr
     fit$local.odds.ratios$model <- LORem
@@ -209,23 +215,25 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
     fit$convergence$conv <- fitmod$conv
     fit$coefficients <- fitmod$beta_mat[, fitmod$iter + 1]
     names(fit$coefficients) <- xnames
-    fit$linear.predictors <- matrix(fitmod$linear.predictor, ncol = ncategories - 
-        1, byrow = TRUE)
+    fit$linear.predictors <- matrix(fitmod$linear.predictor, 
+                                    ncol = ncategories - 1, byrow = TRUE)
     rownames(fit$linear.predictors) <- seq_len(nrow(fit$linear.predictors))
     colnames(fit$linear.predictors) <- 1:(ncategories - 1)
     fitted.values <- fitmod$fitted.values
-    fitted.values.1 <- matrix(fitted.values, ncol = ncategories - 1, byrow = TRUE)
+    fitted.values.1 <- matrix(fitted.values, ncol = ncategories - 1,
+                              byrow = TRUE)
     fitted.values.2 <- 1 - rowSums(fitted.values.1)
     fitted.values <- cbind(fitted.values.1, fitted.values.2)
     rownames(fitted.values) <- seq_len(nrow(fitted.values.1))
     colnames(fitted.values) <- 1:ncategories
     fit$fitted.values <- fitted.values
-    fit$residuals <- matrix(fitmod$residuals, ncol = ncategories - 1, byrow = TRUE)
+    fit$residuals <- matrix(fitmod$residuals, ncol = ncategories - 1, 
+                            byrow = TRUE)
     rownames(fit$residuals) <- seq_len(nrow(fit$residuals))
     colnames(fit$residuals) <- 1:(ncategories - 1)
     y <- Y
-    y <- apply(matrix(y, ncol = ncategories - 1, byrow = TRUE), 1, function(x) which(x == 
-        1))
+    y <- apply(matrix(y, ncol = ncategories - 1, byrow = TRUE), 1, function(x)
+      which(x == 1))
     y <- as.numeric(y)
     y[is.na(y)] <- ncategories
     fit$y <- y
@@ -252,8 +260,8 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
     if (length(xnames) == (ncategories - 1)) 
         fit$pvalue <- NULL else {
         dummy <- 1:(ncategories - 1)
-        waldts <- fit$coefficients[-dummy] %*% solve((fit$robust.variance)[-dummy, 
-            -dummy])
+        waldts <- fit$coefficients[-dummy] %*% 
+          solve((fit$robust.variance)[-dummy, -dummy])
         waldts <- waldts %*% fit$coefficients[-dummy]
         fit$pvalue <- 1 - pchisq(waldts, length(xnames) - length(dummy))
     }

@@ -1,5 +1,5 @@
-intrinsic.pars <- function(y = y, data = parent.frame(), id = id, repeated = NULL, 
-    rscale = "ordinal") {
+intrinsic.pars <- function(y = y, data = parent.frame(), id = id, 
+                           repeated = NULL, rscale = "ordinal") {
     call <- match.call()
     mcall <- match.call(expand.dots = FALSE)
     mf <- match(c("y", "data", "id", "repeated"), names(mcall), 0L)
@@ -28,7 +28,8 @@ intrinsic.pars <- function(y = y, data = parent.frame(), id = id, repeated = NUL
     repeated <- model.extract(m, "repeated")
     if (is.null(repeated)) {
         index <- order(unlist(split(seq_len(length(id)), id)))
-        repeated <- c(unlist(lapply(split(id, id), function(x) seq_len(length(x)))))
+        repeated <- c(unlist(lapply(split(id, id), function(x)
+          seq_len(length(x)))))
         repeated <- repeated[index]
     }
     if (length(repeated) != length(Y)) 
@@ -43,8 +44,9 @@ intrinsic.pars <- function(y = y, data = parent.frame(), id = id, repeated = NUL
         stop("'repeated' does not have unique values per 'id'")
     cdata <- datacounts(Y, id, repeated, ncategories)
     if (rscale == "ordinal") {
-        cmod <- gnm(counts ~ (factor(x) + factor(y)) * factor(tp) + factor(tp):x:y, 
-            family = poisson, data = cdata)
+        cmod <- gnm(
+          counts ~ (factor(x) + factor(y)) * factor(tp) + factor(tp):x:y, 
+          family = poisson, data = cdata)
         ans <- as.vector(coef(cmod)[pickCoef(cmod, "x:y")])
     } else {
         ans <- rep(0, max(cdata$tp))
@@ -55,8 +57,8 @@ intrinsic.pars <- function(y = y, data = parent.frame(), id = id, repeated = NUL
                 data = cdata[cdata$tp == i, ])
             cscores <- coef(cmod)[pickCoef(cmod, "MultHomog")]
             cscores <- c(tcrossprod(normscores(cscores)))
-            cmod <- gnm(counts ~ factor(x) + factor(y) + cscores, family = poisson, 
-                data = cdata[cdata$tp == i, ])
+            cmod <- gnm(counts ~ factor(x) + factor(y) + cscores, 
+                        family = poisson, data = cdata[cdata$tp == i, ])
             ans[i] <- coef(cmod)["cscores"]
         }
     }

@@ -1,5 +1,5 @@
-ipfp <- function(initial, rowmars, colmars, dimension, maxit = ipfp.control()$maxit, 
-    tol = ipfp.control()$tol) {
+ipfp <- function(initial, rowmars, colmars, dimension, 
+                 maxit = ipfp.control()$maxit, tol = ipfp.control()$tol) {
     ans <- initial
     rowsums <- .rowSums(ans, dimension, dimension, FALSE)
     for (i in 1:maxit) {

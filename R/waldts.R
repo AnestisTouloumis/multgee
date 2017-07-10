@@ -28,9 +28,10 @@ waldts <- function(object0, object1) {
     vartest <- obj1$robust.variance[index, index]
     waldtest <- t(coefftest) %*% solve(vartest) %*% coefftest
     pvalue <- 1 - pchisq(waldtest, length(namestest))
-    ans <- list(NullModel = obj0$call$formula, AlternativeModel = obj1$call$formula, 
-        waldstatistic = round(waldtest, 4), df = length(namestest), pvalue = round(pvalue, 
-            4))
+    ans <- list(NullModel = obj0$call$formula, 
+                AlternativeModel = obj1$call$formula, 
+                waldstatistic = round(waldtest, 4), df = length(namestest),
+                pvalue = round(pvalue, 4))
     class(ans) <- "waldts"
     ans
 }

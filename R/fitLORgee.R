@@ -1,6 +1,6 @@
 fitLORgee <- function(Y, X_mat, coeffs, ncategories, id, repeated, offset, 
-    link, LORterm, marpars, ipfp.ctrl, control, IM, LORem = LORem, LORstr = LORstr, 
-    add) {
+    link, LORterm, marpars, ipfp.ctrl, control, IM, LORem = LORem,
+    LORstr = LORstr, add) {
     inversematrix <- function(x) inversemat(x, IM)
     tol <- control$tolerance
     maxiter <- control$maxiter
@@ -15,8 +15,8 @@ fitLORgee <- function(Y, X_mat, coeffs, ncategories, id, repeated, offset,
     Ti_vector <- as.numeric(lapply(split(id, id), length))/(ncategoriesm1)
     if (all(Ti_vector == 1)) 
         stop("There are no repeated responses")
-    sel_mat <- lapply(seq.int(2, noccasions), function(x) which(lower.tri(diag(x * 
-        ncategoriesm1))))
+    sel_mat <- lapply(seq.int(2, noccasions), function(x) 
+      which(lower.tri(diag(x * ncategoriesm1))))
     if (any(Ti_vector < noccasions)) {
         times_mat <- lapply(split(repeatednew, id), unique)
     }
@@ -77,9 +77,9 @@ fitLORgee <- function(Y, X_mat, coeffs, ncategories, id, repeated, offset,
     }
     if (verbose) 
         cat(format("Iteration", digits = 5, trim = TRUE, justify = "centre", 
-            scientific = FALSE, nsmall = 0, width = 8), "\t", format("Criterion", 
-            digits = 5, trim = TRUE, justify = "centre", scientific = FALSE, 
-            nsmall = 5, width = 8), "\n")
+                   scientific = FALSE, nsmall = 0, width = 8), "\t", 
+            format("Criterion", digits = 5, trim = TRUE, justify = "centre", 
+                   scientific = FALSE, nsmall = 5, width = 8), "\n")
     beta_mat <- matrix(coeffs)
     crit_vector <- 20
     I0_mat <- I1_mat <- matrix(0, p, p, FALSE)
@@ -105,11 +105,12 @@ fitLORgee <- function(Y, X_mat, coeffs, ncategories, id, repeated, offset,
                     index <- code_mat[code_mat[, 1] == j & code_mat[, 2] == 
                       k, 3]
                     ipfpfit <- ipfp(LORterm[index, ], probrow, proball[t3])
-                    mat1[t1, index_mat[k, ]] <- ipfpfit[-ncategories, -ncategories]
+                    mat1[t1, index_mat[k, ]] <- ipfpfit[-ncategories,
+                                                        -ncategories]
                   }
                 }
-                mat1[sel_mat[[noccasions - 1]]] <- aperm(mat1, c(2, 1))[sel_mat[[noccasions - 
-                  1]]]
+                mat1[sel_mat[[noccasions - 1]]] <- 
+                  aperm(mat1, c(2, 1))[sel_mat[[noccasions - 1]]]
                 V_mat <- inversematrix(mat1 - tcrossprod(prob, prob))
             } else {
                 Tiid <- times_mat[[i]]
@@ -122,9 +123,10 @@ fitLORgee <- function(Y, X_mat, coeffs, ncategories, id, repeated, offset,
                     t3 <- extindex_mat[Tiid[k], ]
                     index <- code_mat[code_mat[, 1] == Tiid[j] & code_mat[, 
                       2] == Tiid[k], 3]
-                    ipfpfit <- ipfp(LORterm[index, ], probrow, proball[extindex_mat[k, 
-                      ]])
-                    mat1[t1, index_mat[k, ]] <- ipfpfit[-ncategories, -ncategories]
+                    ipfpfit <- ipfp(LORterm[index, ], 
+                                    probrow, proball[extindex_mat[k, ]])
+                    mat1[t1, index_mat[k, ]] <- ipfpfit[-ncategories,
+                                                        -ncategories]
                   }
                 }
                 mat1[sel_mat[[Ti - 1]]] <- aperm(mat1, c(2, 1))[sel_mat[[Ti - 
@@ -156,8 +158,8 @@ fitLORgee <- function(Y, X_mat, coeffs, ncategories, id, repeated, offset,
             fitprob <- fitproball[-probexclude]
             dummy <- mu.eta(eta)
         } else {
-            fitprob <- exp(matrix(eta, length(eta)/ncategoriesm1, ncategoriesm1, 
-                TRUE))
+            fitprob <- exp(matrix(eta, length(eta)/ncategoriesm1,
+                                  ncategoriesm1, TRUE))
             fitprob <- fitprob/(1 + .rowSums(fitprob, nobs, ncategoriesm1, 
                 FALSE))
             fitproball <- as.vector(t(cbind(fitprob, 1 - .rowSums(fitprob, 
@@ -169,10 +171,12 @@ fitLORgee <- function(Y, X_mat, coeffs, ncategories, id, repeated, offset,
         }
         I0_mat[, ] <- I1_mat[, ] <- H_mat[, ] <- 0
         if (verbose) 
-            cat(format(round(iter, 0), digits = 5, trim = TRUE, justify = "centre", 
-                scientific = FALSE, nsmall = 0, width = 8), "\t", format(round(crit, 
-                5), digits = 5, trim = TRUE, justify = "centre", scientific = FALSE, 
-                nsmall = 5, width = 8), "\n")
+            cat(format(round(iter, 0), digits = 5, trim = TRUE, 
+                       justify = "centre", scientific = FALSE, nsmall = 0, 
+                       width = 8), "\t", 
+                format(round(crit, 5), digits = 5, trim = TRUE,
+                       justify = "centre", scientific = FALSE, nsmall = 5,
+                       width = 8), "\n")
         if (crit <= tol) 
             break
     }
@@ -193,13 +197,14 @@ fitLORgee <- function(Y, X_mat, coeffs, ncategories, id, repeated, offset,
                 for (k in (j + 1):noccasions) {
                   index <- code_mat[code_mat[, 1] == j & code_mat[, 2] == 
                     k, 3]
-                  ipfpfit <- ipfp(LORterm[index, ], probrow, proball[extindex_mat[k, 
-                    ]])
-                  mat1[t1, index_mat[k, ]] <- ipfpfit[-ncategories, -ncategories]
+                  ipfpfit <- ipfp(LORterm[index, ], probrow, 
+                                  proball[extindex_mat[k, ]])
+                  mat1[t1, index_mat[k, ]] <- ipfpfit[-ncategories,
+                                                      -ncategories]
                 }
             }
-            mat1[sel_mat[[noccasions - 1]]] <- aperm(mat1, c(2, 1))[sel_mat[[noccasions - 
-                1]]]
+            mat1[sel_mat[[noccasions - 1]]] <- 
+              aperm(mat1, c(2, 1))[sel_mat[[noccasions - 1]]]
             V_mat <- inversematrix(mat1 - tcrossprod(prob, prob))
         } else {
             Tiid <- times_mat[[i]]
@@ -210,9 +215,10 @@ fitLORgee <- function(Y, X_mat, coeffs, ncategories, id, repeated, offset,
                 for (k in (j + 1):Ti) {
                   index <- code_mat[code_mat[, 1] == Tiid[j] & code_mat[, 
                     2] == Tiid[k], 3]
-                  ipfpfit <- ipfp(LORterm[index, ], probrow, proball[extindex_mat[k, 
-                    ]])
-                  mat1[t1, index_mat[k, ]] <- ipfpfit[-ncategories, -ncategories]
+                  ipfpfit <- ipfp(LORterm[index, ], probrow,
+                                  proball[extindex_mat[k, ]])
+                  mat1[t1, index_mat[k, ]] <- ipfpfit[-ncategories,
+                                                      -ncategories]
                 }
             }
             mat1[sel_mat[[Ti - 1]]] <- aperm(mat1, c(2, 1))[sel_mat[[Ti - 
@@ -241,9 +247,9 @@ fitLORgee <- function(Y, X_mat, coeffs, ncategories, id, repeated, offset,
     k <- 1
     for (i in 1:(noccasions - 1)) {
         for (j in (i + 1):noccasions) {
-            ans[seq(ncategoriesm1) + ncategoriesm1 * (i - 1), seq(ncategoriesm1) + 
-                ncategoriesm1 * (j - 1)] <- odds.ratio(matrix(LORterm[k, 
-                ], ncategories, ncategories))
+            ans[seq(ncategoriesm1) + ncategoriesm1 * (i - 1),
+                seq(ncategoriesm1) + ncategoriesm1 * (j - 1)] <- 
+              odds.ratio(matrix(LORterm[k, ], ncategories, ncategories))
             k <- k + 1
         }
     }
