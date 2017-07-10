@@ -89,7 +89,7 @@ fitord <- ordLORgee(y ~ factor(time) + factor(trt) + factor(baseline), data = ar
     id = id, repeated = time)
 summary(fitord)
 #> GEE FOR ORDINAL MULTINOMIAL RESPONSES 
-#> version 1.5.1 modified 2015-03-09 
+#> version 1.6.0 modified 2017-07-10 
 #> 
 #> Link : Cumulative logit 
 #> 
