@@ -4,7 +4,7 @@ output:
     variant: markdown_github
 references:
 - id: Touloumis2015
-  title: "R Package multgee: A Generalized Estimating Equations Solver for Multinomial Responses"
+  title: R Package <multgee:> A Generalized Estimating Equations Solver for Multinomial Responses
   author:
   - family: Touloumis
     given: Anestis
@@ -50,7 +50,6 @@ knitr::opts_chunk$set(
 ```
 
 # multgee: GEE Solver for Correlated Nominal or Ordinal Multinomial Responses
-
 
 [![Travis-CI Build Status](https://travis-ci.org/AnestisTouloumis/multgee.svg?branch=master)](https://travis-ci.org/AnestisTouloumis/multgee)
 `r badge_devel("AnestisTouloumis/multgee", "brightgreen")`

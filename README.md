@@ -211,6 +211,6 @@ How to cite
 References
 ==========
 
-Touloumis, Anestis. 2015. “R Package Multgee: A Generalized Estimating Equations Solver for Multinomial Responses.” *Journal of Statistical Software* 64 (3): 1–14. doi:[10.18637/jss.v064.i08](https://doi.org/10.18637/jss.v064.i08).
+Touloumis, Anestis. 2015. “R Package &lt;multgee:&gt; A Generalized Estimating Equations Solver for Multinomial Responses.” *Journal of Statistical Software* 64 (3): 1–14. doi:[10.18637/jss.v064.i08](https://doi.org/10.18637/jss.v064.i08).
 
 Touloumis, Anestis, Alan Agresti, and Maria Kateri. 2013. “GEE for Multinomial Responses Using a Local Odds Ratios Parameterization.” *Biometrics* 69 (3): 633–40. doi:[10.1111/biom.12054](https://doi.org/10.1111/biom.12054).
