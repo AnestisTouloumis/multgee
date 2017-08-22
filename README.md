@@ -5,7 +5,7 @@ multgee: GEE Solver for Correlated Nominal or Ordinal Multinomial Responses
 
 [![Travis-CI Build Status](https://travis-ci.org/AnestisTouloumis/multgee.svg?branch=master)](https://travis-ci.org/AnestisTouloumis/multgee) [![Project Status: Active The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 
-[![CRAN Version](http://www.r-pkg.org/badges/version/multgee?color=blue)](https://cran.r-project.org/package=multgee) [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/grand-total/multgee?color=blue)](http://cranlogs.r-pkg.org/badges/grand-total/multgee) [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/multgee)](http://cran.rstudio.com/web/packages/multgee/index.html)
+[![CRAN Version](https://www.r-pkg.org/badges/version/multgee?color=blue)](https://cran.r-project.org/package=multgee) [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/grand-total/multgee?color=blue)](https://cranlogs.r-pkg.org/badges/grand-total/multgee) [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/multgee)](https://cran.r-project.org/package=multgee)
 
 Author
 ------
