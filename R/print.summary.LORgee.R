@@ -1,3 +1,4 @@
+#' @export
 print.summary.LORgee <- function(x, ...) {
     cat(x$title, "\n")
     cat(x$version, "\n")

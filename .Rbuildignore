@@ -1,6 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^\.travis\.yml$
-Makefile
-README.Rmd
-README.md
+^\.travis\.yml
+^README\.Rmd$
+^desktop.ini$

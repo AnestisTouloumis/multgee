@@ -1,15 +1,16 @@
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 multgee: GEE Solver for Correlated Nominal or Ordinal Multinomial Responses
 ===========================================================================
 
-[![Travis-CI Build Status](https://travis-ci.org/AnestisTouloumis/multgee.svg?branch=master)](https://travis-ci.org/AnestisTouloumis/multgee) [![develVersion](https://img.shields.io/badge/devel%20version-1.6.0.9-brightgreen.svg?style=flat)](https://github.com/AnestisTouloumis/multgee) [![Project Status: Active The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![Last-changedate](https://img.shields.io/badge/last%20change-2017--07--12-brightgreen.svg)](/commits/master)
+[![Travis-CI Build Status](https://travis-ci.org/AnestisTouloumis/multgee.svg?branch=master)](https://travis-ci.org/AnestisTouloumis/multgee) [![Project Status: Active The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 
 [![CRAN Version](http://www.r-pkg.org/badges/version/multgee?color=blue)](https://cran.r-project.org/package=multgee) [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/grand-total/multgee?color=blue)](http://cranlogs.r-pkg.org/badges/grand-total/multgee) [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/multgee)](http://cran.rstudio.com/web/packages/multgee/index.html)
 
 Author
 ------
 
-Anestis Touloumis: <https://brighton.academia.edu/AnestisTouloumis>
+Anestis Touloumis: <https://sites.google.com/view/atouloumis>
 
 School of Computing, Engineering and Mathematics, University of Brighton.
 
@@ -211,6 +212,6 @@ How to cite
 References
 ==========
 
-Touloumis, Anestis. 2015. “R Package &lt;multgee:&gt; A Generalized Estimating Equations Solver for Multinomial Responses.” *Journal of Statistical Software* 64 (3): 1–14. doi:[10.18637/jss.v064.i08](https://doi.org/10.18637/jss.v064.i08).
+Touloumis, Anestis. 2015. “R Package Multgee: A Generalized Estimating Equations Solver for Multinomial Responses.” *Journal of Statistical Software* 64 (8): 1–14. <https://www.jstatsoft.org/v064/i08>.
 
-Touloumis, Anestis, Alan Agresti, and Maria Kateri. 2013. “GEE for Multinomial Responses Using a Local Odds Ratios Parameterization.” *Biometrics* 69 (3): 633–40. doi:[10.1111/biom.12054](https://doi.org/10.1111/biom.12054).
+Touloumis, Anestis, Alan Agresti, and Maria Kateri. 2013. “GEE for Multinomial Responses Using a Local Odds Ratios Parameterization.” *Biometrics* 69 (3): 633–40. <http://onlinelibrary.wiley.com/doi/10.1111/biom.12054/full>.

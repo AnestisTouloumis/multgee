@@ -1,8 +1,12 @@
+Version 1.6.1 [2017-08-22]
+ * Updated documentation - using roxygen2.
+ * Visible README.md - removed from .Rbuildignore.
+ 
 Version 1.6.0 [2017-07-11]
  * Released on CRAN.
  
 Version 1.5.9 [2017-07-10]
- * Updated README - minor typos.
+ * Updated README.Rmd - minor typos.
  * Updated vignette - fixed canonical links to R packages.
  * Updated R code - tidy code to avoid long length.
  

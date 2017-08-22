@@ -1,18 +1,15 @@
 ---
-output:
-  md_document:
-    variant: markdown_github
+output: github_document
 references:
 - id: Touloumis2015
-  title: R Package <multgee:> A Generalized Estimating Equations Solver for Multinomial Responses
+  title: "R Package multgee: A Generalized Estimating Equations Solver for Multinomial Responses"
   author:
   - family: Touloumis
     given: Anestis
   container-title: Journal of Statistical Software
   volume: 64
   URL: 'https://www.jstatsoft.org/v064/i08'
-  DOI: 10.18637/jss.v064.i08
-  issue: 3
+  issue: 8
   page: 1-14
   type: article-journal
   issued:
@@ -29,7 +26,6 @@ references:
   container-title: Biometrics
   volume: 69
   URL: 'http://onlinelibrary.wiley.com/doi/10.1111/biom.12054/full'
-  DOI: 10.1111/biom.12054
   issue: 3
   page: 633--640
   type: article-journal
@@ -40,7 +36,6 @@ references:
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r setup, include=FALSE}
-library("badger")
 knitr::opts_chunk$set(
   tidy= TRUE,
   collapse = TRUE,
@@ -52,9 +47,7 @@ knitr::opts_chunk$set(
 # multgee: GEE Solver for Correlated Nominal or Ordinal Multinomial Responses
 
 [![Travis-CI Build Status](https://travis-ci.org/AnestisTouloumis/multgee.svg?branch=master)](https://travis-ci.org/AnestisTouloumis/multgee)
-`r badge_devel("AnestisTouloumis/multgee", "brightgreen")`
 [![Project Status: Active The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) 
-[![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-brightgreen.svg)](/commits/master)
 
 
 [![CRAN Version](http://www.r-pkg.org/badges/version/multgee?color=blue)](https://cran.r-project.org/package=multgee)
@@ -64,7 +57,7 @@ knitr::opts_chunk$set(
 
 ## Author
 
-Anestis Touloumis: <https://brighton.academia.edu/AnestisTouloumis>
+Anestis Touloumis: <https://sites.google.com/view/atouloumis>
 
 School of Computing, Engineering and Mathematics, University of Brighton. 
 

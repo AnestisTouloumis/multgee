@@ -1,3 +1,4 @@
+#' @export
 print.waldts <- function(x, ...) {
     cat("Goodness of Fit based on the Wald test", "\n")
     cat("\nModel under H_0: ")

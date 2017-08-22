@@ -1,8 +1,10 @@
 Package: multgee
 Type: Package
 Title: GEE Solver for Correlated Nominal or Ordinal Multinomial Responses
-Version: 1.6.0.91
-Author: Anestis Touloumis <A.Touloumis@brighton.ac.uk>
+Version: 1.6.1
+Authors@R: person("Anestis", "Touloumis", role = c("aut", "cre"),
+                     email = "A.Touloumis@brighton.ac.uk")
+Author: Anestis Touloumis [aut, cre]
 Maintainer: Anestis Touloumis <A.Touloumis@brighton.ac.uk>
 Depends: R (>= 2.15.0), gnm, VGAM
 Imports: utils, stats
@@ -11,3 +13,4 @@ License: GPL-2 | GPL-3
 LazyLoad: yes
 URL: http://github.com/AnestisTouloumis/multgee
 BugReports: http://github.com/AnestisTouloumis/multgee/issues
+RoxygenNote: 6.0.1
