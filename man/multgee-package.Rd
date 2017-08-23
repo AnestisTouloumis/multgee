@@ -73,8 +73,12 @@ Solver for Multinomial Responses. \emph{Journal of Statistical Software},
 \bold{64}, 1-14.
 }
 \seealso{
-For a nominal response scale use the function \link{nomLORgee}. For
-an ordinal response scale use the function \link{ordLORgee}.
+Useful links:
+\itemize{
+  \item \url{http://github.com/AnestisTouloumis/multgee}
+  \item Report bugs at \url{http://github.com/AnestisTouloumis/multgee/issues}
+}
+
 }
 \author{
 Anestis Touloumis Maintainer: Anestis Touloumis

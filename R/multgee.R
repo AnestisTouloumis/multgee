@@ -51,8 +51,6 @@
 #' @docType package
 #' @author Anestis Touloumis Maintainer: Anestis Touloumis
 #' <A.Touloumis@@brighton.ac.uk>
-#' @seealso For a nominal response scale use the function \link{nomLORgee}. For
-#' an ordinal response scale use the function \link{ordLORgee}.
 #' @references Becker, M. and Clogg, C. (1989) Analysis of sets of two-way
 #' contingency tables using association models. \emph{Journal of the American
 #' Statistical Association}, \bold{84}, 142-151.
