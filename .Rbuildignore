@@ -4,3 +4,9 @@
 ^README\.Rmd$
 ^desktop.ini$
 ^cppfunctions$
+^/vignettes/multgee\.tex$
+^/vignettes/multgee-concordance\.tex$
+^/vignettes/multgee\.pdf$
+^/vignettes/multgee\.log$
+^/vignettes/multgee\.bbl$
+^/vignettes/multgee\.synctex\.gz$
