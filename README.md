@@ -17,28 +17,28 @@ School of Computing, Engineering and Mathematics, University of Brighton.
 Installation
 ------------
 
-You can install the release version of **multgee**:
+You can install the release version of `multgee`:
 
 ``` r
 install.packages("multgee")
 ```
 
-The source code for the release version of **multgee** is available on CRAN at:
+The source code for the release version of `multgee` is available on CRAN at:
 
 -   <https://CRAN.R-project.org/package=multgee>
 
-Or you can install the development version of **multgee**:
+Or you can install the development version of `multgee`:
 
 ``` r
 # install.packages('devtools')
 devtools::install_github("AnestisTouloumis/multgee")
 ```
 
-The source code for the development version of **multgee** is available on github at:
+The source code for the development version of `multgee` is available on github at:
 
 -   <https://github.com/AnestisTouloumis/multgee>
 
-To use **multgee**, you should load the package as follows:
+To use `multgee`, you should load the package as follows:
 
 ``` r
 library(multgee)
@@ -158,7 +158,7 @@ summary(fitord)
 Getting help
 ------------
 
-The statistical methods implemented in **multgee** are described in Touloumis, Agresti, and Kateri (2013). A detailed description of the functionality of **multgee** can be found in Touloumis (2015). Note that an updated version of this paper also serves as a vignette:
+The statistical methods implemented in `multgee` are described in Touloumis, Agresti, and Kateri (2013). A detailed description of the functionality of `multgee` can be found in Touloumis (2015). Note that an updated version of this paper also serves as a vignette:
 
 ``` r
 browseVignettes("multgee")
