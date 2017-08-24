@@ -32,11 +32,11 @@
 #' 
 #' Becker, M. and Clogg, C. (1989) Analysis of sets of two-way contingency
 #' tables using association models. \emph{Journal of the American Statistical
-#' Association}, \bold{84}, 142-151.
+#' Association} \bold{84}, 142--151.
 #' 
 #' Touloumis, A., Agresti, A. and Kateri, M. (2013) GEE for multinomial
-#' responses using a local odds ratios parameterization. \emph{Biometrics},
-#' \bold{69}, 633-640.
+#' responses using a local odds ratios parameterization. \emph{Biometrics}
+#' \bold{69}, 633--640.
 #' @examples
 #' data(arthritis)
 #' intrinsic.pars(y,arthritis,id,time,rscale="ordinal")

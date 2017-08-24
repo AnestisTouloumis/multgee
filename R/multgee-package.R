@@ -53,23 +53,22 @@
 #' <A.Touloumis@@brighton.ac.uk>
 #' @references Becker, M. and Clogg, C. (1989) Analysis of sets of two-way
 #' contingency tables using association models. \emph{Journal of the American
-#' Statistical Association}, \bold{84}, 142-151.
+#' Statistical Association} \bold{84}, 142--151.
 #' 
 #' Goodman, L. (1985) The analysis of cross-classified data having ordered
 #' and/or unordered categories: Association models, correlation models, and
 #' asymmetry models for contingency tables with or without missing entries.
-#' \emph{The Annals of Statistics}, \bold{13}, 10-69.
+#' \emph{The Annals of Statistics} \bold{13}, 10--69.
 #' 
 #' Touloumis, A., Agresti, A. and Kateri, M. (2013) GEE for multinomial
-#' responses using a local odds ratios parameterization. \emph{Biometrics},
-#' \bold{69}, 633-640.
+#' responses using a local odds ratios parameterization. \emph{Biometrics}
+#' \bold{69}, 633--640.
 #' 
 #' Touloumis, A. (2015) R Package multgee: A Generalized Estimating Equations
-#' Solver for Multinomial Responses. \emph{Journal of Statistical Software},
-#' \bold{64}, 1-14.
+#' Solver for Multinomial Responses. \emph{Journal of Statistical Software}
+#' \bold{64}, 1--14.
 #' @import gnm VGAM
 #' @importFrom utils combn
 #' @importFrom stats pnorm update poisson glm reshape make.link model.response model.extract pchisq printCoefmat
 #' @keywords package
-"_PACKAGE"
-#> [1] "_PACKAGE"
+NULL

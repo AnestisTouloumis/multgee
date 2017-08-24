@@ -149,12 +149,12 @@ Touloumis, A. (2011) \emph{GEE for multinomial responses}. PhD
 dissertation, University of Florida.
 
 Touloumis, A., Agresti, A. and Kateri, M. (2013) GEE for multinomial
-responses using a local odds ratios parameterization. \emph{Biometrics},
-\bold{69}, 633-640.
+responses using a local odds ratios parameterization. \emph{Biometrics}
+\bold{69}, 633--640.
 
 Touloumis, A. (2015) R Package multgee: A Generalized Estimating Equations
-Solver for Multinomial Responses. \emph{Journal of Statistical Software},
-\bold{64}, 1-14.
+Solver for Multinomial Responses. \emph{Journal of Statistical Software}
+\bold{64}, 1--14.
 }
 \seealso{
 For an ordinal response scale use the function \link{ordLORgee}.
