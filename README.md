@@ -7,13 +7,6 @@ multgee: GEE Solver for Correlated Nominal or Ordinal Multinomial Responses
 
 [![CRAN Version](https://www.r-pkg.org/badges/version/multgee?color=blue)](https://cran.r-project.org/package=multgee) [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/grand-total/multgee?color=blue)](https://cranlogs.r-pkg.org/badges/grand-total/multgee) [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/multgee)](https://cran.r-project.org/package=multgee)
 
-Author
-------
-
-Anestis Touloumis: <https://sites.google.com/view/atouloumis>
-
-School of Computing, Engineering and Mathematics, University of Brighton.
-
 Installation
 ------------
 
