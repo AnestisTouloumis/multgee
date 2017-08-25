@@ -3,11 +3,14 @@ Type: Package
 Title: GEE Solver for Correlated Nominal or Ordinal Multinomial Responses
 Version: 1.6.1
 Authors@R: person("Anestis", "Touloumis", role = c("aut", "cre"),
-                     email = "A.Touloumis@brighton.ac.uk")
-Author: Anestis Touloumis [aut, cre]
-Maintainer: Anestis Touloumis <A.Touloumis@brighton.ac.uk>
-Depends: R (>= 2.15.0), gnm, VGAM
-Imports: utils, stats
+                      email = "A.Touloumis@brighton.ac.uk")
+Depends: 
+    R (>= 2.15.0), 
+    gnm, 
+    VGAM
+Imports: 
+    stats, 
+    utils
 Description: GEE solver for correlated nominal or ordinal multinomial responses using a local odds ratios parameterization.
 License: GPL-2 | GPL-3
 LazyLoad: yes
