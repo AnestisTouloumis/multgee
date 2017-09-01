@@ -44,7 +44,7 @@ library(multgee)
 Usage
 -----
 
-This package provides a generalized estimating equations (GEE) solver for fitting marginal regression models with correlated nominal or ordinal multinomial responses based on a local odds ratios parameterization for the association structure (see Touloumis, Agresti, and Kateri 2013).
+This package provides a generalized estimating equations (GEE) solver for fitting marginal regression models with correlated nominal or ordinal multinomial responses based on a local odds ratios parameterization for the association structure (see Touloumis, Agresti and Kateri, 2013).
 
 There are two core functions to fit GEE models for correlated multinomial responses:
 
@@ -58,7 +58,7 @@ The main arguments in both functions are:
 -   a cluster identifier variable (`id`),
 -   an optional vector that identifies the order of the observations within each cluster (`repeated`).
 
-The association structure among the correlated multinomial responses is expressed via marginalized local odds ratios (Touloumis, Agresti, and Kateri 2013). The estimating procedure for the local odds ratios can be summarized as follows: For each level pair of the `repeated` variable, the available responses are aggregated across clusters to form a square marginalized contingency table. Treating these tables as independent, an RC-G(1) type model is fitted in order to estimate the marginalized local odds ratios. The `LORstr` argument determines the form of the marginalized local odds ratios structure. Since the general RC-G(1) model is closely related to the family of association models, one can instead fit an association model to each of the marginalized contingency tables by setting `LORem="2way"` in the core functions.
+The association structure among the correlated multinomial responses is expressed via marginalized local odds ratios (Touloumis et al., 2013). The estimating procedure for the local odds ratios can be summarized as follows: For each level pair of the `repeated` variable, the available responses are aggregated across clusters to form a square marginalized contingency table. Treating these tables as independent, an RC-G(1) type model is fitted in order to estimate the marginalized local odds ratios. The `LORstr` argument determines the form of the marginalized local odds ratios structure. Since the general RC-G(1) model is closely related to the family of association models, one can instead fit an association model to each of the marginalized contingency tables by setting `LORem="2way"` in the core functions.
 
 There are also two utility functions:
 
@@ -68,7 +68,7 @@ There are also two utility functions:
 Example
 -------
 
-The following R code replicates the GEE analysis presented in Touloumis, Agresti, and Kateri (2013).
+The following R code replicates the GEE analysis presented in Touloumis et al. (2013).
 
 ``` r
 data(arthritis)
@@ -151,7 +151,7 @@ summary(fitord)
 Getting help
 ------------
 
-The statistical methods implemented in `multgee` are described in Touloumis, Agresti, and Kateri (2013). A detailed description of the functionality of `multgee` can be found in Touloumis (2015). Note that an updated version of this paper also serves as a vignette:
+The statistical methods implemented in `multgee` are described in Touloumis et al. (2013). A detailed description of the functionality of `multgee` can be found in Touloumis (2015). Note that an updated version of this paper also serves as a vignette:
 
 ``` r
 browseVignettes("multgee")
@@ -205,6 +205,6 @@ How to cite
 References
 ==========
 
-Touloumis, Anestis. 2015. “R Package Multgee: A Generalized Estimating Equations Solver for Multinomial Responses.” *Journal of Statistical Software* 64 (8): 1–14. <https://www.jstatsoft.org/v064/i08>.
+Touloumis, A. (2015) R Package multgee: A Generalized Estimating Equations Solver for Multinomial Responses. *Journal of Statistical Software*, **64**, 1–14.
 
-Touloumis, Anestis, Alan Agresti, and Maria Kateri. 2013. “GEE for Multinomial Responses Using a Local Odds Ratios Parameterization.” *Biometrics* 69 (3): 633–40. <http://onlinelibrary.wiley.com/doi/10.1111/biom.12054/full>.
+Touloumis, A., Agresti, A. and Kateri, M. (2013) GEE for Multinomial Responses Using a Local Odds Ratios Parameterization. *Biometrics*, **69**, 633–640.

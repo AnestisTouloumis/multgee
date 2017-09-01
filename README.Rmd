@@ -15,7 +15,7 @@ references:
   issued:
     year: 2015
 - id: Touloumis2013
-  title: "GEE for multinomial responses using a local odds ratios parameterization"
+  title: "GEE for Multinomial Responses Using a Local Odds Ratios Parameterization"
   author:
   - family: Touloumis
     given: Anestis
@@ -31,6 +31,7 @@ references:
   type: article-journal
   issued:
     year: 2013
+csl: biometrics.csl    
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->

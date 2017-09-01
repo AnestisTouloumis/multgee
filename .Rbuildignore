@@ -10,4 +10,4 @@
 ^/vignettes/multgee\.log$
 ^/vignettes/multgee\.bbl$
 ^/vignettes/multgee\.synctex\.gz$
-^\.travis\.yml$
+^biometrics\.csl$
