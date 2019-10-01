@@ -1,27 +1,27 @@
 #' A GEE Solver For Correlated Nominal Or Ordinal Multinomial Responses
-#' 
+#'
 #' A generalized estimating equations (GEE) solver for fitting marginal
 #' regression models with correlated nominal or ordinal multinomial responses
 #' based on a local odds ratios parameterization for the association structure.
-#' 
+#'
 #' The package contains two functions that fit GEE models for correlated
 #' multinomial responses; \link{ordLORgee} for an ordinal response scale and
 #' \link{nomLORgee} for a nominal response scale.
-#' 
+#'
 #' The main arguments in both functions are: (i) an optional data frame
 #' (\code{data}), (ii) a model formula (\code{formula}), (iii) a cluster
 #' identifier variable (\code{id}) and (iv) an optional vector that identifies
 #' the order of the observations within each cluster (\code{repeated}).
-#' 
+#'
 #' Options for the marginal model in the function \link{ordLORgee} include
 #' cumulative link models or an adjacent categories logit model. A marginal
 #' baseline category logit model is offered in the function \link{nomLORgee}.
 #' For the form of the linear predictor in these models, see the \code{Details}
 #' sections in \link{nomLORgee} and \link{ordLORgee}.
-#' 
+#'
 #' The association structure among the correlated multinomial responses is
 #' expressed via marginalized local odds ratios (\cite{Touloumis et al.,
-  #' 2013}). The estimating procedure for the local odds ratios can be summarized
+#' 2013}). The estimating procedure for the local odds ratios can be summarized
 #' as follows: For each level pair of the \code{repeated} variable, the
 #' available responses are aggregated across clusters to form a square
 #' marginalized contingency table.  Treating these tables as independent, an
@@ -31,21 +31,21 @@
 #' the general RC-G(1) model is closely related to the family of association
 #' models (\cite{Goodman, 1985}), one can instead fit an association model to
 #' each of the marginalized contingency tables by setting \code{LORem="2way"}.
-#' 
+#'
 #' If the underlying association pattern does not change dramatically across
 #' the level pairs of \code{repeated} then parsimonious marginalized local odds
 #' ratios should sufficiently approximate the true underlying association
 #' structure. To assess the underlying association structure, one might use the
 #' utility function \link{intrinsic.pars}.
-#' 
+#'
 #' Instead of estimating the local odds ratios structure, a user-defined
 #' structure can be provided by setting \code{LORstr=}"\code{fixed}". In this
 #' case, the utility function \link{matrixLOR} is useful in constructing the
 #' required \code{LORterm} argument.
-#' 
+#'
 #' The function \link{waldts} provides a goodness-of-fit test between two
 #' nested GEE models based on a Wald test statistic.
-#' 
+#'
 #' @name multgee-package
 #' @aliases multgee
 #' @docType package
@@ -54,21 +54,22 @@
 #' @references Becker, M. and Clogg, C. (1989) Analysis of sets of two-way
 #' contingency tables using association models. \emph{Journal of the American
 #' Statistical Association} \bold{84}, 142--151.
-#' 
+#'
 #' Goodman, L. (1985) The analysis of cross-classified data having ordered
 #' and/or unordered categories: Association models, correlation models, and
 #' asymmetry models for contingency tables with or without missing entries.
 #' \emph{The Annals of Statistics} \bold{13}, 10--69.
-#' 
+#'
 #' Touloumis, A., Agresti, A. and Kateri, M. (2013) GEE for multinomial
 #' responses using a local odds ratios parameterization. \emph{Biometrics}
 #' \bold{69}, 633--640.
-#' 
+#'
 #' Touloumis, A. (2015) R Package multgee: A Generalized Estimating Equations
 #' Solver for Multinomial Responses. \emph{Journal of Statistical Software}
 #' \bold{64}, 1--14.
 #' @import gnm VGAM
 #' @importFrom utils combn
-#' @importFrom stats pnorm update poisson glm reshape make.link model.response model.extract pchisq printCoefmat
+#' @importFrom stats pnorm update poisson glm reshape make.link
+#' @importFrom stats model.response model.extract pchisq printCoefmat
 #' @keywords package
 NULL

@@ -5,11 +5,11 @@ print.summary.LORgee <- function(x, ...) {
     cat("\nLink :", x$link, "\n")
     cat("\nLocal Odds Ratios:")
     cat("\nStructure:        ", x$local.odds.ratios$structure)
-    if (!is.null(x$local.odds.ratios$model)) 
+    if (!is.null(x$local.odds.ratios$model))
         cat("\nModel:            ", x$local.odds.ratios$model)
-    if (!is.null(x$local.odds.ratios$homogeneous)) 
+    if (!is.null(x$local.odds.ratios$homogeneous))
         cat("\nHomogenous scores:", x$local.odds.ratios$homogeneous)
-    if (!is.null(x$local.odds.ratios$restricted)) 
+    if (!is.null(x$local.odds.ratios$restricted))
         cat("\nRestricted scores:", x$local.odds.ratios$restricted)
     cat("\n")
     cat("\ncall:\n")
@@ -21,8 +21,7 @@ print.summary.LORgee <- function(x, ...) {
     printCoefmat(x$coefficients)
     cat("\nLocal Odds Ratios Estimates:\n")
     print(round(x$local.odds.ratios$theta, 3))
-    if (!is.null(x$pvalue)) 
-        cat("\npvalue of Null model:", ifelse(x$pvalue <= 1e-04, "<0.0001", 
+    if (!is.null(x$pvalue))
+        cat("\npvalue of Null model:", ifelse(x$pvalue <= 1e-04, "<0.0001",
             x$pvalue), "\n")
 }
-

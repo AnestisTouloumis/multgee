@@ -17,8 +17,7 @@ print.LORgee <- function(x, ...) {
         cat("\nLocal Odds Ratios Estimates[1:6,1:6]\n")
         print(x$local.odds.ratios$theta)
     }
-    if (!is.null(x$pvalue)) 
-        cat("\npvalue of Null model:", ifelse(x$pvalue < 1e-04, "<0.0001", 
+    if (!is.null(x$pvalue))
+        cat("\npvalue of Null model:", ifelse(x$pvalue < 1e-04, "<0.0001",
             round(x$pvalue, 4)), "\n")
 }
-

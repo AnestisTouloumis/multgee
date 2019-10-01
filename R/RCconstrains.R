@@ -11,7 +11,7 @@ RCconstrains <- function(ncategories, homogeneous) {
     }
     nodf <- unique(nodf)
     n1 <- nrow(nodf)
-    parscores <- matrix(1:ncategories, nrow = n1, ncol = ncategories, 
+    parscores <- matrix(1:ncategories, nrow = n1, ncol = ncategories,
                         byrow = TRUE)
     for (j in 1:ncategories1) {
         parscores[nodf[, j] == 1, j + 1] <- parscores[nodf[, j] == 1, j]
@@ -22,14 +22,13 @@ RCconstrains <- function(ncategories, homogeneous) {
         Homogeneous <- ans
         n1 <- length(Homogeneous$nodf)
         parscores <- cbind(
-          apply(Homogeneous$parscores, 2, function(x) rep.int(x, n1)), 
+          apply(Homogeneous$parscores, 2, function(x) rep.int(x, n1)),
           apply(Homogeneous$parscores, 2, function(x) rep(x, each = n1)))
-        nodf <- rep(Homogeneous$nodf, each = n1) + rep.int(Homogeneous$nodf, 
+        nodf <- rep(Homogeneous$nodf, each = n1) + rep.int(Homogeneous$nodf,
             n1)
         orderedindices <- order(nodf)
-        ans <- list(parscores = parscores[orderedindices, ], 
+        ans <- list(parscores = parscores[orderedindices, ],
                     nodf = nodf[orderedindices])
     }
     ans
 }
-

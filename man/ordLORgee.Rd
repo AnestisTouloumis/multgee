@@ -6,9 +6,10 @@
 \usage{
 ordLORgee(formula = formula(data), data = parent.frame(), id = id,
   repeated = NULL, link = "logit", bstart = NULL,
-  LORstr = "category.exch", LORem = "3way", LORterm = NULL, add = 0,
-  homogeneous = TRUE, restricted = FALSE, control = LORgee.control(),
-  ipfp.ctrl = ipfp.control(), IM = "solve")
+  LORstr = "category.exch", LORem = "3way", LORterm = NULL,
+  add = 0, homogeneous = TRUE, restricted = FALSE,
+  control = LORgee.control(), ipfp.ctrl = ipfp.control(),
+  IM = "solve")
 }
 \arguments{
 \item{formula}{a formula expression as for other regression models for
@@ -153,9 +154,10 @@ desired local odds ratios structure.
 \examples{
 data(arthritis)
 intrinsic.pars(y,arthritis,id,time)
-fitmod <- ordLORgee(y~factor(time)+factor(trt)+factor(baseline), data=arthritis,
-                    id=id,LORstr="uniform",repeated=time)
-summary(fitmod)  
+fitmod <- ordLORgee(formula = y ~ factor(time) + factor(trt) + factor(baseline), # nolint
+                    data = arthritis, id = id, LORstr = "uniform",
+                    repeated = time)
+summary(fitmod)
 }
 \references{
 Touloumis, A., Agresti, A. and Kateri, M. (2013) GEE for

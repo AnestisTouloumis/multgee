@@ -1,3 +1,6 @@
+Version 1.6.2 [2019-10-01]
+ * Added lintr in travis.yml.
+
 Version 1.6.1 [2017-08-22]
  * Updated documentation - using roxygen2.
  * Visible README.md - removed from .Rbuildignore.

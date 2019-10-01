@@ -5,9 +5,10 @@
 \title{Marginal Models For Correlated Nominal Multinomial Responses}
 \usage{
 nomLORgee(formula = formula(data), data = parent.frame(), id = id,
-  repeated = NULL, bstart = NULL, LORstr = "time.exch", LORem = "3way",
-  LORterm = NULL, add = 0, homogeneous = TRUE,
-  control = LORgee.control(), ipfp.ctrl = ipfp.control(), IM = "solve")
+  repeated = NULL, bstart = NULL, LORstr = "time.exch",
+  LORem = "3way", LORterm = NULL, add = 0, homogeneous = TRUE,
+  control = LORgee.control(), ipfp.ctrl = ipfp.control(),
+  IM = "solve")
 }
 \arguments{
 \item{formula}{a formula expression as for other regression models for
@@ -142,7 +143,7 @@ desired local odds ratios structure.
 ## See the interpretation in Touloumis (2011).
 data(housing)
 fitmod <- nomLORgee(y~factor(time)*sec,data=housing,id=id, repeated=time)
-summary(fitmod) 
+summary(fitmod)
 }
 \references{
 Touloumis, A. (2011) \emph{GEE for multinomial responses}. PhD

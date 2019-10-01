@@ -4,4 +4,3 @@ diagmod <- function(x) {
     ans[1 + 0:(dimx - 1) * (dimx + 1)] <- x
     ans
 }
-

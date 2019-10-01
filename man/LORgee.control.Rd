@@ -4,8 +4,8 @@
 \alias{LORgee.control}
 \title{Control For The GEE Solver}
 \usage{
-\method{LORgee}{control}(tolerance = 0.001, maxiter = 15, verbose = FALSE,
-  TRACE = FALSE)
+\method{LORgee}{control}(tolerance = 0.001, maxiter = 15,
+  verbose = FALSE, TRACE = FALSE)
 }
 \arguments{
 \item{tolerance}{positive convergence tolerance. The algorithm converges
@@ -27,7 +27,7 @@ Control variables for the GEE solver in the functions \link{nomLORgee} and
 }
 \examples{
 data(arthritis)
-fitmod <- ordLORgee(y~factor(trt)+factor(baseline)+factor(time), 
+fitmod <- ordLORgee(y~factor(trt)+factor(baseline)+factor(time),
                     data = arthritis, id = id, repeated = time)
 ## A one-step GEE estimator
 fitmod1 <- update(fitmod, control = LORgee.control(maxiter=1))

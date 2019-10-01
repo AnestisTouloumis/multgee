@@ -1,25 +1,25 @@
 #' Marginal Models For Correlated Ordinal Multinomial Responses
-#' 
+#'
 #' Solving the generalized estimating equations for correlated ordinal
 #' multinomial responses assuming a cumulative link model or an adjacent
 #' categories logit model for the marginal probabilities.
-#' 
+#'
 #' The \code{data} must be provided in case level or equivalently in `long'
 #' format. See details about the `long' format in the function \link{reshape}.
-#' 
+#'
 #' A term of the form \code{offset(expression)} is allowed in the right hand
 #' side of \code{formula}.
-#' 
+#'
 #' The default set for the response categories is \eqn{\{1,\ldots,J\}}, where
 #' \eqn{J>2} is the maximum observed response category. If otherwise, the
 #' function recodes the observed response categories onto this set.
-#' 
+#'
 #' The \eqn{J}-th response category is omitted.
-#' 
+#'
 #' The default set for the \code{id} labels is \eqn{\{1,\ldots,N\}}, where
 #' \eqn{N} is the sample size. If otherwise, the function recodes the given
 #' labels onto this set.
-#' 
+#'
 #' The argument \code{repeated} can be ignored only when \code{data} is written
 #' in such a way that the \eqn{t}-th observation in each cluster is recorded at
 #' the \eqn{t}-th measurement occasion. If this is not the case, then the user
@@ -27,11 +27,11 @@
 #' \code{repeated} is \eqn{\{1,\ldots,T\}}, where \eqn{T} is the number of
 #' observed levels. If otherwise, the function recodes the given levels onto
 #' this set.
-#' 
+#'
 #' The variables \code{id} and \code{repeated} do not need to be pre-sorted.
 #' Instead the function reshapes \code{data} in an ascending order of \code{id}
 #' and \code{repeated}.
-#' 
+#'
 #' The fitted marginal cumulative link model is \deqn{Pr(Y_{it}\le j
 #' |x_{it})=F(\beta_{j0} +\beta^{'} x_{it})} where \eqn{Y_{it}} is the
 #' \eqn{t}-th multinomial response for cluster \eqn{i}, \eqn{x_{it}} is the
@@ -39,23 +39,23 @@
 #' function determined by \code{link}, \eqn{\beta_{j0}} is the \eqn{j}-th
 #' response category specific intercept and \eqn{\beta} is the marginal
 #' regression parameter vector excluding intercepts.
-#' 
+#'
 #' The marginal adjacent categories logit model \deqn{log \frac{Pr(Y_{it}=j
 #' |x_{it})}{Pr(Y_{it}=j+1 |x_{it})}=\beta_{j0} +\beta^{'} x_{it}} is fitted if
 #' and only if \code{link="acl"}. In contrast to a marginal cumulative link
 #' model, here the intercepts do not need to be monotone increasing.
-#' 
+#'
 #' The formulae are easier to read from either the Vignette or the Reference
 #' Manual (both available
 #' \href{https://CRAN.R-project.org/package=multgee}{here}).
-#' 
+#'
 #' The \code{LORterm} argument must be an \eqn{L} x \eqn{J^2} matrix, where
 #' \eqn{L} is the number of level pairs of \code{repeated}. These are ordered
 #' as \eqn{(1,2), (1,3),\ldots,(1,T), (2,3),\ldots,(T-1,T)} and the rows of
 #' \code{LORterm} are supposed to preserve this order. Each row is assumed to
 #' contain the vectorized form of a probability table that satisfies the
 #' desired local odds ratios structure.
-#' 
+#'
 #' @param formula a formula expression as for other regression models for
 #' multinomial responses. An intercept term must be included.
 #' @param data an optional data frame containing the variables provided in
@@ -125,19 +125,20 @@
 #' @references Touloumis, A., Agresti, A. and Kateri, M. (2013) GEE for
 #' multinomial responses using a local odds ratios parameterization.
 #' \emph{Biometrics}, \bold{69}, 633-640.
-#' 
+#'
 #' Touloumis, A. (2015) R Package multgee: A Generalized Estimating Equations
 #' Solver for Multinomial Responses. \emph{Journal of Statistical Software},
 #' \bold{64}, 1-14.
 #' @examples
 #' data(arthritis)
 #' intrinsic.pars(y,arthritis,id,time)
-#' fitmod <- ordLORgee(y~factor(time)+factor(trt)+factor(baseline), data=arthritis,
-#'                     id=id,LORstr="uniform",repeated=time)
-#' summary(fitmod)  
+#' fitmod <- ordLORgee(formula = y ~ factor(time) + factor(trt) + factor(baseline), # nolint
+#'                     data = arthritis, id = id, LORstr = "uniform",
+#'                     repeated = time)
+#' summary(fitmod)
 #' @export
-ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id, 
-    repeated = NULL, link = "logit", bstart = NULL, LORstr = "category.exch", 
+ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
+    repeated = NULL, link = "logit", bstart = NULL, LORstr = "category.exch",
     LORem = "3way", LORterm = NULL, add = 0, homogeneous = TRUE,
     restricted = FALSE, control = LORgee.control(), ipfp.ctrl = ipfp.control(),
     IM = "solve") {
@@ -146,50 +147,50 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
     mcall <- match.call(expand.dots = FALSE)
     mf <- match(c("formula", "data", "id", "repeated"), names(mcall), 0L)
     m <- mcall[c(1L, mf)]
-    if (is.null(m$id)) 
+    if (is.null(m$id))
         m$id <- as.name("id")
     m[[1]] <- as.name("model.frame")
     m <- eval(m, envir = parent.frame())
     Terms <- attr(m, "terms")
-    if (attr(Terms, "intercept") != 1) 
+    if (attr(Terms, "intercept") != 1)
         stop("an intercept must be included")
     Y <- as.numeric(factor(model.response(m)))
     if (is.null(Y)) {
         stop("response variable not found")
     }
     ncategories <- nlevels(factor(Y))
-    if (ncategories <= 2) 
+    if (ncategories <= 2)
         stop("The response variable should have more than 2 categories")
     id <- model.extract(m, "id")
     if (is.null(id)) {
         stop("'id' variable not found")
     }
-    if (length(id) != length(Y)) 
+    if (length(id) != length(Y))
         stop("response variable and 'id' are not of same length")
     repeated <- model.extract(m, "repeated")
     if (is.null(repeated)) {
         index <- order(unlist(split(seq_len(length(id)), id)))
-        repeated <- c(unlist(lapply(split(id, id), function(x) 
+        repeated <- c(unlist(lapply(split(id, id), function(x)
           seq_len(length(x)))))
         repeated <- repeated[index]
     }
-    if (length(repeated) != length(Y)) 
+    if (length(repeated) != length(Y))
         stop("response variable and 'repeated' are not of same length")
     id <- as.numeric(factor(id))
     repeated <- as.numeric(factor(repeated))
-    if (all(id == repeated)) 
+    if (all(id == repeated))
         stop("'repeated' and 'id' must not be equal")
     dummy <- split(repeated, id)
-    if (any(unlist(lapply(dummy, length)) != unlist(lapply(lapply(dummy, 
-        unique), length)))) 
+    if (any(unlist(lapply(dummy, length)) != unlist(lapply(lapply(dummy,
+        unique), length))))
         stop("'repeated' does not have unique values per 'id'")
     offset <- model.extract(m, "offset")
-    if (length(offset) <= 1) 
+    if (length(offset) <= 1)
         offset <- rep(0, length(Y))
-    if (length(offset) != length(Y)) 
+    if (length(offset) != length(Y))
         stop("response variable and 'offset' are not of same length")
     offset <- as.double(offset)
-    LORstrs <- c("independence", "uniform", "category.exch", "time.exch", 
+    LORstrs <- c("independence", "uniform", "category.exch", "time.exch",
         "RC", "fixed")
     icheck <- as.integer(match(LORstr, LORstrs, -1))
     if (icheck < 1) {
@@ -200,17 +201,17 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
     } else if (LORstr == "category.exch") {
         LORem <- "3way"
     } else {
-        if (LORstr == "RC") 
+        if (LORstr == "RC")
             LORem <- "2way"
-        if (LORem != "2way" & LORem != "3way") 
+        if (LORem != "2way" & LORem != "3way")
             stop("'LORem' must be '2way' or '3way'")
     }
     if (LORstr == "time.exch" | LORstr == "RC") {
-        if (!is.logical(homogeneous)) 
+        if (!is.logical(homogeneous))
             stop("'homogeneous' must be 'TRUE' or 'FALSE'")
-        if (!is.logical(restricted)) 
+        if (!is.logical(restricted))
             stop("'restricted' must be 'TRUE' or 'FALSE'")
-        restricted <- if (!restricted) 
+        restricted <- if (!restricted)
             NULL else TRUE
     } else {
         homogeneous <- restricted <- NULL
@@ -218,7 +219,7 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
     if (LORstr == "independence" | LORstr == "fixed") {
         add <- NULL
     } else {
-        if (!is.numeric(add) | add < 0) 
+        if (!is.numeric(add) | add < 0)
             stop("'add' must be >=0")
     }
     ipfp.ctrl <- ipfp.ctrl
@@ -226,15 +227,14 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
     verbose <- control$verbose
     IMs <- c("cholesky", "solve", "qr.solve")
     icheck <- as.integer(match(IM, IMs, -1))
-    if (icheck < 1) 
+    if (icheck < 1)
         stop("unknown method for inverting a matrix")
     if (LORstr != "independence" & LORstr != "fixed") {
         data.model <- datacounts(Y, id, repeated, ncategories)
         marpars <- mmpar(LORem, LORstr, max(data.model$tp), homogeneous)
         LORem <- marpars$LORem
         LORstr <- marpars$LORstr
-        LORterm <- fitmm(data.model, marpars, homogeneous, restricted, 
-            add)
+        LORterm <- fitmm(data.model, marpars, homogeneous, restricted, add)
     }
     link <- as.character(link)
     links <- c("logit", "probit", "cloglog", "cauchit", "acl")
@@ -244,31 +244,30 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
              \"cauchit\" or \"acl\"")
     }
     if (is.null(bstart)) {
-        if (link == "acl") 
+        if (link == "acl")
             family <- acat(reverse = TRUE, parallel = TRUE)
-        if (link == "logit") 
+        if (link == "logit")
             family <- cumulative("logit", parallel = TRUE)
-        if (link == "probit") 
+        if (link == "probit")
             family <- cumulative("probit", parallel = TRUE)
-        if (link == "cloglog") 
+        if (link == "cloglog")
             family <- cumulative("cloglog", parallel = TRUE)
-        if (link == "cauchit") 
+        if (link == "cauchit")
             family <- cumulative("cauchit", parallel = TRUE)
         mmcall <- match.call(expand.dots = FALSE)
-        mmf <- match(c("formula", "data", "id", "repeated"), names(mmcall), 
-            0L)
+        mmf <- match(c("formula", "data", "id", "repeated"), names(mmcall), 0L)
         mm <- mcall[c(1L, mmf)]
         mm$family <- family
         mm$control <- vglm.control()
         mm[[1]] <- as.name("vglm")
         coeffs <- coef(eval(mm, parent.frame()))
         coeffs <- as.numeric(coeffs)
-        if (!is.numeric(coeffs)) 
+        if (!is.numeric(coeffs))
             stop("Please insert initial values")
         if (verbose) {
             cat("\nGEE FOR ORDINAL MULTINOMIAL RESPONSES\n")
-            print(matrix(coeffs, ncol = 1, 
-                         dimnames = list(seq_len(length(coeffs)), 
+            print(matrix(coeffs, ncol = 1,
+                         dimnames = list(seq_len(length(coeffs)),
                                          "Initial.Values")))
         }
     }
@@ -281,7 +280,7 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
     X_mat <- model.matrix(Terms, m)
     if (ncol(X_mat) > 2) {
         xnames <- colnames(X_mat)
-        X_mat <- apply(X_mat[, -1], 2, function(x) rep(x, each = ncategories - 
+        X_mat <- apply(X_mat[, -1], 2, function(x) rep(x, each = ncategories -
             1))
         X_mat1 <- model.matrix(~factor(Intercept) - 1)
         X_mat <- cbind(X_mat1, X_mat)
@@ -302,24 +301,24 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
         dummy <- ncategories - 1
         dummy.matrix <- diagmod(rep.int(1, dummy))
         dummy.matrix[upper.tri(dummy.matrix)] <- 1
-        X_mat[, 1:dummy] <- 
-          kronecker(rep.int(1, nrow(X_mat)/dummy), dummy.matrix)
+        X_mat[, 1:dummy] <-
+          kronecker(rep.int(1, nrow(X_mat) / dummy), dummy.matrix)
         if (dummy != ncol(X_mat)) {
-            X_mat[, -c(1:dummy)] <- X_mat[, -c(1:dummy)] * rep(dummy:1, 
-                nrow(X_mat)/dummy)
+            X_mat[, -c(1:dummy)] <- X_mat[, -c(1:dummy)] * rep(dummy:1,
+                nrow(X_mat) / dummy)
         }
     }
     if (!is.null(bstart)) {
         coeffs <- as.numeric(bstart)
-        if (length(coeffs) != ncol(X_mat)) 
+        if (length(coeffs) != ncol(X_mat))
             stop("Starting values and parameters vector differ in length")
-        if (any(diff(coeffs[1:(ncategories - 1)]) < 0)) 
+        if (any(diff(coeffs[1:(ncategories - 1)]) < 0))
             stop("cutpoints are not increasing")
         if (verbose) {
             cat("\nGEE FOR ORDINAL MULTINOMIAL RESPONSES\n")
             cat("\nuser's initial regression estimate\n")
-            print(matrix(coeffs, ncol = 1, 
-                         dimnames = list(seq_len(length(coeffs)), 
+            print(matrix(coeffs, ncol = 1,
+                         dimnames = list(seq_len(length(coeffs)),
                                          "Initial.Values")))
         }
     }
@@ -329,15 +328,15 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
     id <- id[ordindex]
     repeated <- repeated[ordindex]
     offset <- offset[ordindex]
-    fitmod <- fitLORgee(Y, X_mat, coeffs, ncategories, id, repeated, offset, 
-        link, LORterm, marpars, ipfp.ctrl, control, IM, LORem = LORem, 
+    fitmod <- fitLORgee(Y, X_mat, coeffs, ncategories, id, repeated, offset,
+        link, LORterm, marpars, ipfp.ctrl, control, IM, LORem = LORem,
         LORstr = LORstr, add)
     fit <- list()
     fit$call <- call
     fit$title <- "GEE FOR ORDINAL MULTINOMIAL RESPONSES"
     fit$version <- "version 1.6.0 modified 2017-07-10"
-    fit$link <- if (link == "acl") 
-        paste("Adjacent Category Logit") else 
+    fit$link <- if (link == "acl")
+        paste("Adjacent Category Logit") else
           paste("Cumulative", link, sep = " ")
     fit$local.odds.ratios <- list()
     fit$local.odds.ratios$structure <- LORstr
@@ -353,7 +352,7 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
     fit$convergence$conv <- fitmod$conv
     fit$coefficients <- fitmod$beta_mat[, fitmod$iter + 1]
     names(fit$coefficients) <- xnames
-    fit$linear.predictors <- matrix(fitmod$linear.predictor, 
+    fit$linear.predictors <- matrix(fitmod$linear.predictor,
                                     ncol = ncategories - 1, byrow = TRUE)
     rownames(fit$linear.predictors) <- seq_len(nrow(fit$linear.predictors))
     colnames(fit$linear.predictors) <- 1:(ncategories - 1)
@@ -365,7 +364,7 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
     rownames(fitted.values) <- seq_len(nrow(fitted.values.1))
     colnames(fitted.values) <- 1:ncategories
     fit$fitted.values <- fitted.values
-    fit$residuals <- matrix(fitmod$residuals, ncol = ncategories - 1, 
+    fit$residuals <- matrix(fitmod$residuals, ncol = ncategories - 1,
                             byrow = TRUE)
     rownames(fit$residuals) <- seq_len(nrow(fit$residuals))
     colnames(fit$residuals) <- 1:(ncategories - 1)
@@ -377,7 +376,7 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
     fit$y <- y
     fit$nobs <- length(y)
     fit$max.id <- max(unique(id))
-    fit$clusz <- unlist(lapply(split(id, id), length))/(ncategories - 1)
+    fit$clusz <- unlist(lapply(split(id, id), length)) / (ncategories - 1)
     fit$id <- rep(1:fit$max.id, as.numeric(fit$clusz))
     fit$robust.variance <- fitmod$robust
     dimnames(fit$robust.variance) <- list(xnames, xnames)
@@ -395,10 +394,10 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
         fit$trace$coeffs <- fitmod$beta_mat
         fit$trace$crit <- fitmod$crit
     }
-    if (length(xnames) == (ncategories - 1)) 
+    if (length(xnames) == (ncategories - 1))
         fit$pvalue <- NULL else {
         dummy <- 1:(ncategories - 1)
-        waldts <- fit$coefficients[-dummy] %*% 
+        waldts <- fit$coefficients[-dummy] %*%
           solve((fit$robust.variance)[-dummy, -dummy])
         waldts <- waldts %*% fit$coefficients[-dummy]
         fit$pvalue <- 1 - pchisq(waldts, length(xnames) - length(dummy))

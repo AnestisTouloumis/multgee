@@ -4,4 +4,3 @@ muprob <- function(cumprob, nobs, ncategoriesm1) {
     ans <- c(ans)
     ans
 }
-

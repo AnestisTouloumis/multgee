@@ -1,1 +1,1 @@
-LORgee <- function(x, ...) UseMethod("LORgee")
+LORgee <- function(x, ...) UseMethod("LORgee") #nolint

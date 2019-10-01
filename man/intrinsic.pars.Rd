@@ -4,8 +4,8 @@
 \alias{intrinsic.pars}
 \title{Intrinsic Parameters Estimation}
 \usage{
-intrinsic.pars(y = y, data = parent.frame(), id = id, repeated = NULL,
-  rscale = "ordinal")
+intrinsic.pars(y = y, data = parent.frame(), id = id,
+  repeated = NULL, rscale = "ordinal")
 }
 \arguments{
 \item{y}{a vector that identifies the response vector of the desired
@@ -45,7 +45,7 @@ found in the Details section of \link{nomLORgee} or \link{ordLORgee}.
 \examples{
 data(arthritis)
 intrinsic.pars(y,arthritis,id,time,rscale="ordinal")
-## The intrinsic parameters do not differ much. The 'uniform' local odds ratios
+## The intrinsic parameters do not vary much. The 'uniform' local odds ratios
 ## structure might be a good approximation for the association pattern.
 
 set.seed(1)

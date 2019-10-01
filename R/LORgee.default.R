@@ -31,4 +31,3 @@ LORgee.default <- function(x, ...) {
     class(object) <- "LORgee"
     object
 }
-

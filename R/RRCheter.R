@@ -9,11 +9,11 @@ RRCheter <- function(fmla, data, ncategories) {
     for (i in 1:noglm) {
         data$z1 <- datax
         data$z2 <- datay
-        levels(data$z1) <- pickcoefindz1 <- 
+        levels(data$z1) <- pickcoefindz1 <-
           Consmat$parscores[i, 1:maxcategory]
-        levels(data$z2) <- pickcoefindz2 <- 
-          Consmat$parscores[i, -(1:maxcategory)]
-        RRCmod <- suppressWarnings(gnm(fmla, data = data, family = poisson, 
+        levels(data$z2) <- pickcoefindz2 <-
+          Consmat$parscores[i, - (1:maxcategory)]
+        RRCmod <- suppressWarnings(gnm(fmla, data = data, family = poisson,
             verbose = FALSE, model = FALSE))
         if (!is.null(RRCmod)) {
             if (deviance(RRCmod) < dev & RRCmod$conv) {
@@ -32,7 +32,7 @@ RRCheter <- function(fmla, data, ncategories) {
                 }
             }
         }
-        if (stop.constrains < Consmat$nodf[i + 1]) 
+        if (stop.constrains < Consmat$nodf[i + 1])
             break
     }
     if (!is.finite(dev)) {
@@ -40,21 +40,20 @@ RRCheter <- function(fmla, data, ncategories) {
         for (i in (noglm + 1):length(Consmat$nodf)) {
             datax1 <- datax
             datay1 <- datay
-            levels(datax1) <- pickcoefindz1 <- 
+            levels(datax1) <- pickcoefindz1 <-
               Consmat$parscores[i, 1:maxcategory]
-            levels(datay1) <- pickcoefindz2 <- 
-              Consmat$parscores[i, -(1:maxcategory)]
+            levels(datay1) <- pickcoefindz2 <-
+              Consmat$parscores[i, - (1:maxcategory)]
             data$x1 <- as.numeric(datax1)
             data$x2 <- as.numeric(datay1)
             RRCmod <- suppressWarnings(glm(fmla, data = data, family = poisson))
             if (deviance(RRCmod) < dev & RRCmod$conv) {
-                LORterm <- c(tcrossprod(pickcoefindz1, pickcoefindz2) * 
+                LORterm <- c(tcrossprod(pickcoefindz1, pickcoefindz2) *
                   as.numeric(RRCmod$coef["x1:x2"]))
             }
         }
     }
-    if (!is.finite(dev)) 
+    if (!is.finite(dev))
         LORterm <- rep(0, nlevels(datax)^2)
     LORterm
 }
-

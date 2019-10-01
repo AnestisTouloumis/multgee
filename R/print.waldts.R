@@ -5,6 +5,6 @@ print.waldts <- function(x, ...) {
     print(x$NullModel)
     cat("Model under H_1: ")
     print(x$AlternativeModel)
-    cat("\nWald Statistic=", x$waldstatistic, ", df=", x$df, ", p-value=", 
+    cat("\nWald Statistic=", x$waldstatistic, ", df=", x$df, ", p-value=",
         ifelse(x$pvalue <= 1e-04, "<0.0001", x$pvalue), "\n", sep = "")
 }
