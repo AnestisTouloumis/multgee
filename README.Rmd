@@ -47,6 +47,7 @@ knitr::opts_chunk$set(
 
 # multgee: GEE Solver for Correlated Nominal or Ordinal Multinomial Responses
 
+[![Github version](`r paste0("https://img.shields.io/badge/GitHub%20-", as.vector(read.dcf('DESCRIPTION')[, 'Version']),"-orange.svg")`)]("commits/master")
 [![Travis-CI Build Status](https://travis-ci.org/AnestisTouloumis/multgee.svg?branch=master)](https://travis-ci.org/AnestisTouloumis/multgee)
 [![Project Status: Active The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) 
 
