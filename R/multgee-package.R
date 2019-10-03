@@ -68,8 +68,8 @@
 #' Solver for Multinomial Responses. \emph{Journal of Statistical Software}
 #' \bold{64}, 1--14.
 #' @import gnm VGAM
-#' @importFrom utils combn
-#' @importFrom stats pnorm update poisson glm reshape make.link
+#' @importFrom utils combn 
+#' @importFrom stats pnorm update poisson glm reshape make.link qnorm
 #' @importFrom stats model.response model.extract pchisq printCoefmat
 #' @keywords package
 NULL
