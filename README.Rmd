@@ -129,6 +129,24 @@ fitord <- ordLORgee(y~factor(time)+factor(trt)+factor(baseline), data=arthritis,
 summary(fitord) 
 ```
 
+You can obtain both the naive or model-based variance-covariance matrix
+```{r}
+vcov(fitord, robust = FALSE) 
+```
+or the robust or sandwich variance covariance matrix
+```{r}
+vcov(fitord) 
+```
+
+Finally, you can get the Wald confidence intervals for the regression parameters, using either the naive or model-based variance-covariance matrix
+```{r}
+confint(fitord, robust = FALSE) 
+```
+or the robust or sandwich variance covariance matrix
+```{r}
+confint(fitord) 
+```
+
 ## Getting help
 The statistical methods implemented in `multgee` are described in @Touloumis2013. A detailed description of the functionality of `multgee` can be found in @Touloumis2015. Note that an updated version of this paper also serves as a vignette: 
 

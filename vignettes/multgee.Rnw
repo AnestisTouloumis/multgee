@@ -117,7 +117,7 @@ where
 $\boldsymbol {\Sigma}_0=\sum_{i=1}^N \mathbf{D}_i^{\top} \mathbf {V}^{-1}_{i} \mathbf{D}_i$ and $\boldsymbol {\Sigma}_1=\sum_{i=1}^N \mathbf{D}_i^{\top} \mathbf {V}^{-1}_{i} \COV(\mathbf{Y}_i|\mathbf x_i) \mathbf {V}^{-1}_{i} \mathbf{D}_i$. For finite sample sizes, $\widehat{\boldsymbol {\Sigma}}$ is estimated by ignoring the limit in (\ref{RobustCovariance}) and replacing $\boldsymbol \beta$ with $\boldsymbol {\widehat \beta}_G$ and $\COV(\mathbf{Y}_i|\mathbf x_i)$ with $(\mathbf {Y}_i-\widehat{\boldsymbol{\pi}}_i)(\mathbf {Y}_i-\widehat{\boldsymbol{\pi}}_i)^{\top}$ in $\boldsymbol {\Sigma}_0$ and $\boldsymbol {\Sigma}_1$. In the literature, $\widehat{\boldsymbol {\Sigma}}/N$ is often termed as ``sandwich'' or ``robust'' covariance matrix of $\boldsymbol {\widehat \beta}_G$.
 
 \section{Description of core functions}\label{Description1}
-We describe the arguments of the functions \code{nomLORgee} and \code{ordLORgee}, focusing on the marginal model specification (\code{formula}, \code{link}), data representation (\code{id}, \code{repeated}, \code{data}) and local odds ratios structure specification (\code{LORstr}, \code{LORterm}, \code{homogeneous}, \code{restricted}). For completeness' sake, we also present computational related arguments (\code{LORem}, \code{add}, \code{bstart}, \code{LORgee.control}, \code{ipfp.control}, \code{IM}). The two core functions share the same arguments, except \code{link} and \code{restricted} which are available only in \code{ordLORgee}, and they both create an object of the class \code{LORgee} which admits \code{summary}, \code{coef}, \code{update} and \code{residuals} methods. 
+We describe the arguments of the functions \code{nomLORgee} and \code{ordLORgee}, focusing on the marginal model specification (\code{formula}, \code{link}), data representation (\code{id}, \code{repeated}, \code{data}) and local odds ratios structure specification (\code{LORstr}, \code{LORterm}, \code{homogeneous}, \code{restricted}). For completeness' sake, we also present computational related arguments (\code{LORem}, \code{add}, \code{bstart}, \code{LORgee.control}, \code{ipfp.control}, \code{IM}). The two core functions share the same arguments, except \code{link} and \code{restricted} which are available only in \code{ordLORgee}, and they both create an object of the class \code{LORgee} which admits \code{summary}, \code{coef}, \code{update}, \code{vcov}, \code{confint} and \code{residuals} methods. 
 
 \subsection{Marginal model specification}
 For ordinal multinomial responses, the \code{link} argument in the function \code{ordLORgee} specifies which of the marginal models (\ref{ABMCLM}) or (\ref{ABMACLM}) will be fitted. The options \code{\textquotedbl{logit}\textquotedbl}, \code{\textquotedbl{probit}\textquotedbl}, \code{\textquotedbl{cauchit}\textquotedbl} or \code{\textquotedbl{cloglog}\textquotedbl} indicate the corresponding cumulative distribution function $F$ in the cumulative link model (\ref{ABMCLM}), while the option \code{\textquotedbl{acl}\textquotedbl} implies that the adjacent categories logit model (\ref{ABMACLM}) is selected. For nominal multinomial responses, the function \code{nomLORgee} fits the baseline category logit model (\ref{ABMBCLM}), and hence the \code{link} argument is not offered.
@@ -220,6 +220,15 @@ The goodness-of-fit of model (\ref{MarginalModelData}) can be tested by comparin
 <<>>=
 fit1 <- update(fit, formula = ~. + factor(sex) + age)
 waldts(fit, fit1)
+@
+
+One can obtain Wald-type confidence intervals for the regression parameters, using either the sandwich covariance matrix 
+<<>>=
+confint(fit1)
+@
+or using the model-based covariance matrix
+<<>>=
+confint(fit1, robust = FALSE)
 @
 
 \section{Summary and practical guidelines}\label{Summary}

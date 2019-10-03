@@ -4,7 +4,7 @@
 # multgee: GEE Solver for Correlated Nominal or Ordinal Multinomial Responses
 
 [![Github
-version](https://img.shields.io/badge/GitHub%20-1.6.2-orange.svg)](%22commits/master%22)
+version](https://img.shields.io/badge/GitHub%20-1.6.3-orange.svg)](%22commits/master%22)
 [![Travis-CI Build
 Status](https://travis-ci.org/AnestisTouloumis/multgee.svg?branch=master)](https://travis-ci.org/AnestisTouloumis/multgee)
 [![Project Status: Active The project has reached a stable, usable state
@@ -183,6 +183,152 @@ summary(fitord)
 #> [12,] 0.000
 #> 
 #> pvalue of Null model: <0.0001
+```
+
+You can obtain both the naive or model-based variance-covariance matrix
+
+``` r
+vcov(fitord, robust = FALSE)
+#>                        beta10       beta20       beta30       beta40
+#> beta10             0.13304581  0.102969547  0.101443437  0.102192784
+#> beta20             0.10296955  0.108184084  0.107757454  0.108959319
+#> beta30             0.10144344  0.107757454  0.118431905  0.120367843
+#> beta40             0.10219278  0.108959319  0.120367843  0.144158270
+#> factor(time)3     -0.00683553 -0.006841270 -0.006844379 -0.006845023
+#> factor(time)5     -0.00485271 -0.005911092 -0.007096862 -0.008177379
+#> factor(trt)2      -0.01418342 -0.015164249 -0.017047419 -0.018680253
+#> factor(baseline)2 -0.09198334 -0.095927203 -0.098857314 -0.099278711
+#> factor(baseline)3 -0.09116879 -0.096357499 -0.102006660 -0.103378186
+#> factor(baseline)4 -0.09068621 -0.096505635 -0.105983764 -0.115011843
+#> factor(baseline)5 -0.09047641 -0.096375221 -0.106442828 -0.126340274
+#>                   factor(time)3 factor(time)5  factor(trt)2
+#> beta10            -6.835530e-03 -0.0048527104 -1.418342e-02
+#> beta20            -6.841270e-03 -0.0059110921 -1.516425e-02
+#> beta30            -6.844379e-03 -0.0070968616 -1.704742e-02
+#> beta40            -6.845023e-03 -0.0081773786 -1.868025e-02
+#> factor(time)3      1.385890e-02  0.0068866925  8.931194e-05
+#> factor(time)5      6.886693e-03  0.0119222345  3.656474e-04
+#> factor(trt)2       8.931194e-05  0.0003656474  2.951549e-02
+#> factor(baseline)2 -1.084973e-04  0.0003726858  5.702734e-04
+#> factor(baseline)3 -6.122343e-05  0.0007162103  1.754002e-03
+#> factor(baseline)4 -1.249254e-04  0.0014715004  2.688066e-03
+#> factor(baseline)5 -1.271116e-04  0.0019351025  2.240042e-03
+#>                   factor(baseline)2 factor(baseline)3 factor(baseline)4
+#> beta10                -0.0919833355     -9.116879e-02     -0.0906862076
+#> beta20                -0.0959272026     -9.635750e-02     -0.0965056353
+#> beta30                -0.0988573138     -1.020067e-01     -0.1059837638
+#> beta40                -0.0992787107     -1.033782e-01     -0.1150118435
+#> factor(time)3         -0.0001084973     -6.122343e-05     -0.0001249254
+#> factor(time)5          0.0003726858      7.162103e-04      0.0014715004
+#> factor(trt)2           0.0005702734      1.754002e-03      0.0026880656
+#> factor(baseline)2      0.1269602592      9.752685e-02      0.0986282227
+#> factor(baseline)3      0.0975268537      1.150204e-01      0.1013843991
+#> factor(baseline)4      0.0986282227      1.013844e-01      0.1459733478
+#> factor(baseline)5      0.0988803723      1.021305e-01      0.1121556163
+#>                   factor(baseline)5
+#> beta10                -0.0904764144
+#> beta20                -0.0963752208
+#> beta30                -0.1064428278
+#> beta40                -0.1263402737
+#> factor(time)3         -0.0001271116
+#> factor(time)5          0.0019351025
+#> factor(trt)2           0.0022400419
+#> factor(baseline)2      0.0988803723
+#> factor(baseline)3      0.1021304546
+#> factor(baseline)4      0.1121556163
+#> factor(baseline)5      0.3073665070
+```
+
+or the robust or sandwich variance covariance matrix
+
+``` r
+vcov(fitord)
+#>                         beta10       beta20       beta30       beta40
+#> beta10             0.150036222  0.122662138  0.122932422  0.130479866
+#> beta20             0.122662138  0.121391956  0.121481726  0.128900529
+#> beta30             0.122932422  0.121481726  0.133289701  0.142022390
+#> beta40             0.130479866  0.128900529  0.142022390  0.176350465
+#> factor(time)3     -0.008019927 -0.006809123 -0.006792142 -0.006639313
+#> factor(time)5     -0.005673879 -0.005072747 -0.006693716 -0.006966212
+#> factor(trt)2      -0.020621470 -0.018408847 -0.019972498 -0.018404132
+#> factor(baseline)2 -0.111673420 -0.107972858 -0.110550622 -0.116883295
+#> factor(baseline)3 -0.110797179 -0.108378093 -0.113466831 -0.126935254
+#> factor(baseline)4 -0.110639863 -0.112492005 -0.124620039 -0.142955578
+#> factor(baseline)5 -0.113587658 -0.113575806 -0.124880707 -0.149744332
+#>                   factor(time)3 factor(time)5  factor(trt)2
+#> beta10            -0.0080199273 -0.0056738788 -0.0206214704
+#> beta20            -0.0068091228 -0.0050727468 -0.0184088466
+#> beta30            -0.0067921418 -0.0066937158 -0.0199724980
+#> beta40            -0.0066393134 -0.0069662124 -0.0184041319
+#> factor(time)3      0.0148312977  0.0075404098  0.0017285227
+#> factor(time)5      0.0075404098  0.0130265123  0.0007814027
+#> factor(trt)2       0.0017285227  0.0007814027  0.0279714947
+#> factor(baseline)2 -0.0012255099 -0.0004173179  0.0035521933
+#> factor(baseline)3 -0.0007208818  0.0004097354  0.0030426250
+#> factor(baseline)4  0.0014636556  0.0034487913  0.0031348642
+#> factor(baseline)5 -0.0002273939 -0.0009949330  0.0011349422
+#>                   factor(baseline)2 factor(baseline)3 factor(baseline)4
+#> beta10                -0.1116734197     -0.1107971788      -0.110639863
+#> beta20                -0.1079728577     -0.1083780925      -0.112492005
+#> beta30                -0.1105506218     -0.1134668314      -0.124620039
+#> beta40                -0.1168832953     -0.1269352539      -0.142955578
+#> factor(time)3         -0.0012255099     -0.0007208818       0.001463656
+#> factor(time)5         -0.0004173179      0.0004097354       0.003448791
+#> factor(trt)2           0.0035521933      0.0030426250       0.003134864
+#> factor(baseline)2      0.1433485190      0.1080513149       0.112100685
+#> factor(baseline)3      0.1080513149      0.1229627282       0.117793479
+#> factor(baseline)4      0.1121006851      0.1177934794       0.168420444
+#> factor(baseline)5      0.1145242718      0.1232078417       0.134411255
+#>                   factor(baseline)5
+#> beta10                -0.1135876579
+#> beta20                -0.1135758062
+#> beta30                -0.1248807072
+#> beta40                -0.1497443322
+#> factor(time)3         -0.0002273939
+#> factor(time)5         -0.0009949330
+#> factor(trt)2           0.0011349422
+#> factor(baseline)2      0.1145242718
+#> factor(baseline)3      0.1232078417
+#> factor(baseline)4      0.1344112547
+#> factor(baseline)5      0.2835126768
+```
+
+Finally, you can get the Wald confidence intervals for the regression
+parameters, using either the naive or model-based variance-covariance
+matrix
+
+``` r
+confint(fitord, robust = FALSE)
+#>                        2.5 %       97.5 %
+#> beta10            -2.5549366 -1.125125388
+#> beta20            -0.3675379  0.921779261
+#> beta30             1.5732894  2.922290954
+#> beta40             3.8040767  5.292401998
+#> factor(time)3     -0.2315206  0.229948277
+#> factor(time)5     -0.5745073 -0.146494327
+#> factor(trt)2      -0.8413559 -0.167909491
+#> factor(baseline)2 -1.4012699 -0.004541444
+#> factor(baseline)3 -1.9402922 -0.610861825
+#> factor(baseline)4 -3.4046212 -1.906955516
+#> factor(baseline)5 -5.0821694 -2.908936095
+```
+
+or the robust or sandwich variance covariance matrix
+
+``` r
+confint(fitord)
+#>                        2.5 %      97.5 %
+#> beta10            -2.5992134 -1.08084855
+#> beta20            -0.4057572  0.95999854
+#> beta30             1.5322296  2.96335073
+#> beta40             3.7251701  5.37130863
+#> factor(time)3     -0.2394781  0.23790571
+#> factor(time)5     -0.5841988 -0.13680277
+#> factor(trt)2      -0.8324304 -0.17683500
+#> factor(baseline)2 -1.4449754  0.03916401
+#> factor(baseline)3 -1.9628588 -0.58829522
+#> factor(baseline)4 -3.4601391 -1.85143755
+#> factor(baseline)5 -5.0391534 -2.95195213
 ```
 
 ## Getting help

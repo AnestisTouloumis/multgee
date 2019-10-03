@@ -1,3 +1,6 @@
+Version 1.6.3 [2019-10-03]
+ * Added vcov and confint generics.
+ 
 Version 1.6.2 [2019-10-01]
  * Added lintr in travis.yml.
 
