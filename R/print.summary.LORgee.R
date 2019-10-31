@@ -23,5 +23,5 @@ print.summary.LORgee <- function(x, ...) {
     print(round(x$local.odds.ratios$theta, 3))
     if (!is.null(x$pvalue))
         cat("\npvalue of Null model:", ifelse(x$pvalue <= 1e-04, "<0.0001",
-            x$pvalue), "\n")
+            round(x$pvalue, 4)), "\n")
 }

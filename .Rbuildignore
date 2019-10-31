@@ -4,10 +4,13 @@
 ^README\.Rmd$
 ^desktop.ini$
 ^cppfunctions$
-^/vignettes/multgee\.tex$
 ^/vignettes/multgee-concordance\.tex$
-^/vignettes/multgee\.pdf$
-^/vignettes/multgee\.log$
+^/vignettes/multgee\.aux$
 ^/vignettes/multgee\.bbl$
+^/vignettes/multgee\.blg$
+^/vignettes/multgee\.log$
+^/vignettes/multgee\.out$
+^/vignettes/multgee\.pdf$
+^/vignettes/multgee\.tex$
 ^/vignettes/multgee\.synctex\.gz$
 ^biometrics\.csl$

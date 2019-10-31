@@ -1,6 +1,9 @@
-.multgee.tex
 .multgee-concordance.tex
-.multgee.pdf
-.multgee.log
+.multgee.aux
 .multgee.bbl
+.multgee.blg
+.multgee.log
+.multgee.out
+.multgee.pdf
+.multgee.tex
 .multgee.synctex.gz$

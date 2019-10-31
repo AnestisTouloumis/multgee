@@ -46,7 +46,7 @@ github at:
 To use `multgee`, you should load the package as follows:
 
 ``` r
-library(multgee)
+library("multgee")
 #> Loading required package: gnm
 #> Loading required package: VGAM
 #> Loading required package: stats4
@@ -88,8 +88,8 @@ model is fitted in order to estimate the marginalized local odds ratios.
 The `LORstr` argument determines the form of the marginalized local odds
 ratios structure. Since the general RC-G(1) model is closely related to
 the family of association models, one can instead fit an association
-model to each of the marginalized contingency tables by setting
-`LORem="2way"` in the core functions.
+model to each of the marginalized contingency tables by setting `LORem =
+"2way"` in the core functions.
 
 There are also two utility functions:
 
@@ -105,7 +105,7 @@ The following R code replicates the GEE analysis presented in Touloumis
 et al. (2013).
 
 ``` r
-data(arthritis)
+data("arthritis")
 intrinsic.pars(y, arthritis, id, time, rscale = "ordinal")
 #> [1] 0.6517843 0.9097341 0.9022272
 ```
@@ -116,8 +116,8 @@ the association
 pattern.
 
 ``` r
-fitord <- ordLORgee(y ~ factor(time) + factor(trt) + factor(baseline), data = arthritis, 
-    id = id, repeated = time)
+fitord <- ordLORgee(formula = y ~ factor(time) + factor(trt) + factor(baseline), 
+    data = arthritis, id = id, repeated = time)
 summary(fitord)
 #> GEE FOR ORDINAL MULTINOMIAL RESPONSES 
 #> version 1.6.0 modified 2017-07-10 
