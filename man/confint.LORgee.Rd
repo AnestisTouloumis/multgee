@@ -23,8 +23,8 @@ calculating the confidence intervals.}
 \item{...}{additional argument(s) for methods.}
 }
 \value{
-A matrix (or vector) with columns giving lower and upper confidence 
-limits for each parameter. These will be labelled as \code{(1-level)/2} and 
+A matrix (or vector) with columns giving lower and upper confidence
+limits for each parameter. These will be labelled as \code{(1-level)/2} and
 \code{1 - (1-level)/2} in % (by default 2.5% and 97.5%).
 }
 \description{
@@ -36,7 +36,7 @@ The Wald-type confidence intervals are calculated using either the robust (
 sandwich) or the naive (model-based) covariance matrix.
 }
 \examples{
-fitmod <- ordLORgee(formula = y ~ factor(time) + factor(trt) + 
+fitmod <- ordLORgee(formula = y ~ factor(time) + factor(trt) +
     factor(baseline), data = arthritis, id = id, LORstr = "uniform",
     repeated = time)
 confint(fitmod)

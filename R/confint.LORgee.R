@@ -6,7 +6,7 @@
 #'
 #' @title Confidence Intervals for Model Parameters
 #' @examples
-#' fitmod <- ordLORgee(formula = y ~ factor(time) + factor(trt) + 
+#' fitmod <- ordLORgee(formula = y ~ factor(time) + factor(trt) +
 #'     factor(baseline), data = arthritis, id = id, LORstr = "uniform",
 #'     repeated = time)
 #' confint(fitmod)
@@ -20,8 +20,8 @@
 #' @param robust whether the robust covariance matrix should be used for
 #' calculating the confidence intervals.
 #' @param ... additional argument(s) for methods.
-#' @return A matrix (or vector) with columns giving lower and upper confidence 
-#' limits for each parameter. These will be labelled as \code{(1-level)/2} and 
+#' @return A matrix (or vector) with columns giving lower and upper confidence
+#' limits for each parameter. These will be labelled as \code{(1-level)/2} and
 #' \code{1 - (1-level)/2} in % (by default 2.5% and 97.5%).
 #' @export
 confint.LORgee <- function(object, parm, level = 0.95, robust = TRUE, ...) {
@@ -29,9 +29,9 @@ confint.LORgee <- function(object, parm, level = 0.95, robust = TRUE, ...) {
   pnames <- names(cf)
   if (missing(parm))
     parm <- pnames
-  else if (is.numeric(parm)) 
+  else if (is.numeric(parm))
     parm <- pnames[parm]
-  a <- (1 - level)/2
+  a <- (1 - level) / 2
   a <- c(a, 1 - a)
   pct <- format_perc(a, 3)
   fac <- qnorm(a)

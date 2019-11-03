@@ -29,7 +29,7 @@ Default is to use robust variance estimates. However, if robust.var is set to
 FALSE, naive variance estimates are used.
 }
 \examples{
-fitmod <- ordLORgee(formula = y ~ factor(time) + factor(trt) + 
+fitmod <- ordLORgee(formula = y ~ factor(time) + factor(trt) +
     factor(baseline), data = arthritis, id = id, LORstr = "uniform",
     repeated = time)
 vcov(fitmod)

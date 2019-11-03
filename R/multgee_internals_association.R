@@ -16,8 +16,9 @@ datacounts <- function(response, id, repeated, ncategories) {
     for (categ2 in 1:ncategories) {
       for (ind_2 in 1:(ntimes - 1)) {
         for (ind_3 in (ind_2 + 1):ntimes) {
-          counts[ind_1] <- sum((data[, ind_2] == categ1) & (data[,
-                                                                 ind_3] == categ2))
+          counts[ind_1] <- sum(
+            (data[, ind_2] == categ1) & (data[, ind_3] == categ2)
+            )
           ind_1 <- ind_1 + 1
         }
       }
