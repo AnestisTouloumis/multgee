@@ -223,15 +223,9 @@ nomLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
         LORterm <- fitmm(data.model, marpars, homogeneous, NULL, add)
     }
     if (is.null(bstart)) {
-        family <- multinomial(refLevel = ncategories)
-        mmcall <- match.call(expand.dots = FALSE)
-        mmf <- match(c("formula", "data", "id", "repeated"), names(mmcall),
-            0L)
-        mm <- mcall[c(1L, mmf)]
-        mm$family <- family
-        mm$control <- vglm.control()
-        mm[[1]] <- as.name("vglm")
-        coeffs <- coef(eval(mm, parent.frame()))
+        family <- VGAM::multinomial(refLevel = ncategories)
+        mmodel <- VGAM::vglm(formula = formula, family = family, data = data)
+        coeffs <- VGAM::coefficients(mmodel)
         coeffs <- c(matrix(coeffs, ncol = ncategories - 1, byrow = TRUE))
         coeffs <- as.numeric(coeffs)
         if (!is.numeric(coeffs))

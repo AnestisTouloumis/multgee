@@ -1,7 +1,7 @@
 datacounts <- function(response, id, repeated, ncategories) {
   response <- as.numeric(factor(response))
   data <- data.frame(cbind(response, id, repeated))
-  data <- reshape(data, v.names = "response", idvar = "id",
+  data <- stats::reshape(data, v.names = "response", idvar = "id",
                   timevar = "repeated", direction = "wide")
   data <- data[, -1]
   data[is.na(data)] <- 0
@@ -40,11 +40,11 @@ fitmm <- function(data, marpars, homogeneous, restricted, add) {
     data$counts <- data$counts + add
   LORterm <- matrix(0, timepairs, ncategories^2)
   if (LORstr == "uniform" | LORstr == "category.exch") {
-    suppressWarnings(fitted.mod <- gnm(fmla, family = poisson, data = data,
-                                       verbose = FALSE, model = FALSE))
+    suppressWarnings(fitted.mod <- gnm::gnm(fmla, family = poisson, data = data,
+                                            verbose = FALSE, model = FALSE))
     if (is.null(fitted.mod))
       stop("gnm did not converge algorithm")
-    coefint <- as.vector(coef(fitted.mod)[pickCoef(fitted.mod, "x:y")])
+    coefint <- as.vector(coef(fitted.mod)[gnm::pickCoef(fitted.mod, "x:y")])
     if (LORem == "2way")
       coefint <- mean(coefint)
     LORterm <- matrix(coefint, timepairs, ncategories^2)
@@ -57,19 +57,21 @@ fitmm <- function(data, marpars, homogeneous, restricted, add) {
     if (is.null(restricted)) {
       if (LORem == "3way") {
         if (homogeneous) {
-          suppressWarnings(fitted.mod <- gnm(fmla, family = poisson,
-                                             data = data, verbose = FALSE, model = FALSE))
+          suppressWarnings(fitted.mod <- gnm::gnm(fmla, family = poisson,
+                                                  data = data, verbose = FALSE,
+                                                  model = FALSE))
           if (is.null(fitted.mod))
             stop("gnm did not converge algorithm")
-          coefint <- as.vector(coef(fitted.mod)[pickCoef(fitted.mod,
+          coefint <- as.vector(coef(fitted.mod)[gnm::pickCoef(fitted.mod,
                                                          "MultHomog")])
           coefint <- c(tcrossprod(coefint))
         } else {
-          suppressWarnings(fitted.mod <- gnm(fmla, family = poisson,
-                                             data = data, verbose = FALSE, model = FALSE))
+          suppressWarnings(fitted.mod <- gnm::gnm(fmla, family = poisson,
+                                             data = data, verbose = FALSE,
+                                             model = FALSE))
           if (is.null(fitted.mod))
             stop("gnm did not converge algorithm")
-          coefint <- as.vector(coef(fitted.mod)[pickCoef(fitted.mod,
+          coefint <- as.vector(coef(fitted.mod)[gnm::pickCoef(fitted.mod,
                                                          "Mult")])
           coefint <- c(tcrossprod(coefint[-c(1:ncategories)],
                                   coefint[1:ncategories]))
@@ -80,14 +82,14 @@ fitmm <- function(data, marpars, homogeneous, restricted, add) {
         LORterm2 <- LORterm
         for (i in 1:timepairs) {
           datamar <- data[data$tp == i, ]
-          suppressWarnings(fitted.mod <- gnm(fmla, family = poisson,
+          suppressWarnings(fitted.mod <- gnm::gnm(fmla, family = poisson,
                                              data = datamar, verbose = FALSE, model = FALSE))
           if (homogeneous) {
-            coefint <- as.vector(coef(fitted.mod)[pickCoef(fitted.mod,
+            coefint <- as.vector(coef(fitted.mod)[gnm::pickCoef(fitted.mod,
                                                            "MultHomog")])
             coefint <- c(tcrossprod(coefint))
           } else {
-            coefint <- as.vector(coef(fitted.mod)[pickCoef(fitted.mod,
+            coefint <- as.vector(coef(fitted.mod)[gnm::pickCoef(fitted.mod,
                                                            "Mult")])
             coefint <- c(tcrossprod(coefint[1:ncategories],
                                     coefint[-c(1:ncategories)]))
@@ -129,15 +131,15 @@ fitmm <- function(data, marpars, homogeneous, restricted, add) {
     data$y <- factor(data$y)
     for (i in 1:timepairs) {
       datamar <- data[data$tp == i, ]
-      suppressWarnings(fitted.mod <- gnm(fmla, family = poisson,
+      suppressWarnings(fitted.mod <- gnm::gnm(fmla, family = poisson,
                                          data = datamar, verbose = FALSE, model = FALSE))
       if (is.null(restricted)) {
         if (homogeneous) {
-          coefint <- as.vector(coef(fitted.mod)[pickCoef(fitted.mod,
+          coefint <- as.vector(coef(fitted.mod)[gnm::pickCoef(fitted.mod,
                                                          "MultHomog")])
           coefint <- c(tcrossprod(coefint))
         } else {
-          coefint <- as.vector(coef(fitted.mod)[pickCoef(fitted.mod,
+          coefint <- as.vector(coef(fitted.mod)[gnm::pickCoef(fitted.mod,
                                                          "Mult")])
           coefint <- c(tcrossprod(coefint[1:ncategories],
                                   coefint[-c(1:ncategories)]))
@@ -145,7 +147,7 @@ fitmm <- function(data, marpars, homogeneous, restricted, add) {
       } else {
         coefint <- if (homogeneous)
           RRChomog(fmla, datamar, ncategories) else
-            RRCheter(fmla, datamar, ncategories)
+          RRCheter(fmla, datamar, ncategories)
       }
       LORterm[i, ] <- exp(coefint)
     }
@@ -246,7 +248,7 @@ RRCheter <- function(fmla, data, ncategories) {
       Consmat$parscores[i, 1:maxcategory]
     levels(data$z2) <- pickcoefindz2 <-
       Consmat$parscores[i, - (1:maxcategory)]
-    RRCmod <- suppressWarnings(gnm(fmla, data = data, family = poisson,
+    RRCmod <- suppressWarnings(gnm::gnm(fmla, data = data, family = poisson,
                                    verbose = FALSE, model = FALSE))
     if (!is.null(RRCmod)) {
       if (deviance(RRCmod) < dev & RRCmod$conv) {
@@ -306,11 +308,11 @@ RRChomog <- function(fmla, data, ncategories) {
     data$z2 <- datay
     levels(data$z1) <- levels(data$z2) <- pickcoefind <-
       Consmat$parscores[i, ]
-    suppressWarnings(RRCmod <- gnm(fmla, family = poisson, data = data,
+    suppressWarnings(RRCmod <- gnm::gnm(fmla, family = poisson, data = data,
                                    verbose = FALSE, model = FALSE))
     if (!is.null(RRCmod)) {
       if (deviance(RRCmod) < dev & RRCmod$conv) {
-        pickcoef <- pickCoef(RRCmod, "MultHomog")
+        pickcoef <- gnm::pickCoef(RRCmod, "MultHomog(.,.)")
         scores <- as.numeric(coef(RRCmod)[pickcoef])[pickcoefind]
         mu <- normscores(scores)
         if (all(diff(mu) >= 0) | all(diff(mu) <= 0)) {

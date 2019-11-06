@@ -67,9 +67,11 @@
 #' Touloumis, A. (2015) R Package multgee: A Generalized Estimating Equations
 #' Solver for Multinomial Responses. \emph{Journal of Statistical Software}
 #' \bold{64}, 1--14.
-#' @import gnm VGAM
-#' @importFrom stats glm make.link model.extract model.response pchisq
-#' @importFrom stats printCoefmat pnorm poisson qnorm reshape update
+#' @import gnm
+#' @importFrom VGAM acat coefficients cumulative multinomial vglm
+#' @importFrom stats coef deviance fitted glm make.link model.extract
+#' @importFrom stats model.matrix model.response pchisq printCoefmat pnorm
+#' @importFrom stats poisson qnorm reshape update vcov
 #' @importFrom utils combn
 #' @keywords package
 NULL

@@ -254,13 +254,8 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
             family <- cumulative("cloglog", parallel = TRUE)
         if (link == "cauchit")
             family <- cumulative("cauchit", parallel = TRUE)
-        mmcall <- match.call(expand.dots = FALSE)
-        mmf <- match(c("formula", "data", "id", "repeated"), names(mmcall), 0L)
-        mm <- mcall[c(1L, mmf)]
-        mm$family <- family
-        mm$control <- vglm.control()
-        mm[[1]] <- as.name("vglm")
-        coeffs <- coef(eval(mm, parent.frame()))
+        mmodel <- VGAM::vglm(formula = formula, family = family, data = data)
+        coeffs <- VGAM::coefficients(mmodel)
         coeffs <- as.numeric(coeffs)
         if (!is.numeric(coeffs))
             stop("Please insert initial values")
