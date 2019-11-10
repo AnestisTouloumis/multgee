@@ -1,3 +1,32 @@
+#' Model Selection Criteria
+#' 
+#' add text.
+#' 
+#' @return Returns a list with the components:
+#' \item{qic}{the QIC criterion.} 
+#' \item{qic_u}{the QIC_u criterion}
+#' \item{cic}{the CIC criterion.}
+#' \item{rjc}{the Rotnumber of observations.}
+#' \item{quisi_likelihood}{the values of the convergence variables.}
+#' 
+#' @param object an object of the class "LORgee". 
+#' @param digits numeric indicating the number of decimal points in reported 
+#' summaries.
+#' @author Anestis Touloumis
+#' @seealso \link{ordLORgee} and \link{nomLORgee}.
+#' @references Pan, W. (2001) Akaike's information criterion in generalized 
+#' estimating equations. \emph{Biometrics} \bold{57}, 120--125.
+#' 
+#' Rotnitzky, A. and Jewell, N. P. (1990) Hypothesis testing of regression 
+#' parameters in semiparametric generalized linear models for cluster correlated
+#' data. \emph{Biometrika} \bold{77}, 485--497.
+#' 
+#' @examples
+#' data(housing)
+#' fitmod <- nomLORgee(y~factor(time)*sec,data=housing,id=id, repeated=time)
+#' qic(fitmod)
+#' @export
+
 qic <- function(object, digits = 3) {
   independence_model <- update(object, LORstr = "independence")
   independence_naive_covariance <- vcov(independence_model, robust = FALSE)

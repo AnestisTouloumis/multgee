@@ -6,7 +6,7 @@ author:
       School of Computing, Engineering and Mathematics
 
 
-      Moulsecoombe, Brighton, BN2 4GJ, UK
+      Moulsecoomb, Brighton, BN2 4GJ, UK
     email: \email{A.Touloumis@brighton.ac.uk}
 title:
   formatted: "\\proglang{R} Package \\pkg{multgee}: A Generalized Estimating Equations Solver for Multinomial Responses"
