@@ -1,8 +1,9 @@
 \name{NEWS}
 \title{NEWS file for the \pkg{multgee} package}
 
-\section{Changes in Version 1.6.3 (2019-10-03)}{
+\section{Changes in Version 1.6.4 (2019-11-10)}{
   \itemize{
+    \item{Moved \pkg{VGAM} and \pkg{gnm} to Imports.}
     \item{Added functions \code{vcov} and \code{confint}.}
     \item{Added lintr in travis.yml.}
     \item{Updated documentation.}

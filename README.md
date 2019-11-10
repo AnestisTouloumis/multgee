@@ -4,7 +4,7 @@
 # multgee: GEE Solver for Correlated Nominal or Ordinal Multinomial Responses
 
 [![Github
-version](https://img.shields.io/badge/GitHub%20-1.6.3-orange.svg)](%22commits/master%22)
+version](https://img.shields.io/badge/GitHub%20-1.6.4-orange.svg)](%22commits/master%22)
 [![Travis-CI Build
 Status](https://travis-ci.org/AnestisTouloumis/multgee.svg?branch=master)](https://travis-ci.org/AnestisTouloumis/multgee)
 [![Project Status: Active The project has reached a stable, usable state
@@ -48,9 +48,6 @@ To use `multgee`, you should load the package as follows:
 ``` r
 library("multgee")
 #> Loading required package: gnm
-#> Loading required package: VGAM
-#> Loading required package: stats4
-#> Loading required package: splines
 ```
 
 ## Usage
@@ -112,8 +109,7 @@ intrinsic.pars(y, arthritis, id, time, rscale = "ordinal")
 
 The intrinsic parameters do not differ much. This suggests that the
 uniform local odds ratios structure might be a good approximation for
-the association
-pattern.
+the association pattern.
 
 ``` r
 fitord <- ordLORgee(formula = y ~ factor(time) + factor(trt) + factor(baseline), 

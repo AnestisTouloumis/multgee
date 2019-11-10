@@ -1,7 +1,7 @@
 Package: multgee
 Type: Package
 Title: GEE Solver for Correlated Nominal or Ordinal Multinomial Responses
-Version: 1.6.3
+Version: 1.6.4
 Authors@R:
     person(given = "Anestis",
            family = "Touloumis",
@@ -16,9 +16,13 @@ Imports:
     stats, 
     utils,
     VGAM
+Suggests:
+    knitr,
+    rticles
 Description: GEE solver for correlated nominal or ordinal multinomial responses using a local odds ratios parameterization.
 License: GPL-2 | GPL-3
 LazyData: true
+VignetteBuilder: knitr
 URL: http://github.com/AnestisTouloumis/multgee
 BugReports: http://github.com/AnestisTouloumis/multgee/issues
 RoxygenNote: 6.1.1
