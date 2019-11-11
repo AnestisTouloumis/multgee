@@ -1,23 +1,34 @@
-#' Model Selection Criteria
+#' Variable Selection and Covariance Selection Criteria
 #' 
-#' add text.
+#' The Quasi Information Criterion (QIC), the Correlation Information Criterion 
+#' (CIC) and the Rotnitzky and Jewell Criterion (RJC) are used for selecting the
+#' best association structure. The QICu criterion is used for selecting the best
+#' subset of covariates. When choosing among GEE models with different 
+#' association structures but with the same subset of covariates, the model with
+#' the smallest value of QIC, CIC or RJC should be preffered. When choosing
+#' between GEE models with different number of covariates, the model with the
+#' smallest QICu value should be preferred.
 #' 
-#' @return Returns a list with the components:
+#' @return Returns a list with components:
 #' \item{qic}{the QIC criterion.} 
-#' \item{qic_u}{the QIC_u criterion}
+#' \item{qic_u}{the QIC_u criterion.}
 #' \item{cic}{the CIC criterion.}
-#' \item{rjc}{the Rotnumber of observations.}
-#' \item{quisi_likelihood}{the values of the convergence variables.}
+#' \item{rjc}{the Rotnitzky and Jewell criterion.}
+#' \item{quasi_likelihood}{the quasi likelihood.}
 #' 
 #' @param object an object of the class "LORgee". 
-#' @param digits numeric indicating the number of decimal points in reported 
+#' @param digits integer indicating the number of decimal points in reported 
 #' summaries.
 #' @author Anestis Touloumis
-#' @seealso \link{ordLORgee} and \link{nomLORgee}.
-#' @references Pan, W. (2001) Akaike's information criterion in generalized 
+#' @seealso \link{nomLORgee} and \link{ordLORgee}.
+#' @references Hin, L.Y. and Wang, Y.G. (2009) Working correlation structure 
+#' identification in generalized estimating equations. \emph{Statistics in 
+#' Medicine} \bold{28}, 642--658.
+#' 
+#' Pan, W. (2001) Akaike's information criterion in generalized 
 #' estimating equations. \emph{Biometrics} \bold{57}, 120--125.
 #' 
-#' Rotnitzky, A. and Jewell, N. P. (1990) Hypothesis testing of regression 
+#' Rotnitzky, A. and Jewell, N.P. (1990) Hypothesis testing of regression 
 #' parameters in semiparametric generalized linear models for cluster correlated
 #' data. \emph{Biometrika} \bold{77}, 485--497.
 #' 
