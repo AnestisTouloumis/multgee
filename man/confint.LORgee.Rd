@@ -5,8 +5,7 @@
 \alias{confint}
 \title{Confidence Intervals for Model Parameters}
 \usage{
-\method{confint}{LORgee}(object, parm, level = 0.95, robust = TRUE,
-  ...)
+\method{confint}{LORgee}(object, parm, level = 0.95, robust = TRUE, ...)
 }
 \arguments{
 \item{object}{a fitted model LORgee object.}

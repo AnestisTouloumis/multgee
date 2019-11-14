@@ -4,12 +4,23 @@
 \alias{ordLORgee}
 \title{Marginal Models For Correlated Ordinal Multinomial Responses}
 \usage{
-ordLORgee(formula = formula(data), data = parent.frame(), id = id,
-  repeated = NULL, link = "logit", bstart = NULL,
-  LORstr = "category.exch", LORem = "3way", LORterm = NULL,
-  add = 0, homogeneous = TRUE, restricted = FALSE,
-  control = LORgee.control(), ipfp.ctrl = ipfp.control(),
-  IM = "solve")
+ordLORgee(
+  formula = formula(data),
+  data = parent.frame(),
+  id = id,
+  repeated = NULL,
+  link = "logit",
+  bstart = NULL,
+  LORstr = "category.exch",
+  LORem = "3way",
+  LORterm = NULL,
+  add = 0,
+  homogeneous = TRUE,
+  restricted = FALSE,
+  control = LORgee.control(),
+  ipfp.ctrl = ipfp.control(),
+  IM = "solve"
+)
 }
 \arguments{
 \item{formula}{a formula expression as for other regression models for

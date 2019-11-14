@@ -4,8 +4,13 @@
 \alias{intrinsic.pars}
 \title{Intrinsic Parameters Estimation}
 \usage{
-intrinsic.pars(y = y, data = parent.frame(), id = id,
-  repeated = NULL, rscale = "ordinal")
+intrinsic.pars(
+  y = y,
+  data = parent.frame(),
+  id = id,
+  repeated = NULL,
+  rscale = "ordinal"
+)
 }
 \arguments{
 \item{y}{a vector that identifies the response vector of the desired
