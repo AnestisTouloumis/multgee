@@ -13,7 +13,7 @@ Depends:
     R (>= 2.15.0),
     gnm
 Imports:
-    stats, 
+    stats,
     utils,
     VGAM
 Suggests:
