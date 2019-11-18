@@ -314,7 +314,7 @@ RRCheter <- function(fmla, data, ncategories) {
     levels(data$z1) <- pickcoefindz1 <-
       Consmat$parscores[i, 1:maxcategory]
     levels(data$z2) <- pickcoefindz2 <-
-      Consmat$parscores[i, -(1:maxcategory)]
+      Consmat$parscores[i, - (1:maxcategory)]
     RRCmod <- suppressWarnings(gnm::gnm(fmla,
       data = data, family = poisson,
       verbose = FALSE, model = FALSE
