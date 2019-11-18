@@ -19,28 +19,32 @@
 #' ## structure equal to 2 for each time pair.
 #'
 #' ## Create the uniform local odds ratios structure.
-#' lorterm <- matrixLOR(matrix(2,4,4))
+#' lorterm <- matrixLOR(matrix(2, 4, 4))
 #'
 #' ## Create the LORterm argument.
 #' lorterm <- c(lorterm)
-#' lorterm <- matrix(c(lorterm),3,25,TRUE)
+#' lorterm <- matrix(c(lorterm), 3, 25, TRUE)
 #'
 #' ## Fit the marginal model.
 #' data(arthritis)
-#' fitmod.fixed <- ordLORgee(y~factor(trt)+factor(time)+factor(baseline),
-#'    data=arthritis, id=id,repeated=time,LORstr="fixed",LORterm=lorterm)
+#' fitmod.fixed <- ordLORgee(y ~ factor(trt) + factor(time) + factor(baseline),
+#'   data = arthritis, id = id, repeated = time, LORstr = "fixed",
+#'   LORterm = lorterm)
 #' fitmod.fixed
 #' @export
 matrixLOR <- function(x) {
-    if (!is.matrix(x))
-        stop("'x' must be a matrix")
-    if (nrow(x) != ncol(x))
-        stop("'x' must be a square matrix")
-    if (any(x < 0))
-        stop("all elements of 'x' must be > 0")
-    y <- matrix(1, nrow(x) + 1, ncol(x) + 1)
-    for (i in seq_len(ncol(x))) {
-        for (j in seq_len(ncol(x))) y[i + 1, j + 1] <- prod(x[1:i, 1:j])
-    }
-    prop.table(y)
+  if (!is.matrix(x)) {
+    stop("'x' must be a matrix")
+  }
+  if (nrow(x) != ncol(x)) {
+    stop("'x' must be a square matrix")
+  }
+  if (any(x < 0)) {
+    stop("all elements of 'x' must be > 0")
+  }
+  y <- matrix(1, nrow(x) + 1, ncol(x) + 1)
+  for (i in seq_len(ncol(x))) {
+    for (j in seq_len(ncol(x))) y[i + 1, j + 1] <- prod(x[1:i, 1:j])
+  }
+  prop.table(y)
 }

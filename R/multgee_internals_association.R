@@ -1,8 +1,10 @@
 datacounts <- function(response, id, repeated, ncategories) {
   response <- as.numeric(factor(response))
   data <- data.frame(cbind(response, id, repeated))
-  data <- stats::reshape(data, v.names = "response", idvar = "id",
-                  timevar = "repeated", direction = "wide")
+  data <- stats::reshape(data,
+    v.names = "response", idvar = "id",
+    timevar = "repeated", direction = "wide"
+  )
   data <- data[, -1]
   data[is.na(data)] <- 0
   ntimes <- ncol(data)
@@ -18,7 +20,7 @@ datacounts <- function(response, id, repeated, ncategories) {
         for (ind_3 in (ind_2 + 1):ntimes) {
           counts[ind_1] <- sum(
             (data[, ind_2] == categ1) & (data[, ind_3] == categ2)
-            )
+          )
           ind_1 <- ind_1 + 1
         }
       }
@@ -36,20 +38,27 @@ fitmm <- function(data, marpars, homogeneous, restricted, add) {
   fmla <- marpars$fmla
   ncategories <- max(data$x)
   timepairs <- max(data$tp)
-  if (any(data$counts == 0))
+  if (any(data$counts == 0)) {
     data$counts <- data$counts + add
+  }
   LORterm <- matrix(0, timepairs, ncategories^2)
   if (LORstr == "uniform" | LORstr == "category.exch") {
-    suppressWarnings(fitted.mod <- gnm::gnm(fmla, family = poisson, data = data,
-                                            verbose = FALSE, model = FALSE))
-    if (is.null(fitted.mod))
+    suppressWarnings(fitted.mod <- gnm::gnm(fmla,
+      family = poisson, data = data,
+      verbose = FALSE, model = FALSE
+    ))
+    if (is.null(fitted.mod)) {
       stop("gnm did not converge algorithm")
+    }
     coefint <- as.vector(coef(fitted.mod)[gnm::pickCoef(fitted.mod, "x:y")])
-    if (LORem == "2way")
+    if (LORem == "2way") {
       coefint <- mean(coefint)
+    }
     LORterm <- matrix(coefint, timepairs, ncategories^2)
-    LORterm <- t(apply(LORterm, 1,
-                       function(x) exp(x * tcrossprod(1:ncategories))))
+    LORterm <- t(apply(
+      LORterm, 1,
+      function(x) exp(x * tcrossprod(1:ncategories))
+    ))
   }
   if (LORstr == "time.exch") {
     data$x <- factor(data$x)
@@ -57,48 +66,73 @@ fitmm <- function(data, marpars, homogeneous, restricted, add) {
     if (is.null(restricted)) {
       if (LORem == "3way") {
         if (homogeneous) {
-          suppressWarnings(fitted.mod <- gnm::gnm(fmla, family = poisson,
-                                                  data = data, verbose = FALSE,
-                                                  model = FALSE))
-          if (is.null(fitted.mod))
+          suppressWarnings(fitted.mod <- gnm::gnm(fmla,
+            family = poisson,
+            data = data, verbose = FALSE,
+            model = FALSE
+          ))
+          if (is.null(fitted.mod)) {
             stop("gnm did not converge algorithm")
-          coefint <- as.vector(coef(fitted.mod)[gnm::pickCoef(fitted.mod,
-                                                         "MultHomog")])
+          }
+          coefint <- as.vector(coef(fitted.mod)[gnm::pickCoef(
+            fitted.mod,
+            "MultHomog"
+          )])
           coefint <- c(tcrossprod(coefint))
         } else {
-          suppressWarnings(fitted.mod <- gnm::gnm(fmla, family = poisson,
-                                             data = data, verbose = FALSE,
-                                             model = FALSE))
-          if (is.null(fitted.mod))
+          suppressWarnings(fitted.mod <- gnm::gnm(fmla,
+            family = poisson,
+            data = data, verbose = FALSE,
+            model = FALSE
+          ))
+          if (is.null(fitted.mod)) {
             stop("gnm did not converge algorithm")
-          coefint <- as.vector(coef(fitted.mod)[gnm::pickCoef(fitted.mod,
-                                                         "Mult")])
-          coefint <- c(tcrossprod(coefint[-c(1:ncategories)],
-                                  coefint[1:ncategories]))
+          }
+          coefint <- as.vector(coef(fitted.mod)[gnm::pickCoef(
+            fitted.mod,
+            "Mult"
+          )])
+          coefint <- c(tcrossprod(
+            coefint[-c(1:ncategories)],
+            coefint[1:ncategories]
+          ))
         }
-        LORterm <- exp(matrix(coefint, nrow = timepairs,
-                              ncol = ncategories^2, TRUE))
+        LORterm <- exp(matrix(coefint,
+          nrow = timepairs,
+          ncol = ncategories^2, TRUE
+        ))
       } else {
         LORterm2 <- LORterm
         for (i in 1:timepairs) {
           datamar <- data[data$tp == i, ]
-          suppressWarnings(fitted.mod <- gnm::gnm(fmla, family = poisson,
-                                             data = datamar, verbose = FALSE, model = FALSE))
+          suppressWarnings(fitted.mod <- gnm::gnm(fmla,
+            family = poisson,
+            data = datamar, verbose = FALSE,
+            model = FALSE
+          ))
           if (homogeneous) {
-            coefint <- as.vector(coef(fitted.mod)[gnm::pickCoef(fitted.mod,
-                                                           "MultHomog")])
+            coefint <- as.vector(coef(fitted.mod)[gnm::pickCoef(
+              fitted.mod,
+              "MultHomog"
+            )])
             coefint <- c(tcrossprod(coefint))
           } else {
-            coefint <- as.vector(coef(fitted.mod)[gnm::pickCoef(fitted.mod,
-                                                           "Mult")])
-            coefint <- c(tcrossprod(coefint[1:ncategories],
-                                    coefint[-c(1:ncategories)]))
+            coefint <- as.vector(coef(fitted.mod)[gnm::pickCoef(
+              fitted.mod,
+              "Mult"
+            )])
+            coefint <- c(tcrossprod(
+              coefint[1:ncategories],
+              coefint[-c(1:ncategories)]
+            ))
           }
           LORterm2[i, ] <- coefint
         }
         LORterm2 <- colMeans(LORterm2)
-        LORterm <- exp(matrix(LORterm2, timepairs, ncategories^2,
-                              TRUE))
+        LORterm <- exp(matrix(
+          LORterm2, timepairs, ncategories^2,
+          TRUE
+        ))
       }
     } else {
       if (LORem == "3way") {
@@ -107,8 +141,10 @@ fitmm <- function(data, marpars, homogeneous, restricted, add) {
         } else {
           coefint <- RRCheter(fmla, data, ncategories)
         }
-        LORterm <- exp(matrix(coefint, nrow = timepairs,
-                              ncol = ncategories^2, TRUE))
+        LORterm <- exp(matrix(coefint,
+          nrow = timepairs,
+          ncol = ncategories^2, TRUE
+        ))
       } else {
         LORterm2 <- LORterm
         for (i in 1:timepairs) {
@@ -121,8 +157,10 @@ fitmm <- function(data, marpars, homogeneous, restricted, add) {
           LORterm2[i, ] <- coefint
         }
         LORterm2 <- colMeans(LORterm2)
-        LORterm <- exp(matrix(LORterm2, timepairs, ncategories^2,
-                              TRUE))
+        LORterm <- exp(matrix(
+          LORterm2, timepairs, ncategories^2,
+          TRUE
+        ))
       }
     }
   }
@@ -131,23 +169,34 @@ fitmm <- function(data, marpars, homogeneous, restricted, add) {
     data$y <- factor(data$y)
     for (i in 1:timepairs) {
       datamar <- data[data$tp == i, ]
-      suppressWarnings(fitted.mod <- gnm::gnm(fmla, family = poisson,
-                                         data = datamar, verbose = FALSE, model = FALSE))
+      suppressWarnings(fitted.mod <- gnm::gnm(fmla,
+        family = poisson,
+        data = datamar, verbose = FALSE,
+        model = FALSE
+      ))
       if (is.null(restricted)) {
         if (homogeneous) {
-          coefint <- as.vector(coef(fitted.mod)[gnm::pickCoef(fitted.mod,
-                                                         "MultHomog")])
+          coefint <- as.vector(coef(fitted.mod)[gnm::pickCoef(
+            fitted.mod,
+            "MultHomog"
+          )])
           coefint <- c(tcrossprod(coefint))
         } else {
-          coefint <- as.vector(coef(fitted.mod)[gnm::pickCoef(fitted.mod,
-                                                         "Mult")])
-          coefint <- c(tcrossprod(coefint[1:ncategories],
-                                  coefint[-c(1:ncategories)]))
+          coefint <- as.vector(coef(fitted.mod)[gnm::pickCoef(
+            fitted.mod,
+            "Mult"
+          )])
+          coefint <- c(tcrossprod(
+            coefint[1:ncategories],
+            coefint[-c(1:ncategories)]
+          ))
         }
       } else {
-        coefint <- if (homogeneous)
-          RRChomog(fmla, datamar, ncategories) else
+        coefint <- if (homogeneous) {
+          RRChomog(fmla, datamar, ncategories)
+        } else {
           RRCheter(fmla, datamar, ncategories)
+        }
       }
       LORterm[i, ] <- exp(coefint)
     }
@@ -163,33 +212,44 @@ mmpar <- function(LORem, LORstr, timepairs, homogeneous) {
   if (timepairs == 1) {
     LORem <- "2way"
     LORstr <- switch(LORstr, category.exch = "uniform", RC = "time.exch",
-                     uniform = "uniform", time.exch = "time.exch")
-    if (LORstr == "uniform")
+      uniform = "uniform", time.exch = "time.exch"
+    )
+    if (LORstr == "uniform") {
       fmla <- counts ~ factor(x) + factor(y) + x:y
+    }
     if (LORstr == "time.exch") {
-      fmla <- if (homogeneous)
-        counts ~ x + y + MultHomog(x, y) else
-          counts ~ x + y + Mult(x, y)
+      fmla <- if (homogeneous) {
+        counts ~ x + y + MultHomog(x, y)
+      } else {
+        counts ~ x + y + Mult(x, y)
+      }
     }
   } else if (LORem == "2way") {
-    if (LORstr == "uniform")
+    if (LORstr == "uniform") {
       fmla <-
         counts ~ (factor(x) + factor(y)) * factor(tp) + factor(tp):x:y
+    }
     if (LORstr == "time.exch" | LORstr == "RC") {
-      fmla <- if (homogeneous)
-        counts ~ x + y + MultHomog(x, y) else
-          counts ~ x + y + Mult(x, y)
+      fmla <- if (homogeneous) {
+        counts ~ x + y + MultHomog(x, y)
+      } else {
+        counts ~ x + y + Mult(x, y)
+      }
     }
   } else {
-    if (LORstr == "category.exch")
+    if (LORstr == "category.exch") {
       fmla <-
         counts ~ (factor(x) + factor(y)) * factor(tp) + factor(tp):x:y
-    if (LORstr == "uniform")
+    }
+    if (LORstr == "uniform") {
       fmla <- counts ~ (factor(x) + factor(y)) * factor(tp) + x:y
+    }
     if (LORstr == "time.exch") {
-      fmla <- if (homogeneous)
-        counts ~ (x + y) * factor(tp) + MultHomog(x, y) else
-          counts ~ (x + y) * factor(tp) + Mult(x, y)
+      fmla <- if (homogeneous) {
+        counts ~ (x + y) * factor(tp) + MultHomog(x, y)
+      } else {
+        counts ~ (x + y) * factor(tp) + Mult(x, y)
+      }
     }
   }
   list(LORem = LORem, LORstr = LORstr, fmla = fmla)
@@ -209,8 +269,10 @@ RCconstrains <- function(ncategories, homogeneous) {
   }
   nodf <- unique(nodf)
   n1 <- nrow(nodf)
-  parscores <- matrix(1:ncategories, nrow = n1, ncol = ncategories,
-                      byrow = TRUE)
+  parscores <- matrix(1:ncategories,
+    nrow = n1, ncol = ncategories,
+    byrow = TRUE
+  )
   for (j in 1:ncategories1) {
     parscores[nodf[, j] == 1, j + 1] <- parscores[nodf[, j] == 1, j]
   }
@@ -221,12 +283,17 @@ RCconstrains <- function(ncategories, homogeneous) {
     n1 <- length(Homogeneous$nodf)
     parscores <- cbind(
       apply(Homogeneous$parscores, 2, function(x) rep.int(x, n1)),
-      apply(Homogeneous$parscores, 2, function(x) rep(x, each = n1)))
-    nodf <- rep(Homogeneous$nodf, each = n1) + rep.int(Homogeneous$nodf,
-                                                       n1)
+      apply(Homogeneous$parscores, 2, function(x) rep(x, each = n1))
+    )
+    nodf <- rep(Homogeneous$nodf, each = n1) + rep.int(
+      Homogeneous$nodf,
+      n1
+    )
     orderedindices <- order(nodf)
-    ans <- list(parscores = parscores[orderedindices, ],
-                nodf = nodf[orderedindices])
+    ans <- list(
+      parscores = parscores[orderedindices, ],
+      nodf = nodf[orderedindices]
+    )
   }
   ans
 }
@@ -240,16 +307,18 @@ RRCheter <- function(fmla, data, ncategories) {
   datay <- factor(data$y)
   maxcategory <- nlevels(datax)
   noglm <- length(Consmat$nodf[Consmat$nodf < 2 * (maxcategory - 2)])
-  fmla <- update(fmla, ~. - Mult(x, y) + Mult(z1, z2))
+  fmla <- update(fmla, ~ . - Mult(x, y) + Mult(z1, z2))
   for (i in 1:noglm) {
     data$z1 <- datax
     data$z2 <- datay
     levels(data$z1) <- pickcoefindz1 <-
       Consmat$parscores[i, 1:maxcategory]
     levels(data$z2) <- pickcoefindz2 <-
-      Consmat$parscores[i, - (1:maxcategory)]
-    RRCmod <- suppressWarnings(gnm::gnm(fmla, data = data, family = poisson,
-                                   verbose = FALSE, model = FALSE))
+      Consmat$parscores[i, -(1:maxcategory)]
+    RRCmod <- suppressWarnings(gnm::gnm(fmla,
+      data = data, family = poisson,
+      verbose = FALSE, model = FALSE
+    ))
     if (!is.null(RRCmod)) {
       if (deviance(RRCmod) < dev & RRCmod$conv) {
         scores <- as.numeric(coef(RRCmod)[pickCoef(RRCmod, "Mult")])
@@ -267,29 +336,30 @@ RRCheter <- function(fmla, data, ncategories) {
         }
       }
     }
-    if (stop.constrains < Consmat$nodf[i + 1])
+    if (stop.constrains < Consmat$nodf[i + 1]) {
       break
+    }
   }
   if (!is.finite(dev)) {
-    fmla <- update(fmla, ~. - Mult(z1, z2) + x1:x2)
+    fmla <- update(fmla, ~ . - Mult(z1, z2) + x1:x2)
     for (i in (noglm + 1):length(Consmat$nodf)) {
       datax1 <- datax
       datay1 <- datay
       levels(datax1) <- pickcoefindz1 <-
         Consmat$parscores[i, 1:maxcategory]
-      levels(datay1) <- pickcoefindz2 <-
-        Consmat$parscores[i, - (1:maxcategory)]
+      levels(datay1) <- pickcoefindz2 <- Consmat$parscores[i, - (1:maxcategory)]
       data$x1 <- as.numeric(datax1)
       data$x2 <- as.numeric(datay1)
       RRCmod <- suppressWarnings(glm(fmla, data = data, family = poisson))
       if (deviance(RRCmod) < dev & RRCmod$conv) {
         LORterm <- c(tcrossprod(pickcoefindz1, pickcoefindz2) *
-                       as.numeric(RRCmod$coef["x1:x2"]))
+          as.numeric(RRCmod$coef["x1:x2"]))
       }
     }
   }
-  if (!is.finite(dev))
+  if (!is.finite(dev)) {
     LORterm <- rep(0, nlevels(datax)^2)
+  }
   LORterm
 }
 
@@ -302,14 +372,16 @@ RRChomog <- function(fmla, data, ncategories) {
   datay <- factor(data$y)
   dev <- stop.constrains <- Inf
   noglm <- length(Consmat$nodf[Consmat$nodf < (nlevels(datax) - 2)])
-  fmla <- update(fmla, ~. - MultHomog(x, y) + MultHomog(z1, z2))
+  fmla <- update(fmla, ~ . - MultHomog(x, y) + MultHomog(z1, z2))
   for (i in 1:noglm) {
     data$z1 <- datax
     data$z2 <- datay
     levels(data$z1) <- levels(data$z2) <- pickcoefind <-
       Consmat$parscores[i, ]
-    suppressWarnings(RRCmod <- gnm::gnm(fmla, family = poisson, data = data,
-                                   verbose = FALSE, model = FALSE))
+    suppressWarnings(RRCmod <- gnm::gnm(fmla,
+      family = poisson, data = data,
+      verbose = FALSE, model = FALSE
+    ))
     if (!is.null(RRCmod)) {
       if (deviance(RRCmod) < dev & RRCmod$conv) {
         pickcoef <- gnm::pickCoef(RRCmod, "MultHomog(.,.)")
@@ -318,30 +390,35 @@ RRChomog <- function(fmla, data, ncategories) {
         if (all(diff(mu) >= 0) | all(diff(mu) <= 0)) {
           dev <- deviance(RRCmod)
           LORterm <- c(tcrossprod(scores))
-          if (Consmat$nodf[i] < Consmat$nodf[i + 1])
+          if (Consmat$nodf[i] < Consmat$nodf[i + 1]) {
             break
+          }
         }
       }
     }
-    if (stop.constrains < Consmat$nodf[i + 1])
+    if (stop.constrains < Consmat$nodf[i + 1]) {
       break
+    }
   }
   if (!is.finite(dev)) {
-    fmla <- update(fmla, ~. - MultHomog(z1, z2) + x1:x2)
+    fmla <- update(fmla, ~ . - MultHomog(z1, z2) + x1:x2)
     data$x1 <- as.numeric(datax1)
     data$x2 <- as.numeric(datay1)
     for (i in (noglm + 1):length(Consmat$nodf)) datax1 <- datax
     datay1 <- datay
     levels(datax1) <- levels(datay1) <- pickcoefind <-
       Consmat$parscores[i, ]
-    RRCmod <- suppressWarnings(glm(fmla, data = data, family = poisson,
-                                   verbose = FALSE, model = FALSE))
+    RRCmod <- suppressWarnings(glm(fmla,
+      data = data, family = poisson,
+      verbose = FALSE, model = FALSE
+    ))
     if (deviance(RRCmod) < dev & RRCmod$conv) {
       LORterm <- c(tcrossprod(pickcoefind) *
-                     as.numeric(RRCmod$coef["x1:x2"]))
+        as.numeric(RRCmod$coef["x1:x2"]))
     }
   }
-  if (!is.finite(dev))
+  if (!is.finite(dev)) {
     LORterm <- rep(0, nlevels(datax)^2)
+  }
   LORterm
 }

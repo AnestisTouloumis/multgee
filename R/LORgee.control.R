@@ -17,19 +17,24 @@
 #' @seealso \link{nomLORgee} and \link{ordLORgee}.
 #' @examples
 #' data(arthritis)
-#' fitmod <- ordLORgee(y~factor(trt)+factor(baseline)+factor(time),
-#'                     data = arthritis, id = id, repeated = time)
+#' fitmod <- ordLORgee(y ~ factor(trt) + factor(baseline) + factor(time),
+#'   data = arthritis, id = id, repeated = time
+#' )
 #' ## A one-step GEE estimator
-#' fitmod1 <- update(fitmod, control = LORgee.control(maxiter=1))
+#' fitmod1 <- update(fitmod, control = LORgee.control(maxiter = 1))
 #' coef(fitmod)
 #' coef(fitmod1)
 #' @export LORgee.control
 LORgee.control <- function(tolerance = 0.001, maxiter = 15, verbose = FALSE, # nolint
-    TRACE = FALSE) { # nolint
-    if (!is.numeric(tolerance) || tolerance <= 0)
-        stop("value of LORgee's 'tolerance' must be > 0")
-    if (!is.numeric(maxiter) || maxiter <= 0)
-        stop("maximum number of LORgee's iterations must be > 0")
-    list(tolerance = tolerance, maxiter = maxiter, verbose = verbose,
-         TRACE = TRACE)
+                           TRACE = FALSE) { # nolint
+  if (!is.numeric(tolerance) || tolerance <= 0) {
+    stop("value of LORgee's 'tolerance' must be > 0")
+  }
+  if (!is.numeric(maxiter) || maxiter <= 0) {
+    stop("maximum number of LORgee's iterations must be > 0")
+  }
+  list(
+    tolerance = tolerance, maxiter = maxiter, verbose = verbose,
+    TRACE = TRACE
+  )
 }

@@ -1,6 +1,6 @@
 LORgee <- function(x, ...) { # nolint
   UseMethod("LORgee")
-  }
+}
 
 
 LORgee.default <- function(x, ...) {

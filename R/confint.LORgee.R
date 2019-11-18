@@ -6,9 +6,11 @@
 #'
 #' @title Confidence Intervals for Model Parameters
 #' @examples
-#' fitmod <- ordLORgee(formula = y ~ factor(time) + factor(trt) +
+#' fitmod <- ordLORgee(
+#'   formula = y ~ factor(time) + factor(trt) +
 #'     factor(baseline), data = arthritis, id = id, LORstr = "uniform",
-#'     repeated = time)
+#'   repeated = time
+#' )
 #' confint(fitmod)
 #' @aliases confint
 #' @method confint LORgee
@@ -27,10 +29,11 @@
 confint.LORgee <- function(object, parm, level = 0.95, robust = TRUE, ...) {
   cf <- coef(object)
   pnames <- names(cf)
-  if (missing(parm))
+  if (missing(parm)) {
     parm <- pnames
-  else if (is.numeric(parm))
+  } else if (is.numeric(parm)) {
     parm <- pnames[parm]
+  }
   a <- (1 - level) / 2
   a <- c(a, 1 - a)
   pct <- format_perc(a, 3)

@@ -37,7 +37,6 @@
 #' data(housing)
 #' fitmod <- nomLORgee(y~factor(time)*sec,data=housing,id=id, repeated=time)
 #' gee_criteria(fitmod)
-#' @export
 
 gee_criteria <- function(object, digits = 3) {
   independence_model <- update(object, LORstr = "independence")
