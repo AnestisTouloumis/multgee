@@ -2,15 +2,29 @@
 \title{NEWS file for the \pkg{multgee} package}
 
 
-\section{Changes in Version 1.6.4 (2019-11-10)}{
-  \itemize{
-    \item{Moved \pkg{VGAM} and \pkg{gnm} to Imports.}
+\section{Changes in Version 1.6.5 (2019-11-20)}{
+  \subsection{NEW FEATURES}{
+    \itemize{
+      \item{Added function \code{confint}.}
+      \item{Added function \code{vcov}.}
+    }
+  }
+    \subsection{MAJOR CHANGES}{
+    \itemize{
+      \item{Updated vignette to describe the new features.}
+    }
+  }
+  \subsection{MINOR CHANGES}{
+    \itemize{
     \item{Added functions \code{vcov} and \code{confint}.}
     \item{Added lintr in travis.yml.}
+    \item{Moved \pkg{VGAM} to Imports.}
     \item{Updated documentation.}
-    \item{Invisible README.md.}
+    \item{Updated README.md.}
+    \item{Used JSS templated for vignette.}
     }
     }
+  }
 
  
 \section{Changes in Version 1.6.0 (2017-07-11)}{
