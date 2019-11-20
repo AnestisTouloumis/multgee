@@ -4,21 +4,10 @@
 \alias{nomLORgee}
 \title{Marginal Models For Correlated Nominal Multinomial Responses}
 \usage{
-nomLORgee(
-  formula = formula(data),
-  data = parent.frame(),
-  id = id,
-  repeated = NULL,
-  bstart = NULL,
-  LORstr = "time.exch",
-  LORem = "3way",
-  LORterm = NULL,
-  add = 0,
-  homogeneous = TRUE,
-  control = LORgee.control(),
-  ipfp.ctrl = ipfp.control(),
-  IM = "solve"
-)
+nomLORgee(formula = formula(data), data = parent.frame(), id = id,
+  repeated = NULL, bstart = NULL, LORstr = "time.exch", LORem = "3way",
+  LORterm = NULL, add = 0, homogeneous = TRUE,
+  control = LORgee.control(), ipfp.ctrl = ipfp.control(), IM = "solve")
 }
 \arguments{
 \item{formula}{a formula expression as for other regression models for
@@ -65,33 +54,43 @@ matrix. Options include \code{"solve"}, \code{"qr.solve"} or
 \value{
 Returns an object of the class \code{"LORgee"}. This has components:
 \item{call}{the matched call.} \item{title}{title for the GEE model.}
-\item{version}{the current version of the GEE solver.} \item{link}{the
-marginal link function.} \item{local.odds.ratios}{the marginalized local
-odds ratios structure variables.} \item{terms}{the \code{terms} structure
-describing the marginal model.} \item{contrasts}{the \code{contrasts} used
-for the factors.} \item{nobs}{the number of observations.}
+\item{version}{the current version of the GEE solver.}
+\item{link}{the marginal link function.}
+\item{local.odds.ratios}{the marginalized local odds ratios structure
+variables.}
+\item{terms}{the \code{terms} structure describing the marginal model.}
+\item{contrasts}{the \code{contrasts} used for the factors.}
+\item{nobs}{the number of observations.}
 \item{convergence}{the values of the convergence variables.}
 \item{coefficients}{the estimated regression parameter vector of the
-marginal model.} \item{linear.pred}{the estimated linear predictor of the
+marginal model.}
+\item{linear.pred}{the estimated linear predictor of the
 marginal regression model. The \eqn{j}-th column corresponds to the
-\eqn{j}-th response category.} \item{fitted.values}{the estimated fitted
+\eqn{j}-th response category.}
+\item{fitted.values}{the estimated fitted
 values of the marginal regression model. The \eqn{j}-th column corresponds
-to the \eqn{j}-th response category.} \item{residuals}{the residuals of the
-marginal regression model based on the binary responses. The \eqn{j}-th
-column corresponds to the \eqn{j}-th response category.} \item{y}{the
-multinomial response variables.} \item{id}{the \code{id} variable.}
-\item{max.id}{the number of clusters.} \item{clusz}{the number of
-observations within each cluster.} \item{robust.variance}{the estimated
-"robust" covariance matrix.} \item{naive.variance}{the estimated "naive" or
-"model-based" covariance matrix.} \item{xnames}{the regression coefficients'
-symbolic names.} \item{categories}{the number of observed response
-categories.} \item{occasions}{the levels of the \code{repeated} variable.}
+to the \eqn{j}-th response category.}
+\item{residuals}{the residuals of the marginal regression model based on the
+binary responses. The \eqn{j}-th column corresponds to the \eqn{j}-th
+response category.}
+\item{y}{the multinomial response variables.}
+\item{id}{the \code{id} variable.}
+\item{max.id}{the number of clusters.}
+\item{clusz}{the number of observations within each cluster.}
+\item{robust.variance}{the estimated "robust" covariance matrix.}
+\item{naive.variance}{the estimated "naive" or "model-based" covariance
+matrix.}
+\item{xnames}{the regression coefficients' symbolic names.}
+\item{categories}{the number of observed response categories.}
+\item{occasions}{the levels of the \code{repeated} variable.}
 \item{LORgee.control}{the control values for the GEE solver.}
 \item{ipfp.control}{the control values for the function \code{ipfp}.}
 \item{inverse.method}{the method used for inverting matrices.}
-\item{adding.constant}{the value used for \code{add}.} \item{pvalue}{the
-p-value based on a Wald test that no covariates are statistically
-significant.} Generic \link{coef}, \link{summary}, \link{print},
+\item{adding.constant}{the value used for \code{add}.}
+\item{pvalue}{the p-value based on a Wald test that no covariates are
+statistically significant.}
+
+Generic \link{coef}, \link{summary}, \link{print},
 \link{fitted} and \link{residuals} methods are available. The \code{pvalue
 of the Null model} corresponds to the hypothesis \eqn{H_0:
 \beta_1=...=\beta_{J-1}=0} based on the Wald test statistic.
@@ -152,7 +151,8 @@ desired local odds ratios structure.
 \examples{
 ## See the interpretation in Touloumis (2011).
 data(housing)
-fitmod <- nomLORgee(y~factor(time)*sec,data=housing,id=id, repeated=time)
+fitmod <- nomLORgee(y ~ factor(time) * sec, data = housing, id = id,
+                    repeated = time)
 summary(fitmod)
 }
 \references{

@@ -7,17 +7,18 @@
 #'
 #' @param object0 A GEE model of the class "\code{LORgee}".
 #' @param object1 A GEE model of the class "\code{LORgee}".
+#'
 #' @author Anestis Touloumis
+#'
 #' @examples
 #' data(housing)
 #' set.seed(1)
-#' fitmod1 <- nomLORgee(y ~ factor(time) * sec,
-#'   data = housing, id = id,
-#'   repeated = time
-#' )
+#' fitmod1 <- nomLORgee(y ~ factor(time) * sec, data = housing, id = id,
+#'   repeated = time)
 #' set.seed(1)
 #' fitmod0 <- update(fitmod1, formula = y ~ factor(time) + sec)
 #' waldts(fitmod0, fitmod1)
+#'
 #' @export
 waldts <- function(object0, object1) {
   if (class(object0) != "LORgee" | class(object1) != "LORgee") {

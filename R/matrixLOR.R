@@ -8,11 +8,16 @@
 #'
 #' @param x a square matrix with positive entries that describes the desired
 #' local odds ratios matrix.
+#'
 #' @return Returns a square probability matrix that satisfies the local odds
 #' ratios structure defined by \code{x}.
+#'
 #' @section Warning: Caution is needed for local odds ratios close to zero.
+#'
 #' @author Anestis Touloumis
+#'
 #' @seealso \link{nomLORgee} and \link{ordLORgee}.
+#'
 #' @examples
 #' ## Illustrating the construction of a "fixed" local odds ratios structure
 #' ## using the arthritis dataset. Here, we assume a uniform local odds ratios
@@ -27,10 +32,11 @@
 #'
 #' ## Fit the marginal model.
 #' data(arthritis)
-#' fitmod.fixed <- ordLORgee(y ~ factor(trt) + factor(time) + factor(baseline),
+#' fitmod <- ordLORgee(y ~ factor(trt) + factor(time) + factor(baseline),
 #'   data = arthritis, id = id, repeated = time, LORstr = "fixed",
 #'   LORterm = lorterm)
-#' fitmod.fixed
+#' fitmod
+#'
 #' @export
 matrixLOR <- function(x) {
   if (!is.matrix(x)) {

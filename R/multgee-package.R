@@ -47,10 +47,14 @@
 #' nested GEE models based on a Wald test statistic.
 #'
 #' @name multgee-package
+#'
 #' @aliases multgee
+#'
 #' @docType package
+#'
 #' @author Anestis Touloumis Maintainer: Anestis Touloumis
 #' <A.Touloumis@@brighton.ac.uk>
+#'
 #' @references Becker, M. and Clogg, C. (1989) Analysis of sets of two-way
 #' contingency tables using association models. \emph{Journal of the American
 #' Statistical Association} \bold{84}, 142--151.
@@ -67,11 +71,13 @@
 #' Touloumis, A. (2015) R Package multgee: A Generalized Estimating Equations
 #' Solver for Multinomial Responses. \emph{Journal of Statistical Software}
 #' \bold{64}, 1--14.
+#'
 #' @import gnm
 #' @importFrom stats coef deviance fitted glm make.link model.extract
 #' @importFrom stats model.matrix model.response pchisq printCoefmat pnorm
 #' @importFrom stats poisson qnorm reshape update vcov
 #' @importFrom utils combn
 #' @importFrom VGAM acat coefficients cumulative multinomial vglm
+#'
 #' @keywords package
 NULL

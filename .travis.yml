@@ -13,4 +13,4 @@ r_github_packages:
 
 after_success:
   - R CMD INSTALL $PKG_TARBALL
-  - Rscript -e 'lintr::lint_package(".", linters = c(lintr::with_defaults(object_name_linter = NULL, cyclocomp_linter = lintr::cyclocomp_linter(70))))'
+  - Rscript -e 'lintr::lint_package(".", linters = c(lintr::with_defaults(object_name_linter = NULL, cyclocomp_linter = lintr::cyclocomp_linter(70))), exclusions = list("R/confint.LORgee.R" = 10, "R/vcov.LORgee.R" = 11, "R/ordLORgee.R" = 151))'

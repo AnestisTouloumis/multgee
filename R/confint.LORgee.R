@@ -1,31 +1,36 @@
 #' Computes confidence intervals for one or more parameters in a fitted LORgee
 #' model.
 #'
-#' The Wald-type confidence intervals are calculated using either the robust (
-#' sandwich) or the naive (model-based) covariance matrix.
+#' The Wald-type confidence intervals are calculated using either the robust
+#' (sandwich) or the naive (model-based) covariance matrix.
 #'
 #' @title Confidence Intervals for Model Parameters
+#'
 #' @examples
-#' fitmod <- ordLORgee(
-#'   formula = y ~ factor(time) + factor(trt) +
-#'     factor(baseline), data = arthritis, id = id, LORstr = "uniform",
-#'   repeated = time
-#' )
+#' fitmod <- ordLORgee(formula = y ~ factor(time) + factor(trt) + factor(baseline),
+#'   data = arthritis, id = id, LORstr = "uniform", repeated = time)
 #' confint(fitmod)
+#'
 #' @aliases confint
+#'
 #' @method confint LORgee
+#'
 #' @param object a fitted model LORgee object.
 #' @param parm a specification of which parameters are to be given confidence
 #' intervals, either a vector of numbers or a vector of names. If missing, all
 #' parameters are considered.
 #' @param level the confidence level required.
-#' @param robust whether the robust covariance matrix should be used for
-#' calculating the confidence intervals.
+#' @param robust logical indicating whether the robust covariance matrix
+#' (\code{robust = TRUE}) or the naive covariance matrix should be used
+#' (\code{robust = FALSE}) for calculating the confidence intervals.
 #' @param ... additional argument(s) for methods.
+#'
 #' @return A matrix (or vector) with columns giving lower and upper confidence
 #' limits for each parameter. These will be labelled as \code{(1-level)/2} and
-#' \code{1 - (1-level)/2} in % (by default 2.5% and 97.5%).
+#' \code{1 - (1-level)/2} in \% (by default 2.5\% and 97.5\%).
+#'
 #' @export
+
 confint.LORgee <- function(object, parm, level = 0.95, robust = TRUE, ...) {
   cf <- coef(object)
   pnames <- names(cf)

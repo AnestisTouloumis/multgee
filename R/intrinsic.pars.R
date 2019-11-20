@@ -24,9 +24,13 @@
 #' within each cluster.
 #' @param rscale a character string that indicates the nature of the response
 #' scale. Options include "\code{ordinal}" or "\code{nominal}".
+#'
 #' @return Returns a numerical vector with the estimated intrinsic parameters.
+#'
 #' @author Anestis Touloumis
+#'
 #' @seealso \link{nomLORgee} and \link{ordLORgee}.
+#'
 #' @references Agresti, A. (2013) \emph{Categorical Data Analysis}. New York:
 #' John Wiley and Sons, Inc., 3rd Edition.
 #'
@@ -37,6 +41,7 @@
 #' Touloumis, A., Agresti, A. and Kateri, M. (2013) GEE for multinomial
 #' responses using a local odds ratios parameterization. \emph{Biometrics}
 #' \bold{69}, 633--640.
+#'
 #' @examples
 #' data(arthritis)
 #' intrinsic.pars(y, arthritis, id, time, rscale = "ordinal")
@@ -48,10 +53,10 @@
 #' intrinsic.pars(y, housing, id, time, rscale = "nominal")
 #' ## The intrinsic parameters vary. The 'RC' local odds ratios structure
 #' ## might be a good approximation for the association pattern.
+#'
 #' @export
 intrinsic.pars <- function(y = y, data = parent.frame(), id = id,
                            repeated = NULL, rscale = "ordinal") {
-  call <- match.call() # nolint
   mcall <- match.call(expand.dots = FALSE)
   mf <- match(c("y", "data", "id", "repeated"), names(mcall), 0L)
   m <- mcall[c(1L, mf)]

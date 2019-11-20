@@ -16,27 +16,28 @@ parameters are considered.}
 
 \item{level}{the confidence level required.}
 
-\item{robust}{whether the robust covariance matrix should be used for
-calculating the confidence intervals.}
+\item{robust}{logical indicating whether the robust covariance matrix
+(\code{robust = TRUE}) or the naive covariance matrix should be used
+(\code{robust = FALSE}) for calculating the confidence intervals.}
 
 \item{...}{additional argument(s) for methods.}
 }
 \value{
 A matrix (or vector) with columns giving lower and upper confidence
 limits for each parameter. These will be labelled as \code{(1-level)/2} and
-\code{1 - (1-level)/2} in % (by default 2.5% and 97.5%).
+\code{1 - (1-level)/2} in \% (by default 2.5\% and 97.5\%).
 }
 \description{
 Computes confidence intervals for one or more parameters in a fitted LORgee
 model.
 }
 \details{
-The Wald-type confidence intervals are calculated using either the robust (
-sandwich) or the naive (model-based) covariance matrix.
+The Wald-type confidence intervals are calculated using either the robust
+(sandwich) or the naive (model-based) covariance matrix.
 }
 \examples{
-fitmod <- ordLORgee(formula = y ~ factor(time) + factor(trt) +
-    factor(baseline), data = arthritis, id = id, LORstr = "uniform",
-    repeated = time)
+fitmod <- ordLORgee(formula = y ~ factor(time) + factor(trt) + factor(baseline),
+  data = arthritis, id = id, LORstr = "uniform", repeated = time)
 confint(fitmod)
+
 }

@@ -32,17 +32,19 @@ argument in the functions \link{nomLORgee} and \link{ordLORgee}.
 ## structure equal to 2 for each time pair.
 
 ## Create the uniform local odds ratios structure.
-lorterm <- matrixLOR(matrix(2,4,4))
+lorterm <- matrixLOR(matrix(2, 4, 4))
 
 ## Create the LORterm argument.
 lorterm <- c(lorterm)
-lorterm <- matrix(c(lorterm),3,25,TRUE)
+lorterm <- matrix(c(lorterm), 3, 25, TRUE)
 
 ## Fit the marginal model.
 data(arthritis)
-fitmod.fixed <- ordLORgee(y~factor(trt)+factor(time)+factor(baseline),
-   data=arthritis, id=id,repeated=time,LORstr="fixed",LORterm=lorterm)
-fitmod.fixed
+fitmod <- ordLORgee(y ~ factor(trt) + factor(time) + factor(baseline),
+  data = arthritis, id = id, repeated = time, LORstr = "fixed",
+  LORterm = lorterm)
+fitmod
+
 }
 \seealso{
 \link{nomLORgee} and \link{ordLORgee}.

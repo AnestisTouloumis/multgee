@@ -10,8 +10,9 @@
 \arguments{
 \item{object}{a fitted model LORgee object.}
 
-\item{robust}{whether the robust covariance matrix should be used for
-calculating the confidence intervals.}
+\item{robust}{logical indicating whether the robust covariance matrix
+(\code{robust = TRUE}) or the naive covariance matrix should be used
+(\code{robust = FALSE}) for calculating the confidence intervals.}
 
 \item{...}{additional argument(s) for methods.}
 }
@@ -25,12 +26,12 @@ Returns the variance-covariance matrix of the main parameters of a fitted
 model LORgee object.
 }
 \details{
-Default is to use robust variance estimates. However, if robust.var is set to
-FALSE, naive variance estimates are used.
+Default is to obtain the robust (sandwich) covariance matrix. However,
+\code{robust = FALSE} the naive (model-based) covariance matrix is obtained.
 }
 \examples{
-fitmod <- ordLORgee(formula = y ~ factor(time) + factor(trt) +
-    factor(baseline), data = arthritis, id = id, LORstr = "uniform",
-    repeated = time)
+fitmod <- ordLORgee(formula = y ~ factor(time) + factor(trt) + factor(baseline),
+  data = arthritis, id = id, LORstr = "uniform", repeated = time)
 vcov(fitmod)
+
 }

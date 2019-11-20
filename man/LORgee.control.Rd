@@ -26,10 +26,11 @@ Control variables for the GEE solver in the functions \link{nomLORgee} and
 }
 \examples{
 data(arthritis)
-fitmod <- ordLORgee(y~factor(trt)+factor(baseline)+factor(time),
-                    data = arthritis, id = id, repeated = time)
+fitmod <- ordLORgee(y ~ factor(trt) + factor(baseline) + factor(time),
+  data = arthritis, id = id, repeated = time
+)
 ## A one-step GEE estimator
-fitmod1 <- update(fitmod, control = LORgee.control(maxiter=1))
+fitmod1 <- update(fitmod, control = LORgee.control(maxiter = 1))
 coef(fitmod)
 coef(fitmod1)
 }
