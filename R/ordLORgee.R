@@ -169,43 +169,32 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
   m[[1]] <- as.name("model.frame")
   m <- eval(m, envir = parent.frame())
   Terms <- attr(m, "terms")
-  if (attr(Terms, "intercept") != 1) {
-    stop("an intercept must be included")
-  }
+  if (attr(Terms, "intercept") != 1) stop("an intercept must be included")
   Y <- as.numeric(factor(model.response(m)))
-  if (is.null(Y)) {
-    stop("response variable not found")
-  }
+  if (is.null(Y)) stop("response variable not found")
   ncategories <- nlevels(factor(Y))
-  if (ncategories <= 2) {
+  if (ncategories <= 2)
     stop("The response variable should have more than 2 categories")
-  }
   id <- model.extract(m, "id")
-  if (is.null(id)) {
-    stop("'id' variable not found")
-  }
-  if (length(id) != length(Y)) {
+  if (is.null(id)) stop("'id' variable not found")
+  if (length(id) != length(Y))
     stop("response variable and 'id' are not of same length")
-  }
   repeated <- model.extract(m, "repeated")
   if (is.null(repeated)) {
     index <- order(unlist(split(seq_len(length(id)), id)))
     repeated <- c(unlist(lapply(split(id, id), function(x) seq_len(length(x)))))
     repeated <- repeated[index]
   }
-  if (length(repeated) != length(Y)) {
+  if (length(repeated) != length(Y))
     stop("response variable and 'repeated' are not of same length")
-  }
   id <- as.numeric(factor(id))
   repeated <- as.numeric(factor(repeated))
   if (all(id == repeated)) {
     stop("'repeated' and 'id' must not be equal")
   }
   dummy <- split(repeated, id)
-  if (any(unlist(lapply(dummy, length)) !=
-    unlist(lapply(lapply(dummy, unique), length)))) {
+  if (any(unlist(lapply(dummy, anyDuplicated)) != 0))
     stop("'repeated' does not have unique values per 'id'")
-  }
   offset <- model.extract(m, "offset")
   if (length(offset) <= 1) {
     offset <- rep(0, length(Y))
