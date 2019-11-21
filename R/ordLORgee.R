@@ -159,14 +159,13 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
                       control = LORgee.control(), ipfp.ctrl = ipfp.control(),
                       IM = "solve") {
   options(contrasts = c("contr.treatment", "contr.poly"))
-  call <- match.call()
+  cl <- match.call()
   mcall <- match.call(expand.dots = FALSE)
-  mf <- match(c("formula", "data", "id", "repeated"), names(mcall), 0L)
+  mf <- match(c("formula", "data", "id", "repeated", "offset"), names(mcall),
+              0L)
   m <- mcall[c(1L, mf)]
-  if (is.null(m$id)) {
-    m$id <- as.name("id")
-  }
-  m[[1]] <- as.name("model.frame")
+  m$drop.unused.levels <- TRUE
+  m[[1]] <- quote(stats::model.frame)
   m <- eval(m, envir = parent.frame())
   Terms <- attr(m, "terms")
   if (attr(Terms, "intercept") != 1) stop("an intercept must be included")
@@ -349,7 +348,7 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
     LORem = LORem, LORstr = LORstr, add
   )
   fit <- list()
-  fit$call <- call
+  fit$call <- cl
   fit$title <- "GEE FOR ORDINAL MULTINOMIAL RESPONSES"
   fit$version <- "version 1.6.0 modified 2017-07-10"
   fit$link <- if (link == "acl") {

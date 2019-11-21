@@ -1,0 +1,12 @@
+---
+title: "TODO list -- multgee"
+output: pdf_document
+---
+
+
+- Create independence GEE. 
+- Linear Hypothesis Testing.
+- GEE criteria.
+- cpp/
+- intrinsic.pars.
+- weighted gee.
