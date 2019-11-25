@@ -195,23 +195,20 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
   if (any(unlist(lapply(dummy, anyDuplicated)) != 0))
     stop("'repeated' does not have unique values per 'id'")
   offset <- model.extract(m, "offset")
-  if (length(offset) <= 1) {
-    offset <- rep(0, length(Y))
-  }
-  if (length(offset) != length(Y)) {
+  if (length(offset) <= 1) offset <- rep(0, length(Y))
+  if (length(offset) != length(Y))
     stop("response variable and 'offset' are not of same length")
-  }
   offset <- as.double(offset)
   icheck <- pmatch(LORstr, c(
-    "independence", "uniform", "category.exch",
-    "time.exch", "RC", "fixed"
-  ),
-  nomatch = 0,
-  duplicates.ok = FALSE
-  )
+    "independence", "uniform", "category.exch", "time.exch", "RC", "fixed"
+    ),
+    nomatch = 0,
+    duplicates.ok = FALSE
+    )
   if (icheck == 0) stop("unknown local odds ratios structure")
   if (LORstr == "independence" | LORstr == "fixed") {
     LORem <- NULL
+    add <- NULL
   } else if (LORstr == "category.exch") {
     LORem <- "3way"
   } else {
@@ -238,14 +235,6 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
       stop("'add' must be >=0")
     }
   }
-  ipfp.ctrl <- ipfp.ctrl
-  control <- control
-  verbose <- control$verbose
-  IMs <- c("cholesky", "solve", "qr.solve")
-  icheck <- as.integer(match(IM, IMs, -1))
-  if (icheck < 1) {
-    stop("unknown method for inverting a matrix")
-  }
   if (LORstr != "independence" & LORstr != "fixed") {
     data.model <- datacounts(Y, id, repeated, ncategories)
     marpars <- mmpar(LORem, LORstr, max(data.model$tp), homogeneous)
@@ -253,9 +242,18 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
     LORstr <- marpars$LORstr
     LORterm <- fitmm(data.model, marpars, homogeneous, restricted, add)
   }
+  ipfp.ctrl <- ipfp.ctrl
+  control <- control
+  verbose <- control$verbose
+  icheck <- pmatch(IM, c("cholesky", "solve", "qr.solve"), nomatch = 0,
+                   duplicates.ok = FALSE)
+  if (icheck == 0) stop("unknown method for inverting a matrix")
   link <- as.character(link)
-  icheck <- pmatch(link, c("logit", "probit", "cloglog", "cauchit", "acl"),
-    nomatch = 0, duplicates.ok = TRUE
+  icheck <- pmatch(link, c(
+    "logit", "probit", "cloglog", "cauchit", "acl"
+    ),
+    nomatch = 0,
+    duplicates.ok = TRUE
   )
   if (icheck == 0) stop("'link' must be \"logit\", \"probit\", \"cloglog\",
                         \"cauchit\" or \"acl\"")
@@ -289,18 +287,11 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
   repeated <- rep(repeated, each = ncategories - 1)
   offset <- rep(offset, each = ncategories - 1)
   X_mat <- model.matrix(Terms, m)
-  if (ncol(X_mat) > 2) {
+  if (ncol(X_mat) > 1) {
     xnames <- colnames(X_mat)
-    X_mat <- apply(X_mat[, -1], 2, function(x) rep(x, each = ncategories - 1))
+    X_mat <- apply(X_mat, 2, function(x) rep(x, each = ncategories - 1))
     X_mat1 <- model.matrix(~ factor(Intercept) - 1)
-    X_mat <- cbind(X_mat1, X_mat)
-    X_mat <- matrix(X_mat, ncol = ncol(X_mat), dimnames = NULL)
-    xnames <- c(paste0("beta", 1:(ncategories - 1), "0"), xnames[-1])
-  } else if (ncol(X_mat) == 2) {
-    xnames <- colnames(X_mat)
-    X_mat <- rep(X_mat[, -1], each = ncategories - 1)
-    X_mat1 <- model.matrix(~ factor(Intercept) - 1)
-    X_mat <- cbind(X_mat1, X_mat)
+    X_mat <- cbind(X_mat1, X_mat[, -1])
     X_mat <- matrix(X_mat, ncol = ncol(X_mat), dimnames = NULL)
     xnames <- c(paste0("beta", 1:(ncategories - 1), "0"), xnames[-1])
   } else {

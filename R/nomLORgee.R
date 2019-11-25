@@ -152,26 +152,25 @@ nomLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
                       ipfp.ctrl = ipfp.control(), IM = "solve") {
   options(contrasts = c("contr.treatment", "contr.poly"))
   link <- "bcl"
-  call <- match.call()
+  cl <- match.call()
   mcall <- match.call(expand.dots = FALSE)
-  mf <- match(c("formula", "data", "id", "repeated"), names(mcall), 0L)
+  mf <- match(c("formula", "data", "id", "repeated", "offset"), names(mcall),
+              0L)
   m <- mcall[c(1L, mf)]
-  if (is.null(m$id)) m$id <- as.name("id")
-  m[[1]] <- as.name("model.frame")
+  m$drop.unused.levels <- TRUE
+  m[[1]] <- quote(stats::model.frame)
   m <- eval(m, envir = parent.frame())
   Terms <- attr(m, "terms")
   if (attr(Terms, "intercept") != 1) stop("an intercept must be included")
   Y <- as.numeric(factor(model.response(m)))
   if (is.null(Y)) stop("response variable not found")
   ncategories <- nlevels(factor(Y))
-  if (ncategories <= 2) {
+  if (ncategories <= 2)
     stop("The response variable should have more than 2 categories")
-  }
   id <- model.extract(m, "id")
   if (is.null(id)) stop("'id' variable not found")
-  if (length(id) != length(Y)) {
+  if (length(id) != length(Y))
     stop("response variable and 'id' are not of same length")
-  }
   repeated <- model.extract(m, "repeated")
   if (is.null(repeated)) {
     index <- order(unlist(split(seq_len(length(id)), id)))
@@ -185,21 +184,16 @@ nomLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
   repeated <- as.numeric(factor(repeated))
   if (all(id == repeated)) stop("'repeated' and 'id' must not be equal")
   dummy <- split(repeated, id)
-  if (any(unlist(lapply(dummy, length)) !=
-    unlist(lapply(lapply(dummy, unique), length)))) {
+  if (any(unlist(lapply(dummy, anyDuplicated)) != 0))
     stop("'repeated' does not have unique values per 'id'")
-  }
   offset <- model.extract(m, "offset")
   if (length(offset) <= 1) offset <- rep(0, length(Y))
-  if (length(offset) != length(Y)) {
+  if (length(offset) != length(Y))
     stop("response variable and 'offset' are not of same length")
-  }
   offset <- as.double(offset)
-  LORstrs <- c("independence", "time.exch", "RC", "fixed")
-  icheck <- as.integer(match(LORstr, LORstrs, -1))
-  if (icheck < 1) {
-    stop("unknown local odds ratio structure")
-  }
+  icheck <- pmatch(LORstr, c("independence", "time.exch", "RC", "fixed"),
+                   nomatch = 0, duplicates.ok = FALSE)
+  if (icheck == 0) stop("unknown local odds ratio structure")
   if (LORstr == "independence" | LORstr == "fixed") {
     LORem <- NULL
     add <- NULL
@@ -225,20 +219,16 @@ nomLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
   ipfp.ctrl <- ipfp.ctrl
   control <- control
   verbose <- control$verbose
-  IMs <- c("cholesky", "solve", "qr.solve")
-  icheck <- as.integer(match(IM, IMs, -1))
-  if (icheck < 1) {
-    stop("unknown method for inverting a matrix")
-  }
+  icheck <- pmatch(IM, c("cholesky", "solve", "qr.solve"), nomatch = 0,
+                   duplicates.ok = FALSE)
+  if (icheck == 0) stop("unknown method for inverting a matrix")
   if (is.null(bstart)) {
     family <- VGAM::multinomial(refLevel = ncategories)
     mmodel <- VGAM::vglm(formula = formula, family = family, data = data)
     coeffs <- VGAM::coefficients(mmodel)
     coeffs <- c(matrix(coeffs, ncol = ncategories - 1, byrow = TRUE))
     coeffs <- as.numeric(coeffs)
-    if (!is.numeric(coeffs)) {
-      stop("Please insert initial values")
-    }
+    if (any(!is.finite(coeffs))) stop("Please insert initial values")
     if (verbose) {
       cat("\nGEE FOR NOMINAL MULTINOMIAL RESPONSES\n")
       cat("\nrunning 'vglm' function",
@@ -274,10 +264,10 @@ nomLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
     }
   }
   X_mat <- matrix(X_mat, ncol = ncol(X_mat), dimnames = NULL)
-  X_mat <- X_mat[, c(matrix(seq(ncol(X_mat)),
-    ncol = ncategories - 1,
-    byrow = TRUE
-  ))]
+  X_mat <- X_mat[, c(
+    matrix(seq(ncol(X_mat)), ncol = ncategories - 1, byrow = TRUE)
+    )
+    ]
   if (!is.null(bstart)) {
     coeffs <- as.numeric(bstart)
     if (length(coeffs) != ncol(X_mat)) {
@@ -303,7 +293,7 @@ nomLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
     LORem = LORem, LORstr = LORstr, add
   )
   fit <- list()
-  fit$call <- call
+  fit$call <- cl
   fit$title <- "GEE FOR NOMINAL MULTINOMIAL RESPONSES"
   fit$version <- "version 1.6.0 modified 2017-07-10"
   fit$link <- c("Baseline Category Logit")
