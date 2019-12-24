@@ -3,8 +3,8 @@
 #' Utility function to create a square probability matrix that satisfies the
 #' specified local odds ratios structure.
 #'
-#' This function is designed to ease the construction of the \code{LORterm}
-#' argument in the functions \link{nomLORgee} and \link{ordLORgee}.
+#' It is designed to ease the construction of the argument \code{LORterm}
+#' in the \link{nomLORgee} and \link{ordLORgee} functions.
 #'
 #' @param x a square matrix with positive entries that describes the desired
 #' local odds ratios matrix.
@@ -41,16 +41,18 @@
 matrixLOR <- function(x) {
   if (!is.matrix(x)) {
     stop("'x' must be a matrix")
+  } else {
+    if (nrow(x) != ncol(x)) {
+      stop("'x' must be a square matrix")
+      }
+    x_cols <- ncol(x)
+    if (any(x <= 0)) {
+      stop("all elements of 'x' must be > 0")
+    }
   }
-  if (nrow(x) != ncol(x)) {
-    stop("'x' must be a square matrix")
-  }
-  if (any(x < 0)) {
-    stop("all elements of 'x' must be > 0")
-  }
-  y <- matrix(1, nrow(x) + 1, ncol(x) + 1)
-  for (i in seq_len(ncol(x))) {
-    for (j in seq_len(ncol(x))) y[i + 1, j + 1] <- prod(x[1:i, 1:j])
+  y <- matrix(1, nrow(x) + 1, x_cols + 1)
+  for (i in seq_len(x_cols)) {
+    for (j in seq_len(x_cols)) y[i + 1, j + 1] <- prod(x[1:i, 1:j])
   }
   prop.table(y)
 }

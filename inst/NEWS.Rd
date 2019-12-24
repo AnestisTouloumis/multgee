@@ -2,21 +2,22 @@
 \title{NEWS file for the \pkg{multgee} package}
 
 
-\section{Changes in Version 1.6.5 (2019-11-20)}{
+\section{Changes in Version 1.6.5 (2019-12-24)}{
   \subsection{NEW FEATURES}{
     \itemize{
-      \item{Added function \code{confint}.}
-      \item{Added function \code{vcov}.}
+      \item{Added \code{confint} function.}
+      \item{Added \code{vcov} function.}
     }
   }
     \subsection{MAJOR CHANGES}{
     \itemize{
+      \item{Fixed a bug in \code{matrixLOR}. Now it stops if zero
+      entries are provided.}
       \item{Updated vignette to describe the new features.}
     }
   }
   \subsection{MINOR CHANGES}{
     \itemize{
-    \item{Added functions \code{vcov} and \code{confint}.}
     \item{Added lintr in travis.yml.}
     \item{Moved \pkg{VGAM} to Imports.}
     \item{Updated documentation.}
@@ -67,7 +68,9 @@
     \subsection{MAJOR CHANGES}{
       \itemize{
         \item{Added vignette.}
-        \item{Argument \code{repeated} in the functions \code{nomLORgee}, \code{ordLORgee} and \code{intrinsic.pars} accepts variables with names that are derivates of the word "repeated" (reported by Arianna Cecchetti).}
+        \item{Argument \code{repeated} in  \code{nomLORgee}, \code{ordLORgee}
+        and \code{intrinsic.pars} now accepts variables with names that are derivates of the word
+        "repeated" (reported by Arianna Cecchetti).}
     }
     }
     \subsection{MINOR CHANGES}{
@@ -95,7 +98,7 @@
     \subsection{MAJOR CHANGES}{
       \itemize{
         \item{Made optional the argument \code{repeated} in \code{nomLORgee}, \code{ordLORgee} and \code{intrinsic.pars}.}
-        \item{Modified the arguments of the function \code{intrinsic.pars}.}
+        \item{Modified the arguments in \code{intrinsic.pars}.}
         \item{Updated maintainer's email address.}
         }
         }
@@ -120,7 +123,7 @@
 \section{Changes in Version 1.2 (2013-05-30)}{
     \subsection{NEW FEATURES}{
        \itemize{
-         \item{Added function \code{waldts} for testing goodness of fit between nested GEE models.}
+         \item{Added \code{waldts} function for testing goodness of fit between nested GEE models.}
          }
          }
     \subsection{MAJOR CHANGES}{
@@ -143,13 +146,13 @@
     \subsection{MAJOR CHANGES}{
       \itemize{
         \item{Added an R(>=2.15.0) dependency.}
-        \item{Fixed contrasts in functions \code{nomLORgee} and \code{ordLORgee}.}
+        \item{Fixed contrasts in \code{nomLORgee} and \code{ordLORgee}.}
         }
         }
     \subsection{MINOR CHANGES}{
       \itemize{
         \item{Added information regarding the \code{"LORgee"} class.}
-        \item{Minor changes in function \code{fitLORgee}.}
+        \item{Minor changes in \code{fitLORgee}.}
         }
         }
         }

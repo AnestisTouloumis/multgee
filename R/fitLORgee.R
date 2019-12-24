@@ -315,7 +315,7 @@ fitLORgee <- function(Y, X_mat, coeffs, ncategories, id, repeated, offset,
         seq(ncategoriesm1) + ncategoriesm1 * (i - 1),
         seq(ncategoriesm1) + ncategoriesm1 * (j - 1)
       ] <-
-        odds.ratio(matrix(LORterm[k, ], ncategories, ncategories))
+        odds_ratio(matrix(LORterm[k, ], ncategories, ncategories))
       k <- k + 1
     }
   }

@@ -19,8 +19,8 @@ Utility function to create a square probability matrix that satisfies the
 specified local odds ratios structure.
 }
 \details{
-This function is designed to ease the construction of the \code{LORterm}
-argument in the functions \link{nomLORgee} and \link{ordLORgee}.
+It is designed to ease the construction of the argument \code{LORterm}
+in the \link{nomLORgee} and \link{ordLORgee} functions.
 }
 \section{Warning}{
  Caution is needed for local odds ratios close to zero.

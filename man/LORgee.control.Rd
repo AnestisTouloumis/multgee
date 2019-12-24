@@ -21,18 +21,19 @@ iteration.}
 convergence criterion at each iteration should be saved.}
 }
 \description{
-Control variables for the GEE solver in the functions \link{nomLORgee} and
-\link{ordLORgee}.
+Control variables for the GEE solver in the \link{nomLORgee} and
+\link{ordLORgee} functions.
 }
 \examples{
 data(arthritis)
 fitmod <- ordLORgee(y ~ factor(trt) + factor(baseline) + factor(time),
-  data = arthritis, id = id, repeated = time
-)
+  data = arthritis, id = id, repeated = time)
+
 ## A one-step GEE estimator
 fitmod1 <- update(fitmod, control = LORgee.control(maxiter = 1))
 coef(fitmod)
 coef(fitmod1)
+
 }
 \seealso{
 \link{nomLORgee} and \link{ordLORgee}.
