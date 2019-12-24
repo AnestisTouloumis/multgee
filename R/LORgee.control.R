@@ -13,11 +13,11 @@
 #' iteration.
 #' @param TRACE logical that indicates if the parameter estimates and the
 #' convergence criterion at each iteration should be saved.
-#' 
+#'
 #' @author Anestis Touloumis
-#' 
+#'
 #' @seealso \link{nomLORgee} and \link{ordLORgee}.
-#' 
+#'
 #' @examples
 #' data(arthritis)
 #' fitmod <- ordLORgee(y ~ factor(trt) + factor(baseline) + factor(time),
