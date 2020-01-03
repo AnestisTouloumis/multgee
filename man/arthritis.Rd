@@ -18,6 +18,9 @@ Lipsitz, S.R. and Kim, K. and Zhao, L. (1994) Analysis of repeated
 categorical data using generalized estimating equations. \emph{Statistics in
 Medicine}, \bold{13}, 1149--1163.
 }
+\usage{
+arthritis
+}
 \description{
 Rheumatoid self-assessment scores for 302 patients, measured on a five-level
 ordinal response scale at three follow-up times.

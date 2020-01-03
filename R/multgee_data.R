@@ -3,11 +3,6 @@
 #' Rheumatoid self-assessment scores for 302 patients, measured on a five-level
 #' ordinal response scale at three follow-up times.
 #'
-#'
-#' @name arthritis
-#'
-#' @docType data
-#'
 #' @format A data frame with 906 observations on the following 7 variables:
 #' \describe{ \item{id}{Patient identifier variable.}
 #' \item{y}{Self-assessment score of rheumatoid arthritis measured on a
@@ -27,17 +22,12 @@
 #' @examples
 #' data(arthritis)
 #' str(arthritis)
-NULL
+"arthritis"
 
 #' Homeless Data
 #'
 #' Housing status for 362 severely mentally ill homeless subjects measured at
 #' baseline and at three follow-up times.
-#'
-#'
-#' @name housing
-#'
-#' @docType data
 #'
 #' @format A data frame with 1448 observations on the following 4 variables:
 #' \describe{ \item{id}{Subject identifier variable.}
@@ -56,4 +46,4 @@ NULL
 #' @examples
 #' data(housing)
 #' str(housing)
-NULL
+"housing"

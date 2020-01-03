@@ -16,6 +16,9 @@ independent housing for the homeless mentally ill: a novel approach to
 evaluating longitudinal housing patterns. \emph{Journal of Community
 Psychology}, \bold{24}, 291--310.
 }
+\usage{
+housing
+}
 \description{
 Housing status for 362 severely mentally ill homeless subjects measured at
 baseline and at three follow-up times.

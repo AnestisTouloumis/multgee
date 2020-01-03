@@ -2,7 +2,7 @@
 \title{NEWS file for the \pkg{multgee} package}
 
 
-\section{Changes in Version 1.6.5 (2019-12-24)}{
+\section{Changes in Version 1.6.6 (2020-01-03)}{
   \subsection{NEW FEATURES}{
     \itemize{
       \item{Added \code{confint} function.}
@@ -22,7 +22,7 @@
     \item{Moved \pkg{VGAM} to Imports.}
     \item{Updated documentation.}
     \item{Updated README.md.}
-    \item{Used JSS templated for vignette.}
+    \item{Used JSS template for vignette.}
     }
     }
   }
