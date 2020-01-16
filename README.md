@@ -4,7 +4,7 @@
 # multgee: GEE Solver for Correlated Nominal or Ordinal Multinomial Responses
 
 [![Github
-version](https://img.shields.io/badge/GitHub%20-1.6.4-orange.svg)](%22commits/master%22)
+version](https://img.shields.io/badge/GitHub%20-1.6.6-orange.svg)](%22commits/master%22)
 [![Travis-CI Build
 Status](https://travis-ci.org/AnestisTouloumis/multgee.svg?branch=master)](https://travis-ci.org/AnestisTouloumis/multgee)
 [![Project Status: Active The project has reached a stable, usable state
@@ -90,7 +90,7 @@ model to each of the marginalized contingency tables by setting `LORem =
 
 There are also four utility functions:
 
-  - `conint` for obtaining Wald confidence intervals for the regression
+  - `confint` for obtaining Wald confidence intervals for the regression
     parameters using the standard errors from the robust (`robust =
     TRUE`) or naive (`robust = FALSE`) covariance matrix. The default is
     the robust covariance matrix,
