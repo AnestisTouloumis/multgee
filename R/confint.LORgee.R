@@ -20,9 +20,10 @@
 #' intervals, either a vector of numbers or a vector of names. If missing, all
 #' parameters are considered.
 #' @param level the confidence level required.
-#' @param robust logical indicating whether the robust covariance matrix
-#' (\code{robust = TRUE}) or the naive covariance matrix should be used
-#' (\code{robust = FALSE}) for calculating the confidence intervals.
+#' @param method character indicating whether the sandwich covariance matrix
+#' (\code{method = "sandwich"}) or the model--based (naive) covariance matrix
+#' (\code{method = "naive"}) should be used for calculating the confidence
+#' intervals.
 #' @param ... additional argument(s) for methods.
 #'
 #' @return A matrix (or vector) with columns giving lower and upper confidence
@@ -31,7 +32,7 @@
 #'
 #' @export
 
-confint.LORgee <- function(object, parm, level = 0.95, robust = TRUE, ...) {
+confint.LORgee <- function(object, parm, level = 0.95, method = "sandwich", ...) {
   cf <- coef(object)
   pnames <- names(cf)
   if (missing(parm)) {
@@ -44,7 +45,7 @@ confint.LORgee <- function(object, parm, level = 0.95, robust = TRUE, ...) {
   pct <- format_perc(a, 3)
   fac <- qnorm(a)
   ci <- array(NA, dim = c(length(parm), 2L), dimnames = list(parm, pct))
-  ses <- sqrt(diag(vcov(object, robust = robust)))[parm]
+  ses <- sqrt(diag(vcov(object, method = method)))[parm]
   ci[] <- cf[parm] + ses %o% fac
   ci
 }

@@ -2,7 +2,7 @@
 \title{NEWS file for the \pkg{multgee} package}
 
 
-\section{Changes in Version 1.6.6 (2020-01-03)}{
+\section{Changes in Version 1.7.0 (2020-04-20)}{
   \subsection{NEW FEATURES}{
     \itemize{
       \item{Added \code{confint} function.}

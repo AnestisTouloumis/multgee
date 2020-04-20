@@ -5,7 +5,7 @@
 \alias{confint}
 \title{Confidence Intervals for Model Parameters}
 \usage{
-\method{confint}{LORgee}(object, parm, level = 0.95, robust = TRUE, ...)
+\method{confint}{LORgee}(object, parm, level = 0.95, method = "sandwich", ...)
 }
 \arguments{
 \item{object}{a fitted model LORgee object.}
@@ -16,9 +16,10 @@ parameters are considered.}
 
 \item{level}{the confidence level required.}
 
-\item{robust}{logical indicating whether the robust covariance matrix
-(\code{robust = TRUE}) or the naive covariance matrix should be used
-(\code{robust = FALSE}) for calculating the confidence intervals.}
+\item{method}{character indicating whether the sandwich covariance matrix
+(\code{method = "sandwich"}) or the model--based (naive) covariance matrix
+(\code{method = "naive"}) should be used for calculating the confidence
+intervals.}
 
 \item{...}{additional argument(s) for methods.}
 }

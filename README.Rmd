@@ -45,8 +45,10 @@ knitr::opts_chunk$set(
 )
 ```
 
-# multgee: GEE Solver for Correlated Nominal or Ordinal Multinomial Responses
 
+
+
+# multgee: GEE Solver for Correlated Nominal or Ordinal Multinomial Responses
 [![Github version](`r paste0("https://img.shields.io/badge/GitHub%20-", as.vector(read.dcf('DESCRIPTION')[, 'Version']),"-orange.svg")`)]("commits/master")
 [![Travis-CI Build Status](https://travis-ci.org/AnestisTouloumis/multgee.svg?branch=master)](https://travis-ci.org/AnestisTouloumis/multgee)
 [![Project Status: Active The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) 
@@ -57,8 +59,9 @@ knitr::opts_chunk$set(
 [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/multgee)](https://cran.r-project.org/package=multgee)
 
 
-## Installation
 
+
+## Installation
 You can install the release version of `multgee`:
 
 ```{r eval=FALSE}
@@ -86,8 +89,10 @@ To use `multgee`, you should load the package as follows:
 library("multgee")
 ```
 
-## Usage
 
+
+
+## Usage
 This package provides a generalized estimating equations (GEE) solver for fitting marginal regression models with correlated nominal or ordinal multinomial responses based on a local odds ratios parameterization for the association structure [see @Touloumis2013].
 
 
@@ -109,13 +114,15 @@ The association structure among the correlated multinomial responses is expresse
 
 There are also four utility functions:
 
-- `confint` for obtaining Wald confidence intervals for the regression parameters using the standard errors from the robust (`robust = TRUE`) or naive (`robust = FALSE`) covariance matrix. The default is the robust covariance matrix,
+- `confint` for obtaining Wald confidence intervals for the regression parameters using the standard errors from the robust (`method = "sandwich"`) or naive (`method = "naive"`) covariance matrix. The default is the robust covariance matrix (`method = "sandwich"`),
 - `waldts` for assessing the goodness-of-fit of two nested GEE models based on a Wald test statistic,
 - `intrinsic.pars` for assessing whether the underlying association structure does not change dramatically across the level pairs of `repeated`,
-- `vcov` for obtaining the robust (`robust = TRUE`) or naive (`robust = FALSE`) covariance matrix of the estimated regression parameters.
+- `vcov` for obtaining the robust (`method = "sandwich"`) or naive (`method = "naive"`) covariance matrix of the estimated regression parameters.
+
+
+
 
 ## Example
-
 The following R code replicates the GEE analysis presented in @Touloumis2013.
 ```{r}
 data("arthritis")
@@ -130,10 +137,13 @@ fitord <- ordLORgee(formula = y ~ factor(time) + factor(trt) + factor(baseline),
 summary(fitord)
 ```
 
-The $95\%$ Wald confidence intervals for the regression parameters are
+The 95\% Wald confidence intervals for the regression parameters are
 ```{r}
 confint(fitord) 
 ```
+
+
+
 
 ## Getting help
 The statistical methods implemented in `multgee` are described in @Touloumis2013. A detailed description of the functionality of `multgee` can be found in @Touloumis2015. Note that an updated version of this paper also serves as a vignette: 
@@ -143,10 +153,14 @@ browseVignettes("multgee")
 ```
 
 
-## How to cite
 
+
+## How to cite
 ```{r echo=FALSE, comment=""}
 print(citation("multgee"), bibtex = TRUE)
 ```
+
+
+
 
 # References

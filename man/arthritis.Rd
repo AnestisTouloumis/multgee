@@ -4,7 +4,8 @@
 \name{arthritis}
 \alias{arthritis}
 \title{Rheumatoid Arthritis Clinical Trial}
-\format{A data frame with 906 observations on the following 7 variables:
+\format{
+A data frame with 906 observations on the following 7 variables:
 \describe{ \item{id}{Patient identifier variable.}
 \item{y}{Self-assessment score of rheumatoid arthritis measured on a
 five-level ordinal response scale.} \item{sex}{Coded as (1) for
@@ -12,7 +13,8 @@ female and (2) for male.} \item{age}{Recorded at the baseline.}
 \item{trt}{Treatment group variable, coded as (1) for the placebo
 group and (2) for the drug group.} \item{baseline}{Self-assessment
 score of rheumatoid arthritis at the baseline.}
-\item{time}{Follow-up time recorded in months.} }}
+\item{time}{Follow-up time recorded in months.} }
+}
 \source{
 Lipsitz, S.R. and Kim, K. and Zhao, L. (1994) Analysis of repeated
 categorical data using generalized estimating equations. \emph{Statistics in

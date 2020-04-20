@@ -5,14 +5,14 @@
 \alias{vcov}
 \title{Calculate Variance-Covariance Matrix for a Fitted LORgee Object.}
 \usage{
-\method{vcov}{LORgee}(object, robust = TRUE, ...)
+\method{vcov}{LORgee}(object, method = "sandwich", ...)
 }
 \arguments{
 \item{object}{a fitted model LORgee object.}
 
-\item{robust}{logical indicating whether the robust covariance matrix
-(\code{robust = TRUE}) or the naive covariance matrix should be used
-(\code{robust = FALSE}) for calculating the confidence intervals.}
+\item{method}{character indicating whether the sandwich covariance matrix
+(\code{method = "sandwich"}) or the model--based (naive) covariance matrix
+(\code{method = "naive"}) should be returned.}
 
 \item{...}{additional argument(s) for methods.}
 }
@@ -33,5 +33,10 @@ Default is to obtain the robust (sandwich) covariance matrix. However,
 fitmod <- ordLORgee(formula = y ~ factor(time) + factor(trt) + factor(baseline),
   data = arthritis, id = id, LORstr = "uniform", repeated = time)
 vcov(fitmod)
+
+fitmod <- ordLORgee(formula = y ~ factor(time) + factor(trt) + factor(baseline),
+  data = arthritis, id = id, repeated = time, LORstr = "uniform")
+vcov(fitmod, method = "sandwich")
+vcov(fitmod, method = "naive")
 
 }

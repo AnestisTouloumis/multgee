@@ -1,7 +1,7 @@
 Package: multgee
 Type: Package
 Title: GEE Solver for Correlated Nominal or Ordinal Multinomial Responses
-Version: 1.6.6
+Version: 1.7.0
 Authors@R:
     person(given = "Anestis",
            family = "Touloumis",
@@ -26,6 +26,6 @@ LazyData: true
 VignetteBuilder: knitr
 URL: http://github.com/AnestisTouloumis/multgee
 BugReports: http://github.com/AnestisTouloumis/multgee/issues
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 Roxygen: list(old_usage = TRUE)
 Encoding: UTF-8

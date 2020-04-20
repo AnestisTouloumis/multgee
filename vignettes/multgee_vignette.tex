@@ -9,12 +9,12 @@
 \author{
 Anestis Touloumis\\University of Brighton
 }
-\title{\proglang{R} Package \pkg{multgee}: A Generalized Estimating Equations
-Solver for Multinomial Responses}
+\title{\proglang{R} Package \pkg{multgee}: A Generalized Estimating
+Equations Solver for Multinomial Responses}
 
 \Plainauthor{Anestis Touloumis}
-\Plaintitle{R Package multgee: A Generalized Estimating Equations Solver for
-Multinomial Responses}
+\Plaintitle{R Package multgee: A Generalized Estimating Equations Solver
+for Multinomial Responses}
 \Shorttitle{\pkg{multgee}: GEE for Multinomial Responses}
 
 \Abstract{
@@ -36,15 +36,18 @@ cumulative link model specification. In addition, \pkg{multgee} offers a
 marginal adjacent categories logit model for ordinal responses and a
 marginal baseline category logit model for nominal. Further, utility
 functions are available to ease the local odds ratios structure
-selection (\code{intrinsic.pars}), to constract Wald type confidence
-intervals (\code{confint}) and to perform a Wald type goodness-of-fit
-test between two nested GEE models (\code{waldts}). We demonstrate the
-application of \pkg{multgee} through a clinical trial with clustered
-ordinal multinomial responses.
+selection (\code{intrinsic.pars}), to constract confidence intervals
+(\code{confint}), to extract the variance-covariance matrix of the
+regression parameters (\code{vcov}) and to perform a Wald--type
+goodness-of-fit test between two nested GEE models (\code{waldts}). We
+demonstrate the application of \pkg{multgee} through a clinical trial
+with clustered ordinal multinomial responses.
 }
 
-\Keywords{generalized estimating equations, nominal and ordinal multinomial responses, local odds ratios, \proglang{R}}
-\Plainkeywords{generalized estimating equations, nominal and ordinal multinomial responses, local odds ratios, R}
+\Keywords{generalized estimating equations, nominal and ordinal
+multinomial responses, local odds ratios, \proglang{R}}
+\Plainkeywords{generalized estimating equations, nominal and ordinal
+multinomial responses, local odds ratios, R}
 
 %% publication information
 %% \Volume{50}
@@ -58,8 +61,8 @@ ordinal multinomial responses.
     Anestis Touloumis\\
   University of Brighton\\
   School of Computing, Engineering and Mathematics
-  
-  Moulsecoomb, Brighton, BN2 4GJ, UK\\
+
+Moulsecoomb, Brighton, BN2 4GJ, UK\\
   E-mail: \email{A.Touloumis@brighton.ac.uk}\\
   
   }
@@ -590,10 +593,10 @@ quantile of a chi-square distribution with \(q\) degrees of freedom.
 
 The function \code{confint} calculates the Wald-type confidence
 intervals for the regression parameters of the marginal model under
-consideration. The \code{robust} argument specifies whether the standard
+consideration. The \code{method} argument specifies whether the standard
 errors of the regression parameters estimates will be derived from the
-``sandwich'' (\code{robust = TRUE}) or the ``model-based''
-(\code{robust = FALSE}) covariance matrix. The default is to use the
+``sandwich'' (\code{method = "sandwich"}) or the ``model-based''
+(\code{method = "naive"}) covariance matrix. The default is to use the
 ``sandwich'' covariance matrix.
 
 \citet{Touloumis2012} suggested to select the local odds ratios
@@ -608,11 +611,12 @@ tend to be as efficient as the more complicated ones. The function
 \code{intrinsic.pars} gives the estimated intrinsic parameter of each
 time-pair.
 
-The function \code{vcov} returns the ``sandwich'' (\code{robust = TRUE})
-or the ``model-based'' (\code{robust = FALSE}) covariance matrix. The
-default is to use the ``sandwich'' covariance matrix. It is used
-internally to calculate Wald-type confidence intervals and perform the
-comparison between nested models.
+The function \code{vcov} returns the ``sandwich''
+(\code{method = "sandwich"}) or the ``model-based''
+(\code{method = "naive"}) covariance matrix. The default is to use the
+``sandwich'' covariance matrix. It is used internally to calculate
+confidence intervals for the regression parameters and to compare nested
+models.
 
 The single-argument function \code{matrixLOR} creates a two-way
 probability table that satisfies a desired local odds ratios structure.
@@ -859,7 +863,8 @@ tables (\code{add}). However, we believe that users should refrain from
 using the independence ``working'' model unless the aforementioned
 strategies fail to remedy the convergence problems. To decide on the
 form of the linear predictor, variable selection model procedures could
-be incorporated using the function \code{waldts}.
+be incorporated using the function \code{waldts}. Finally, confidence
+intervals could be obtained by using the function \code{confint}.
 
 In future versions of \pkg{multgee}, we plan to permit time-dependent
 intercepts in the marginal models, to increase the range of the marginal
@@ -872,4 +877,3 @@ proportional odds assumption in models (\ref{ABMCLM}) and
 
 
 \end{document}
-
