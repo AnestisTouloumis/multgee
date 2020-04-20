@@ -32,10 +32,6 @@ matrix
 }
 \examples{
 fitmod <- ordLORgee(formula = y ~ factor(time) + factor(trt) + factor(baseline),
-  data = arthritis, id = id, LORstr = "uniform", repeated = time)
-vcov(fitmod)
-
-fitmod <- ordLORgee(formula = y ~ factor(time) + factor(trt) + factor(baseline),
   data = arthritis, id = id, repeated = time, LORstr = "uniform")
 vcov(fitmod, method = "robust")
 vcov(fitmod, method = "naive")

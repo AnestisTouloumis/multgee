@@ -37,7 +37,7 @@ documentclass: jss
 output: if (rmarkdown::pandoc_version() >= 2) rticles::jss_article else rmarkdown::html_vignette
 bibliography: References.bib
 vignette: >
-  %\VignetteIndexEntry{R Package multgee: A Generalized Estimating Equations Solver for Multinomial Responses}
+  %\VignetteIndexEntry{GEE for Multinomial Responses}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

@@ -2,7 +2,7 @@
 #' model.
 #'
 #' The (Wald-type) confidence intervals are calculated using either the
-#' estimated sandwich (robust) or the model-based (naive) covariance matrix.
+#' sandwich (robust) or the model-based (naive) covariance matrix.
 #'
 #' @title Confidence Intervals for Model Parameters
 #'

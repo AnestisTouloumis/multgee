@@ -8,11 +8,6 @@
 #'
 #' @title Calculate Variance-Covariance Matrix for a Fitted LORgee Object.
 #'
-#' @examples
-#' fitmod <- ordLORgee(formula = y ~ factor(time) + factor(trt) + factor(baseline),
-#'   data = arthritis, id = id, LORstr = "uniform", repeated = time)
-#' vcov(fitmod)
-#'
 #' @aliases vcov vcov.LORgee
 #'
 #' @method vcov LORgee

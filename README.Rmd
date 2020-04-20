@@ -114,10 +114,10 @@ The association structure among the correlated multinomial responses is expresse
 
 There are also four utility functions:
 
-- `confint` for obtaining Wald confidence intervals for the regression parameters using the standard errors from the robust (`method = "sandwich"`) or naive (`method = "naive"`) covariance matrix. The default is the robust covariance matrix (`method = "sandwich"`),
+- `confint` for obtaining Wald--type confidence intervals for the regression parameters using the standard errors of the sandwich (`method = "robust"`) or of the model--based (`method = "naive"`) covariance matrix. The default option is the sandwich covariance matrix (`method = "robust"`),
 - `waldts` for assessing the goodness-of-fit of two nested GEE models based on a Wald test statistic,
 - `intrinsic.pars` for assessing whether the underlying association structure does not change dramatically across the level pairs of `repeated`,
-- `vcov` for obtaining the robust (`method = "sandwich"`) or naive (`method = "naive"`) covariance matrix of the estimated regression parameters.
+- `vcov` for obtaining the sandwich (`method = "robust"`) or model--based (`method = "naive"`) covariance matrix of the regression parameters.
 
 
 

@@ -90,18 +90,19 @@ model to each of the marginalized contingency tables by setting `LORem =
 
 There are also four utility functions:
 
-  - `confint` for obtaining Wald confidence intervals for the regression
-    parameters using the standard errors from the robust (`method =
-    "sandwich"`) or naive (`method = "naive"`) covariance matrix. The
-    default is the robust covariance matrix (`method = "sandwich"`),
+  - `confint` for obtaining Wald–type confidence intervals for the
+    regression parameters using the standard errors of the sandwich
+    (`method = "robust"`) or of the model–based (`method = "naive"`)
+    covariance matrix estimator. The default option is using the
+    sandwich covariance matrix estimator (`method = "robust"`),
   - `waldts` for assessing the goodness-of-fit of two nested GEE models
     based on a Wald test statistic,
   - `intrinsic.pars` for assessing whether the underlying association
     structure does not change dramatically across the level pairs of
     `repeated`,
-  - `vcov` for obtaining the robust (`method = "sandwich"`) or naive
-    (`method = "naive"`) covariance matrix of the estimated regression
-    parameters.
+  - `vcov` for obtaining the sandwich (`method = "robust"`) or the
+    model–based (`method = "naive"`) estimate of the covariance matrix
+    of the regression parameters.
 
 ## Example
 

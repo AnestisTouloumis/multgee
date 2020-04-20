@@ -34,7 +34,7 @@ model.
 }
 \details{
 The (Wald-type) confidence intervals are calculated using either the
-estimated sandwich (robust) or the model-based (naive) covariance matrix.
+sandwich (robust) or the model-based (naive) covariance matrix.
 }
 \examples{
 fitmod <- ordLORgee(formula = y ~ factor(time) + factor(trt) + factor(baseline),
