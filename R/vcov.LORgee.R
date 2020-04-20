@@ -31,7 +31,7 @@
 #'   data = arthritis, id = id, repeated = time, LORstr = "uniform")
 #' vcov(fitmod, method = "sandwich")
 #' vcov(fitmod, method = "naive")
-#' 
+#'
 #' @export
 
 vcov.LORgee <- function(object, method = "sandwich", ...) {
