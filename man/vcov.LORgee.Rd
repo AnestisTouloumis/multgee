@@ -5,14 +5,14 @@
 \alias{vcov}
 \title{Calculate Variance-Covariance Matrix for a Fitted LORgee Object.}
 \usage{
-\method{vcov}{LORgee}(object, method = "sandwich", ...)
+\method{vcov}{LORgee}(object, method = "robust", ...)
 }
 \arguments{
 \item{object}{a fitted model LORgee object.}
 
-\item{method}{character indicating whether the sandwich covariance matrix
-(\code{method = "sandwich"}) or the model--based (naive) covariance matrix
-(\code{method = "naive"}) should be returned.}
+\item{method}{character indicating whether the sandwich (robust) covariance
+matrix (\code{method = "robust"}) or the model--based (naive) covariance
+matrix (\code{method = "naive"}) should be returned.}
 
 \item{...}{additional argument(s) for methods.}
 }
@@ -26,8 +26,9 @@ Returns the variance-covariance matrix of the main parameters of a fitted
 model LORgee object.
 }
 \details{
-Default is to obtain the robust (sandwich) covariance matrix. However,
-\code{robust = FALSE} the naive (model-based) covariance matrix is obtained.
+Default is to obtain the estimated sandwich (robust) covariance matrix and
+\code{method = "naive"} obtains the estimated model-based (naive) covariance
+matrix
 }
 \examples{
 fitmod <- ordLORgee(formula = y ~ factor(time) + factor(trt) + factor(baseline),
@@ -36,7 +37,7 @@ vcov(fitmod)
 
 fitmod <- ordLORgee(formula = y ~ factor(time) + factor(trt) + factor(baseline),
   data = arthritis, id = id, repeated = time, LORstr = "uniform")
-vcov(fitmod, method = "sandwich")
+vcov(fitmod, method = "robust")
 vcov(fitmod, method = "naive")
 
 }

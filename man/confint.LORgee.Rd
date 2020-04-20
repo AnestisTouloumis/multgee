@@ -5,7 +5,7 @@
 \alias{confint}
 \title{Confidence Intervals for Model Parameters}
 \usage{
-\method{confint}{LORgee}(object, parm, level = 0.95, method = "sandwich", ...)
+\method{confint}{LORgee}(object, parm, level = 0.95, method = "robust", ...)
 }
 \arguments{
 \item{object}{a fitted model LORgee object.}
@@ -16,10 +16,10 @@ parameters are considered.}
 
 \item{level}{the confidence level required.}
 
-\item{method}{character indicating whether the sandwich covariance matrix
-(\code{method = "sandwich"}) or the model--based (naive) covariance matrix
-(\code{method = "naive"}) should be used for calculating the confidence
-intervals.}
+\item{method}{character indicating whether the sandwich (robust) covariance
+matrix (\code{method = "robust"}) or the model--based (naive) covariance
+matrix (\code{method = "naive"}) should be used for calculating the
+confidence intervals.}
 
 \item{...}{additional argument(s) for methods.}
 }
@@ -33,8 +33,8 @@ Computes confidence intervals for one or more parameters in a fitted LORgee
 model.
 }
 \details{
-The Wald-type confidence intervals are calculated using either the robust
-(sandwich) or the naive (model-based) covariance matrix.
+The (Wald-type) confidence intervals are calculated using either the
+estimated sandwich (robust) or the model-based (naive) covariance matrix.
 }
 \examples{
 fitmod <- ordLORgee(formula = y ~ factor(time) + factor(trt) + factor(baseline),

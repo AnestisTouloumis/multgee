@@ -51,34 +51,10 @@
 #' contain the vectorized form of a probability table that satisfies the
 #' desired local odds ratios structure.
 #'
-#' @param formula a formula expression as for other regression models for
-#' multinomial responses. An intercept term must be included.
-#' @param data an optional data frame containing the variables provided in
-#' \code{formula}, \code{id} and \code{repeated}.
-#' @param id a vector that identifies the clusters.
-#' @param repeated an optional vector that identifies the order of the
-#' observations within each cluster.
-#' @param bstart a vector that includes an initial estimate for the marginal
-#' regression parameter vector.
 #' @param LORstr a character string that indicates the marginalized local odds
 #' ratios structure. Options include \code{"independence"}, \code{"time.exch"},
 #' \code{"RC"} or \code{"fixed"}.
-#' @param LORem a character string that indicates if the marginalized local
-#' odds ratios structure is estimated simultaneously (\code{"3way"}) or
-#' independently at each level pair of \code{repeated} (\code{"2way"}).
-#' @param LORterm a matrix that satisfies the user-defined local odds ratios
-#' structure. It is ignored unless \code{LORstr="fixed"}.
-#' @param add a positive constant to be added at each cell of the full
-#' marginalized contingency table in the presence of zero observed counts.
-#' @param homogeneous a logical that indicates homogeneous score parameters
-#' when \code{LORstr="time.exch"} or \code{"RC"}.
-#' @param control a vector that specifies the control variables for the GEE
-#' solver.
-#' @param ipfp.ctrl a vector that specifies the control variables for the
-#' function \code{ipfp}.
-#' @param IM a character string that indicates the method used for inverting a
-#' matrix. Options include \code{"solve"}, \code{"qr.solve"} or
-#' \code{"cholesky"}.
+#' @inheritParams ordLORgee
 #'
 #' @return Returns an object of the class \code{"LORgee"}. This has components:
 #' \item{call}{the matched call.} \item{title}{title for the GEE model.}
@@ -105,8 +81,8 @@
 #' \item{id}{the \code{id} variable.}
 #' \item{max.id}{the number of clusters.}
 #' \item{clusz}{the number of observations within each cluster.}
-#' \item{robust.variance}{the estimated "robust" covariance matrix.}
-#' \item{naive.variance}{the estimated "naive" or "model-based" covariance
+#' \item{robust.variance}{the estimated sandwich (robust) covariance matrix.}
+#' \item{naive.variance}{the estimated model-based (naive) covariance
 #' matrix.}
 #' \item{xnames}{the regression coefficients' symbolic names.}
 #' \item{categories}{the number of observed response categories.}

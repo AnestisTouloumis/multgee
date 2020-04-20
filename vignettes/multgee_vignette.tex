@@ -260,7 +260,7 @@ models (\ref{ABMCLM}) and (\ref{ABMACLM}).
 \subsection{Estimation of the marginal regression parameter
 vector}\label{estimation-of-the-marginal-regression-parameter-vector}}
 
-To unify the notation, let \(\boldsymbol \beta\) be the \(p\)-variate
+To unify the notation, let \(\boldsymbol \beta\) be the \(p\)--variate
 parameter vector that includes all the regression parameters in
 (\ref{ABMCLM}), (\ref{ABMACLM}) or (\ref{ABMBCLM}). To obtain
 \(\boldsymbol {\widehat \beta_G}\), a GEE estimator of
@@ -595,7 +595,7 @@ The function \code{confint} calculates the Wald-type confidence
 intervals for the regression parameters of the marginal model under
 consideration. The \code{method} argument specifies whether the standard
 errors of the regression parameters estimates will be derived from the
-``sandwich'' (\code{method = "sandwich"}) or the ``model-based''
+``sandwich'' (\code{method = "robust"}) or the ``model-based''
 (\code{method = "naive"}) covariance matrix. The default is to use the
 ``sandwich'' covariance matrix.
 
@@ -612,7 +612,7 @@ tend to be as efficient as the more complicated ones. The function
 time-pair.
 
 The function \code{vcov} returns the ``sandwich''
-(\code{method = "sandwich"}) or the ``model-based''
+(\code{method = "robust"}) or the ``model-based''
 (\code{method = "naive"}) covariance matrix. The default is to use the
 ``sandwich'' covariance matrix. It is used internally to calculate
 confidence intervals for the regression parameters and to compare nested
@@ -757,7 +757,7 @@ pvalue of Null model: <0.0001
 
 The \code{summary} method summarizes the fit of the GEE model including
 the GEE estimates, their estimated standard errors based on the
-``sandwich'' covariance matrix and the \(p\)-values from testing the
+``sandwich'' covariance matrix and the \(p\)--values from testing the
 statistical significance of each regression parameter in
 (\ref{MarginalModelData}). The estimated marginalized local odds ratios
 structure can be found in a symmetric \(T(J-1) \times T(J-1)\) block
@@ -779,7 +779,7 @@ the fact that no local odds ratios are estimated when \(t=t^{\prime}\).
 In our example, \(J=5\) and thus each block is a \(4 \times 4\) matrix.
 Since the \code{uniform} structure is selected, all local odds ratios
 are equal and estimated as \(2.257\). Finally,
-\code{pvalue of Null model} corresponds to the \(p\)-value of testing
+\code{pvalue of Null model} corresponds to the \(p\)--value of testing
 the hypothesis that no covariate is significant, i.e.,
 \(\beta_1=\beta_2=\beta_3=\beta_4 =\beta_5=\beta_6=\beta_7=0\), based on
 a Wald test statistic.

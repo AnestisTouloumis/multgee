@@ -25,7 +25,6 @@ exclusions = list
 "R/confint.LORgee.R" = 10,
 "R/vcov.LORgee.R" = 11,
 "R/vcov.LORgee.R" = 30,
-"R/confint.LORgee.R" = 35,
 "R/ordLORgee.R" = 151
 )
 )'

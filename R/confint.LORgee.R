@@ -1,8 +1,8 @@
 #' Computes confidence intervals for one or more parameters in a fitted LORgee
 #' model.
 #'
-#' The Wald-type confidence intervals are calculated using either the robust
-#' (sandwich) or the naive (model-based) covariance matrix.
+#' The (Wald-type) confidence intervals are calculated using either the
+#' estimated sandwich (robust) or the model-based (naive) covariance matrix.
 #'
 #' @title Confidence Intervals for Model Parameters
 #'
@@ -20,10 +20,10 @@
 #' intervals, either a vector of numbers or a vector of names. If missing, all
 #' parameters are considered.
 #' @param level the confidence level required.
-#' @param method character indicating whether the sandwich covariance matrix
-#' (\code{method = "sandwich"}) or the model--based (naive) covariance matrix
-#' (\code{method = "naive"}) should be used for calculating the confidence
-#' intervals.
+#' @param method character indicating whether the sandwich (robust) covariance
+#' matrix (\code{method = "robust"}) or the model--based (naive) covariance
+#' matrix (\code{method = "naive"}) should be used for calculating the
+#' confidence intervals.
 #' @param ... additional argument(s) for methods.
 #'
 #' @return A matrix (or vector) with columns giving lower and upper confidence
@@ -32,7 +32,7 @@
 #'
 #' @export
 
-confint.LORgee <- function(object, parm, level = 0.95, method = "sandwich", ...) {
+confint.LORgee <- function(object, parm, level = 0.95, method = "robust", ...) {
   cf <- coef(object)
   pnames <- names(cf)
   if (missing(parm)) {

@@ -115,8 +115,8 @@
 #' \item{id}{the \code{id} variable.}
 #' \item{max.id}{the number of clusters.}
 #' \item{clusz}{the number of observations within each cluster.}
-#' \item{robust.variance}{the estimated "robust" covariance matrix.}
-#' \item{naive.variance}{the estimated "naive" or "model-based" covariance
+#' \item{robust.variance}{the estimated sandwich (robust) covariance matrix.}
+#' \item{naive.variance}{the estimated model-based (naive) covariance
 #' matrix.}
 #' \item{xnames}{the regression coefficients' symbolic names.}
 #' \item{categories}{the number of observed response categories.}

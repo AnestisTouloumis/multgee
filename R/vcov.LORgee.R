@@ -2,8 +2,9 @@
 #' model LORgee object.
 #'
 #'
-#' Default is to obtain the robust (sandwich) covariance matrix. However,
-#' \code{robust = FALSE} the naive (model-based) covariance matrix is obtained.
+#' Default is to obtain the estimated sandwich (robust) covariance matrix and
+#' \code{method = "naive"} obtains the estimated model-based (naive) covariance
+#' matrix
 #'
 #' @title Calculate Variance-Covariance Matrix for a Fitted LORgee Object.
 #'
@@ -17,9 +18,9 @@
 #' @method vcov LORgee
 #'
 #' @param object a fitted model LORgee object.
-#' @param method character indicating whether the sandwich covariance matrix
-#' (\code{method = "sandwich"}) or the model--based (naive) covariance matrix
-#' (\code{method = "naive"}) should be returned.
+#' @param method character indicating whether the sandwich (robust) covariance
+#' matrix (\code{method = "robust"}) or the model--based (naive) covariance
+#' matrix (\code{method = "naive"}) should be returned.
 #' @param ... additional argument(s) for methods.
 #'
 #' @return A matrix of the estimated covariances between the parameter estimates
@@ -29,14 +30,14 @@
 #' @examples
 #' fitmod <- ordLORgee(formula = y ~ factor(time) + factor(trt) + factor(baseline),
 #'   data = arthritis, id = id, repeated = time, LORstr = "uniform")
-#' vcov(fitmod, method = "sandwich")
+#' vcov(fitmod, method = "robust")
 #' vcov(fitmod, method = "naive")
 #'
 #' @export
 
-vcov.LORgee <- function(object, method = "sandwich", ...) {
-  icheck <- pmatch(method, c("sandwich", "naive"), nomatch = 0,
+vcov.LORgee <- function(object, method = "robust", ...) {
+  icheck <- pmatch(method, c("robust", "naive"), nomatch = 0,
                    duplicates.ok = FALSE)
   if (icheck == 0) stop("unknown method for the covariance matrix")
-  if (method == "sandwich") object$robust.variance else object$naive.variance
+  if (method == "robust") object$robust.variance else object$naive.variance
 }
