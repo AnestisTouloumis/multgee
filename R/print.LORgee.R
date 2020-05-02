@@ -18,8 +18,7 @@ print.LORgee <- function(x, ...) {
     print(x$local.odds.ratios$theta)
   }
   if (!is.null(x$pvalue)) {
-    cat("\npvalue of Null model:", ifelse(x$pvalue < 1e-04, "<0.0001",
-      round(x$pvalue, 4)
-    ), "\n")
-  }
+    p_value <- format.pval(x$pvalue, eps = 0.0001, scientific = FALSE)
+    cat("\np-value of Null model:", p_value, "\n")
+    }
 }

@@ -1,6 +1,24 @@
 \name{NEWS}
 \title{NEWS file for the \pkg{multgee} package}
 
+\section{Changes in Version 1.7.1 (2020-05-02)}{
+  \subsection{NEW FEATURES}{
+    \itemize{
+      \item{None.}
+    }
+  }
+    \subsection{MAJOR CHANGES}{
+    \itemize{
+       \item{None.}
+    }
+  }
+  \subsection{MINOR CHANGES}{
+    \itemize{
+    \item{Updated format of printed p-values.}
+    }
+    }
+  }
+  
 
 \section{Changes in Version 1.7.0 (2020-04-20)}{
   \subsection{NEW FEATURES}{
