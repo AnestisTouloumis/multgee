@@ -60,8 +60,9 @@ waldts <- function(object0, object1) {
   ans <- list(
     NullModel = obj0$call$formula,
     AlternativeModel = obj1$call$formula,
-    waldstatistic = round(waldtest, 4), df = length(namestest),
-    pvalue = round(pvalue, 4)
+    waldstatistic = waldtest,
+    df = length(namestest),
+    pvalue = pvalue
   )
   class(ans) <- "waldts"
   ans
