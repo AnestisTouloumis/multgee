@@ -72,12 +72,22 @@
 #' Solver for Multinomial Responses. \emph{Journal of Statistical Software}
 #' \bold{64}, 1--14.
 #'
+## usethis namespace: start
+#' @useDynLib multgee, .registration = TRUE
+## usethis namespace: end
+NULL
+#'
 #' @import gnm
 #' @importFrom stats coef deviance fitted glm make.link model.extract
 #' @importFrom stats model.matrix model.response pchisq printCoefmat pnorm
 #' @importFrom stats poisson qnorm reshape update vcov
 #' @importFrom utils combn
 #' @importFrom VGAM acat coefficients cumulative multinomial vglm
+#'
+## usethis namespace: start
+#' @importFrom Rcpp sourceCpp
+## usethis namespace: end
+NULL
 #'
 #' @keywords package
 NULL

@@ -13,3 +13,6 @@
 ^README\.md$
 ^toadd$
 ^CRAN-RELEASE$
+^\src\*.o
+^\src\*.so
+^\src\*.dll

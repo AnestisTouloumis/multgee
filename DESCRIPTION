@@ -15,7 +15,8 @@ Depends:
 Imports:
     stats,
     utils,
-    VGAM
+    VGAM,
+    Rcpp
 Suggests:
     knitr,
     rticles
@@ -29,3 +30,6 @@ BugReports: http://github.com/AnestisTouloumis/multgee/issues
 RoxygenNote: 7.1.1
 Roxygen: list(old_usage = TRUE)
 Encoding: UTF-8
+LinkingTo: 
+    Rcpp,
+    RcppArmadillo

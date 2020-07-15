@@ -154,9 +154,9 @@ fitLORgee <- function(Y, X_mat, coeffs, ncategories, id, repeated, offset,
               ,
               2
             ] == Tiid[k], 3]
-            ipfpfit <- ipfp(
-              LORterm[index, ],
-              probrow, proball[extindex_mat[k, ]]
+            ipfpfit <- ipfp_cpp(
+              matrix(LORterm[index, ], ncategories, ncategories),
+              t(probrow), proball[extindex_mat[k, ]], 200, 1e-10
             )
             mat1[t1, index_mat[k, ]] <- ipfpfit[
               -ncategories,

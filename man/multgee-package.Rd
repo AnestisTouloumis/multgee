@@ -75,4 +75,3 @@ Solver for Multinomial Responses. \emph{Journal of Statistical Software}
 Anestis Touloumis Maintainer: Anestis Touloumis
 <A.Touloumis@brighton.ac.uk>
 }
-\keyword{package}
