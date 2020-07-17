@@ -1,12 +1,13 @@
 #include <RcppArmadillo.h>
 // [[Rcpp::depends(RcppArmadillo)]]
 // [[Rcpp::export]]
-arma::mat ipfp_cpp(arma::mat initial_table,
+arma::mat ipfp_cpp(arma::vec initial_table,
                    arma::colvec row_marginals,
                    arma::rowvec col_marginals,
-                   double maxiter,
+                   int dimension,
+                   int maxiter,
                    double tolerance) {
-  arma::mat ans = initial_table;
+  arma::mat ans = reshape(initial_table, dimension, dimension);
   arma::colvec row_sums = sum(ans, 1);
   for (int i=0; i<maxiter; i++) {
     ans.each_col() %= row_marginals/row_sums;

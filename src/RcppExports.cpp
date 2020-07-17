@@ -7,23 +7,24 @@
 using namespace Rcpp;
 
 // ipfp_cpp
-arma::mat ipfp_cpp(arma::mat initial_table, arma::colvec row_marginals, arma::rowvec col_marginals, double maxiter, double tolerance);
-RcppExport SEXP _multgee_ipfp_cpp(SEXP initial_tableSEXP, SEXP row_marginalsSEXP, SEXP col_marginalsSEXP, SEXP maxiterSEXP, SEXP toleranceSEXP) {
+arma::mat ipfp_cpp(arma::vec initial_table, arma::colvec row_marginals, arma::rowvec col_marginals, int dimension, int maxiter, double tolerance);
+RcppExport SEXP _multgee_ipfp_cpp(SEXP initial_tableSEXP, SEXP row_marginalsSEXP, SEXP col_marginalsSEXP, SEXP dimensionSEXP, SEXP maxiterSEXP, SEXP toleranceSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::mat >::type initial_table(initial_tableSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type initial_table(initial_tableSEXP);
     Rcpp::traits::input_parameter< arma::colvec >::type row_marginals(row_marginalsSEXP);
     Rcpp::traits::input_parameter< arma::rowvec >::type col_marginals(col_marginalsSEXP);
-    Rcpp::traits::input_parameter< double >::type maxiter(maxiterSEXP);
+    Rcpp::traits::input_parameter< int >::type dimension(dimensionSEXP);
+    Rcpp::traits::input_parameter< int >::type maxiter(maxiterSEXP);
     Rcpp::traits::input_parameter< double >::type tolerance(toleranceSEXP);
-    rcpp_result_gen = Rcpp::wrap(ipfp_cpp(initial_table, row_marginals, col_marginals, maxiter, tolerance));
+    rcpp_result_gen = Rcpp::wrap(ipfp_cpp(initial_table, row_marginals, col_marginals, dimension, maxiter, tolerance));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_multgee_ipfp_cpp", (DL_FUNC) &_multgee_ipfp_cpp, 5},
+    {"_multgee_ipfp_cpp", (DL_FUNC) &_multgee_ipfp_cpp, 6},
     {NULL, NULL, 0}
 };
 
