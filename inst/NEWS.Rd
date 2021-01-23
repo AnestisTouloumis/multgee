@@ -1,7 +1,7 @@
 \name{NEWS}
 \title{NEWS file for the \pkg{multgee} package}
 
-\section{Changes in Version 1.7.1 (2020-05-02)}{
+\section{Changes in Version 1.7.2 (2021-01-22)}{
   \subsection{NEW FEATURES}{
     \itemize{
       \item{None.}
@@ -15,6 +15,7 @@
   \subsection{MINOR CHANGES}{
     \itemize{
     \item{Updated format of printed p-values.}
+    \item{Migrating from Travis CI to GitHub Actions.}
     }
     }
   }

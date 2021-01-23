@@ -9,12 +9,12 @@
 \author{
 Anestis Touloumis\\University of Brighton
 }
-\title{\proglang{R} Package \pkg{multgee}: A Generalized Estimating Equations
-Solver for Multinomial Responses}
+\title{\proglang{R} Package \pkg{multgee}: A Generalized Estimating
+Equations Solver for Multinomial Responses}
 
 \Plainauthor{Anestis Touloumis}
-\Plaintitle{R Package multgee: A Generalized Estimating Equations Solver for
-Multinomial Responses}
+\Plaintitle{R Package multgee: A Generalized Estimating Equations Solver
+for Multinomial Responses}
 \Shorttitle{\pkg{multgee}: GEE for Multinomial Responses}
 
 \Abstract{
@@ -44,8 +44,10 @@ demonstrate the application of \pkg{multgee} through a clinical trial
 with clustered ordinal multinomial responses.
 }
 
-\Keywords{generalized estimating equations, nominal and ordinal multinomial responses, local odds ratios, \proglang{R}}
-\Plainkeywords{generalized estimating equations, nominal and ordinal multinomial responses, local odds ratios, R}
+\Keywords{generalized estimating equations, nominal and ordinal
+multinomial responses, local odds ratios, \proglang{R}}
+\Plainkeywords{generalized estimating equations, nominal and ordinal
+multinomial responses, local odds ratios, R}
 
 %% publication information
 %% \Volume{50}
@@ -57,14 +59,15 @@ with clustered ordinal multinomial responses.
 
 \Address{
     Anestis Touloumis\\
-  University of Brighton\\
-  School of Computing, Engineering and Mathematics
-  
-  Moulsecoomb, Brighton, BN2 4GJ, UK\\
+    University of Brighton\\
+    School of Computing, Engineering and Mathematics\\
+University of Brighton\\
+Brighton, BN2 4GJ, UK\\
   E-mail: \email{A.Touloumis@brighton.ac.uk}\\
   
   }
 
+% Pandoc citation processing
 
 % Pandoc header
 
@@ -650,13 +653,11 @@ marginalized local odds ratios structure by estimating the intrinsic
 parameters under the \code{"category.exch"} structure
 
 \begin{CodeChunk}
-
 \begin{CodeInput}
 R> library("multgee")
 R> data("arthritis")
 R> head(arthritis)
 \end{CodeInput}
-
 \begin{CodeOutput}
   id y sex age trt baseline time
 1  1 4   2  54   2        2    1
@@ -666,12 +667,10 @@ R> head(arthritis)
 5  2 4   1  41   1        3    3
 6  2 4   1  41   1        3    5
 \end{CodeOutput}
-
 \begin{CodeInput}
 R> intrinsic.pars(y = y, data = arthritis, id = id, repeated = time,
-R+                   rscale = "ordinal")
++                   rscale = "ordinal")
 \end{CodeInput}
-
 \begin{CodeOutput}
 [1] 0.6517843 0.9097341 0.9022272
 \end{CodeOutput}
@@ -689,14 +688,12 @@ Now we fit the cumulative logit model (\ref{MarginalModelData}) under
 the \code{"uniform"} via the function \code{ordLORgee}
 
 \begin{CodeChunk}
-
 \begin{CodeInput}
 R>  fit <- ordLORgee(formula = y ~ factor(time) + factor(trt) + factor(baseline),
-R+         link = "logit", id = id, repeated = time, data = arthritis,
-R+         LORstr = "uniform")
++         link = "logit", id = id, repeated = time, data = arthritis,
++         LORstr = "uniform")
 R>  summary(fit)
 \end{CodeInput}
-
 \begin{CodeOutput}
 GEE FOR ORDINAL MULTINOMIAL RESPONSES 
 version 1.6.0 modified 2017-07-10 
@@ -787,12 +784,10 @@ comparing it to a marginal cumulative logit model that additionally
 contains the age and gender main effects in the linear predictor
 
 \begin{CodeChunk}
-
 \begin{CodeInput}
 R> fit1 <- update(fit, formula = ~. + factor(sex) + age)
 R> waldts(fit, fit1)
 \end{CodeInput}
-
 \begin{CodeOutput}
 Goodness of Fit based on the Wald test 
 
@@ -808,11 +803,9 @@ The Wald confidence intervals for the regression parameters of the
 reduced model are:
 
 \begin{CodeChunk}
-
 \begin{CodeInput}
 R> confint(fit)
 \end{CodeInput}
-
 \begin{CodeOutput}
                        2.5 %      97.5 %
 beta10            -2.6061497 -1.08015721
@@ -875,4 +868,3 @@ proportional odds assumption in models (\ref{ABMCLM}) and
 
 
 \end{document}
-

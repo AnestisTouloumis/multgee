@@ -1,6 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^\.travis\.yml
 ^README\.Rmd$
 ^desktop.ini$
 ^cppfunctions$
@@ -8,7 +7,6 @@
 ^\./R/gee_criteria\.R$
 ^\.gitingore$
 ^\.git$
-^\.travis\.yml$
 ^biometrics\.csl$
 ^README\.md$
 ^toadd$
@@ -16,3 +14,4 @@
 ^\src\*.o
 ^\src\*.so
 ^\src\*.dll
+^\.github$

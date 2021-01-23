@@ -2,11 +2,10 @@
 author:
   - name: Anestis Touloumis
     affiliation: University of Brighton
-    address: >
-      School of Computing, Engineering and Mathematics
-
-
-      Moulsecoomb, Brighton, BN2 4GJ, UK
+    address: |
+      | School of Computing, Engineering and Mathematics
+      | University of Brighton
+      | Brighton, BN2 4GJ, UK
     email: \email{A.Touloumis@brighton.ac.uk}
 title:
   formatted: "\\proglang{R} Package \\pkg{multgee}: A Generalized Estimating Equations Solver for Multinomial Responses"
@@ -34,7 +33,7 @@ preamble: >
   \Acceptdate{2014-07-24}
   \DOI{10.18637/jss.v064.i08}
 documentclass: jss
-output: if (rmarkdown::pandoc_version() >= 2) rticles::jss_article else rmarkdown::html_vignette
+output: rticles::jss_article
 bibliography: References.bib
 vignette: >
   %\VignetteIndexEntry{GEE for Multinomial Responses}
