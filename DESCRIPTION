@@ -19,6 +19,7 @@ Imports:
     Rcpp
 Suggests:
     knitr,
+    rmarkdown,
     rticles
 Description: GEE solver for correlated nominal or ordinal multinomial responses
     using a local odds ratios parameterization.
