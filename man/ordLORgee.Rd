@@ -152,7 +152,7 @@ model, here the intercepts do not need to be monotone increasing.
 
 The formulae are easier to read from either the Vignette or the Reference
 Manual (both available
-\href{https://cran.r-project.org/web/packages/multgee/index.html}{here}).
+\href{https://CRAN.R-project.org/package=multgee}{here}).
 
 The \code{LORterm} argument must be an \eqn{L} x \eqn{J^2} matrix, where
 \eqn{L} is the number of level pairs of \code{repeated}. These are ordered

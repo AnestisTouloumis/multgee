@@ -28,7 +28,7 @@ install.packages("multgee")
 The source code for the release version of `multgee` is available on
 CRAN at:
 
--   <https://cran.r-project.org/web/packages/multgee/index.html>
+-   <https://CRAN.R-project.org/package=multgee>
 
 Or you can install the development version of `multgee`:
 
@@ -231,7 +231,7 @@ browseVignettes("multgee")
       Anestis Touloumis, Alan Agresti and Maria Kateri (2013). R Package
       multgee: A Generalized Estimating Equations Solver for Multinomial
       Responses. Biometrics, 69(3), 633-640. URL
-      https://onlinelibrary.wiley.com/enhanced/doi/10.1111/biom.12054/.
+      https://onlinelibrary.wiley.com/doi/full/10.1111/biom.12054
 
     A BibTeX entry for LaTeX users is
 
@@ -243,7 +243,7 @@ browseVignettes("multgee")
         volume = {69},
         number = {3},
         pages = {633--640},
-        url = {https://onlinelibrary.wiley.com/enhanced/doi/10.1111/biom.12054/},
+        url = {https://onlinelibrary.wiley.com/doi/full/10.1111/biom.12054},
       }
 
 # References

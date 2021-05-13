@@ -70,7 +70,7 @@ install.packages("multgee")
 
 The source code for the release version of `multgee` is available on CRAN at:
 
-- https://cran.r-project.org/web/packages/multgee/index.html
+- https://CRAN.R-project.org/package=multgee
 
 Or you can install the development version of `multgee`:
 

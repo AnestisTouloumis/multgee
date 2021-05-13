@@ -26,12 +26,12 @@ entry = "Article",
   volume       = "69",
   number       = "3",
   pages        = "633--640",
-  url          = "https://onlinelibrary.wiley.com/enhanced/doi/10.1111/biom.12054/",
+  url          = "https://onlinelibrary.wiley.com/doi/full/10.1111/biom.12054",
 
   textVersion  =
   paste("Anestis Touloumis, Alan Agresti and Maria Kateri (2013).",
         "R Package multgee: A Generalized Estimating Equations Solver for Multinomial Responses.",
         "Biometrics, 69(3), 633-640.",
-        "URL https://onlinelibrary.wiley.com/enhanced/doi/10.1111/biom.12054/.")
+        "URL https://onlinelibrary.wiley.com/doi/full/10.1111/biom.12054")
 )
 
