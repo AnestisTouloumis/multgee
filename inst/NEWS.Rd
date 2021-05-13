@@ -2,6 +2,12 @@
 \title{NEWS file for the \pkg{multgee} package}
 
 \section{Changes in Version 1.8.0 (2021-05-13)}{
+  \subsection{NEW FEATURES}{
+    \itemize{
+      \item{Added \code{ipfp_cpp} function.}
+      \item{Added cpp functionality.}
+    }
+  }
   \subsection{MINOR CHANGES}{
     \itemize{
     \item{Added \pkg{rmarkdown} to Suggests.}
