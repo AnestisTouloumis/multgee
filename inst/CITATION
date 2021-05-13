@@ -8,13 +8,13 @@ citEntry(entry = "Article",
   volume       = "64",
   number       = "8",
   pages        = "1--14",
-  url          = "http://www.jstatsoft.org/v64/i08/",
+  url          = "https://www.jstatsoft.org/v64/i08/",
 
   textVersion  =
   paste("Anestis Touloumis (2015).",
         "R Package multgee: A Generalized Estimating Equations Solver for Multinomial Responses.",
         "Journal of Statistical Software, 64(8), 1-14.",
-        "URL http://www.jstatsoft.org/v64/i08/.")
+        "URL https://www.jstatsoft.org/v64/i08/.")
 )
 
 citEntry( header="To cite the methodology implemented in multgee in publications use:",
@@ -26,12 +26,12 @@ entry = "Article",
   volume       = "69",
   number       = "3",
   pages        = "633--640",
-  url          = "http://onlinelibrary.wiley.com/enhanced/doi/10.1111/biom.12054/",
+  url          = "https://onlinelibrary.wiley.com/enhanced/doi/10.1111/biom.12054/",
 
   textVersion  =
   paste("Anestis Touloumis, Alan Agresti and Maria Kateri (2013).",
         "R Package multgee: A Generalized Estimating Equations Solver for Multinomial Responses.",
         "Biometrics, 69(3), 633-640.",
-        "URL http://onlinelibrary.wiley.com/enhanced/doi/10.1111/biom.12054/.")
+        "URL https://onlinelibrary.wiley.com/enhanced/doi/10.1111/biom.12054/.")
 )
 

@@ -25,7 +25,7 @@ references:
     given: Maria
   container-title: Biometrics
   volume: 69
-  URL: 'http://onlinelibrary.wiley.com/doi/10.1111/biom.12054/full'
+  URL: 'https://onlinelibrary.wiley.com/doi/10.1111/biom.12054/full'
   issue: 3
   page: 633--640
   type: article-journal
@@ -70,7 +70,7 @@ install.packages("multgee")
 
 The source code for the release version of `multgee` is available on CRAN at:
 
-- https://CRAN.R-project.org/package=multgee
+- https://cran.r-project.org/web/packages/multgee/index.html
 
 Or you can install the development version of `multgee`:
 

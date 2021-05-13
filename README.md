@@ -4,7 +4,7 @@
 # multgee: GEE Solver for Correlated Nominal or Ordinal Multinomial Responses
 
 [![Github
-version](https://img.shields.io/badge/GitHub%20-1.7.2-orange.svg)](%22commits/master%22)
+version](https://img.shields.io/badge/GitHub%20-1.8.0-orange.svg)](%22commits/master%22)
 [![R-CMD-check](https://github.com/AnestisTouloumis/multgee/workflows/R-CMD-check/badge.svg)](https://github.com/AnestisTouloumis/multgee/actions)
 [![Project Status: Active The project has reached a stable, usable state
 and is being actively
@@ -28,7 +28,7 @@ install.packages("multgee")
 The source code for the release version of `multgee` is available on
 CRAN at:
 
--   <https://CRAN.R-project.org/package=multgee>
+-   <https://cran.r-project.org/web/packages/multgee/index.html>
 
 Or you can install the development version of `multgee`:
 
@@ -211,7 +211,7 @@ browseVignettes("multgee")
 
       Anestis Touloumis (2015). R Package multgee: A Generalized Estimating
       Equations Solver for Multinomial Responses. Journal of Statistical
-      Software, 64(8), 1-14. URL http://www.jstatsoft.org/v64/i08/.
+      Software, 64(8), 1-14. URL https://www.jstatsoft.org/v64/i08/.
 
     A BibTeX entry for LaTeX users is
 
@@ -223,7 +223,7 @@ browseVignettes("multgee")
         volume = {64},
         number = {8},
         pages = {1--14},
-        url = {http://www.jstatsoft.org/v64/i08/},
+        url = {https://www.jstatsoft.org/v64/i08/},
       }
 
     To cite the methodology implemented in multgee in publications use:
@@ -231,7 +231,7 @@ browseVignettes("multgee")
       Anestis Touloumis, Alan Agresti and Maria Kateri (2013). R Package
       multgee: A Generalized Estimating Equations Solver for Multinomial
       Responses. Biometrics, 69(3), 633-640. URL
-      http://onlinelibrary.wiley.com/enhanced/doi/10.1111/biom.12054/.
+      https://onlinelibrary.wiley.com/enhanced/doi/10.1111/biom.12054/.
 
     A BibTeX entry for LaTeX users is
 
@@ -243,7 +243,7 @@ browseVignettes("multgee")
         volume = {69},
         number = {3},
         pages = {633--640},
-        url = {http://onlinelibrary.wiley.com/enhanced/doi/10.1111/biom.12054/},
+        url = {https://onlinelibrary.wiley.com/enhanced/doi/10.1111/biom.12054/},
       }
 
 # References
