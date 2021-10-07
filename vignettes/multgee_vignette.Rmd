@@ -3,7 +3,7 @@ author:
   - name: Anestis Touloumis
     affiliation: University of Brighton
     address: |
-      | School of Computing, Engineering and Mathematics
+      | School of Architecture, Technology and Engineering
       | University of Brighton
       | Brighton, BN2 4GJ, UK
     email: \email{A.Touloumis@brighton.ac.uk}

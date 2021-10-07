@@ -4,7 +4,7 @@
 # multgee: GEE Solver for Correlated Nominal or Ordinal Multinomial Responses
 
 [![Github
-version](https://img.shields.io/badge/GitHub%20-1.8.0-orange.svg)](%22commits/master%22)
+version](https://img.shields.io/badge/GitHub%20-1.8.1-orange.svg)](%22commits/master%22)
 [![R-CMD-check](https://github.com/AnestisTouloumis/multgee/workflows/R-CMD-check/badge.svg)](https://github.com/AnestisTouloumis/multgee/actions)
 [![Project Status: Active The project has reached a stable, usable state
 and is being actively
@@ -75,17 +75,17 @@ The main arguments in both functions are:
     within each cluster (`repeated`).
 
 The association structure among the correlated multinomial responses is
-expressed via marginalized local odds ratios (Touloumis, Agresti and
-Kateri, 2013). The estimating procedure for the local odds ratios can be
-summarized as follows: For each level pair of the `repeated` variable,
-the available responses are aggregated across clusters to form a square
-marginalized contingency table. Treating these tables as independent, an
-RC-G(1) type model is fitted in order to estimate the marginalized local
-odds ratios. The `LORstr` argument determines the form of the
-marginalized local odds ratios structure. Since the general RC-G(1)
-model is closely related to the family of association models, one can
-instead fit an association model to each of the marginalized contingency
-tables by setting `LORem = "2way"` in the core functions.
+expressed via marginalized local odds ratios (Touloumis et al., 2013).
+The estimating procedure for the local odds ratios can be summarized as
+follows: For each level pair of the `repeated` variable, the available
+responses are aggregated across clusters to form a square marginalized
+contingency table. Treating these tables as independent, an RC-G(1) type
+model is fitted in order to estimate the marginalized local odds ratios.
+The `LORstr` argument determines the form of the marginalized local odds
+ratios structure. Since the general RC-G(1) model is closely related to
+the family of association models, one can instead fit an association
+model to each of the marginalized contingency tables by setting
+`LORem = "2way"` in the core functions.
 
 There are also four utility functions:
 
@@ -105,8 +105,8 @@ There are also four utility functions:
 
 ## Example
 
-The following R code replicates the GEE analysis presented in Touloumis,
-Agresti and Kateri (2013).
+The following R code replicates the GEE analysis presented in Touloumis
+et al. (2013).
 
 ``` r
 data("arthritis")
@@ -119,7 +119,7 @@ uniform local odds ratios structure might be a good approximation for
 the association pattern.
 
 ``` r
-fitord <- ordLORgee(formula = y ~ factor(time) + factor(trt) + factor(baseline), 
+fitord <- ordLORgee(formula = y ~ factor(time) + factor(trt) + factor(baseline),
     data = arthritis, id = id, repeated = time)
 summary(fitord)
 #> GEE FOR ORDINAL MULTINOMIAL RESPONSES 
@@ -196,9 +196,9 @@ confint(fitord)
 ## Getting help
 
 The statistical methods implemented in `multgee` are described in
-Touloumis, Agresti and Kateri (2013). A detailed description of the
-functionality of `multgee` can be found in Touloumis (2015). Note that
-an updated version of this paper also serves as a vignette:
+Touloumis et al. (2013). A detailed description of the functionality of
+`multgee` can be found in Touloumis (2015). Note that an updated version
+of this paper also serves as a vignette:
 
 ``` r
 browseVignettes("multgee")
@@ -211,7 +211,8 @@ browseVignettes("multgee")
 
       Anestis Touloumis (2015). R Package multgee: A Generalized Estimating
       Equations Solver for Multinomial Responses. Journal of Statistical
-      Software, 64(8), 1-14. URL https://www.jstatsoft.org/v64/i08/.
+      Software, 64(8), 1-14. URL
+      https://www.jstatsoft.org/index.php/jss/article/view/v064i08
 
     A BibTeX entry for LaTeX users is
 
@@ -223,7 +224,8 @@ browseVignettes("multgee")
         volume = {64},
         number = {8},
         pages = {1--14},
-        url = {https://www.jstatsoft.org/v64/i08/},
+        url = {https://www.jstatsoft.org/index.php/jss/article/view/v064i08},
+        doi = {10.18637/jss.v064.i08},
       }
 
     To cite the methodology implemented in multgee in publications use:
@@ -231,7 +233,7 @@ browseVignettes("multgee")
       Anestis Touloumis, Alan Agresti and Maria Kateri (2013). R Package
       multgee: A Generalized Estimating Equations Solver for Multinomial
       Responses. Biometrics, 69(3), 633-640. URL
-      https://onlinelibrary.wiley.com/doi/full/10.1111/biom.12054
+      https://onlinelibrary.wiley.com/doi/abs/10.1111/biom.12054
 
     A BibTeX entry for LaTeX users is
 
@@ -243,7 +245,8 @@ browseVignettes("multgee")
         volume = {69},
         number = {3},
         pages = {633--640},
-        url = {https://onlinelibrary.wiley.com/doi/full/10.1111/biom.12054},
+        url = {https://onlinelibrary.wiley.com/doi/abs/10.1111/biom.12054},
+        doi = {10.1111/biom.12054},
       }
 
 # References
