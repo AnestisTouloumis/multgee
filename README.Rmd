@@ -50,8 +50,9 @@ knitr::opts_chunk$set(
 
 # multgee: GEE Solver for Correlated Nominal or Ordinal Multinomial Responses
 [![Github version](`r paste0("https://img.shields.io/badge/GitHub%20-", as.vector(read.dcf('DESCRIPTION')[, 'Version']),"-orange.svg")`)]("commits/master")
-[![R-CMD-check](https://github.com/AnestisTouloumis/multgee/workflows/R-CMD-check/badge.svg)](https://github.com/AnestisTouloumis/multgee/actions)
+[![R-CMD-check](https://github.com/AnestisTouloumis/multgee/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/AnestisTouloumis/multgee/actions/workflows/R-CMD-check.yaml)
 [![Project Status: Active The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) 
+
 
 
 [![CRAN Version](https://www.r-pkg.org/badges/version/multgee?color=blue)](https://cran.r-project.org/package=multgee)

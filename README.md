@@ -5,7 +5,7 @@
 
 [![Github
 version](https://img.shields.io/badge/GitHub%20-1.8.2-orange.svg)](%22commits/master%22)
-[![R-CMD-check](https://github.com/AnestisTouloumis/multgee/workflows/R-CMD-check/badge.svg)](https://github.com/AnestisTouloumis/multgee/actions)
+[![R-CMD-check](https://github.com/AnestisTouloumis/multgee/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/AnestisTouloumis/multgee/actions/workflows/R-CMD-check.yaml)
 [![Project Status: Active The project has reached a stable, usable state
 and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
