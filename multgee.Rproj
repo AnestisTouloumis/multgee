@@ -13,7 +13,8 @@ RnwWeave: knitr
 LaTeX: pdfLaTeX
 
 BuildType: Package
+PackageUseDevtools: Yes
 PackageBuildArgs: --compact-vignettes=both
 PackageBuildBinaryArgs: --compact-vignettes=both
 PackageCheckArgs: --as-cran
-PackageRoxygenize: rd,collate,namespace
+PackageRoxygenize: rd,collate,namespace,vignette

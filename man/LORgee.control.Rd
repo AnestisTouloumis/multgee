@@ -4,7 +4,8 @@
 \alias{LORgee.control}
 \title{Control For The GEE Solver}
 \usage{
-\method{LORgee}{control}(tolerance = 0.001, maxiter = 15, verbose = FALSE, TRACE = FALSE)
+\method{LORgee}{control}(tolerance = 0.001, maxiter = 15,
+  verbose = FALSE, TRACE = FALSE)
 }
 \arguments{
 \item{tolerance}{positive convergence tolerance. The algorithm converges

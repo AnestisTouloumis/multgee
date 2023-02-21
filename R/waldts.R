@@ -21,7 +21,7 @@
 #'
 #' @export
 waldts <- function(object0, object1) {
-  if (class(object0) != "LORgee" | class(object1) != "LORgee") {
+  if (!inherits(object0, "LORgee") | !inherits(object1, "LORgee")) {
     stop("Both arguments must be objects of 'LORgee' class ")
   }
   if (!all(object0$y == object1$y)) {

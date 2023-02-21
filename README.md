@@ -4,7 +4,7 @@
 # multgee: GEE Solver for Correlated Nominal or Ordinal Multinomial Responses
 
 [![Github
-version](https://img.shields.io/badge/GitHub%20-1.8.1-orange.svg)](%22commits/master%22)
+version](https://img.shields.io/badge/GitHub%20-1.8.2-orange.svg)](%22commits/master%22)
 [![R-CMD-check](https://github.com/AnestisTouloumis/multgee/workflows/R-CMD-check/badge.svg)](https://github.com/AnestisTouloumis/multgee/actions)
 [![Project Status: Active The project has reached a stable, usable state
 and is being actively
@@ -28,7 +28,7 @@ install.packages("multgee")
 The source code for the release version of `multgee` is available on
 CRAN at:
 
--   <https://CRAN.R-project.org/package=multgee>
+- <https://CRAN.R-project.org/package=multgee>
 
 Or you can install the development version of `multgee`:
 
@@ -40,7 +40,7 @@ devtools::install_github("AnestisTouloumis/multgee")
 The source code for the development version of `multgee` is available on
 github at:
 
--   <https://github.com/AnestisTouloumis/multgee>
+- <https://github.com/AnestisTouloumis/multgee>
 
 To use `multgee`, you should load the package as follows:
 
@@ -60,19 +60,19 @@ and Kateri, 2013).
 There are two core functions to fit GEE models for correlated
 multinomial responses:
 
--   `ordLORgee` for an ordinal response scale. Options for the marginal
-    model include cumulative link models or an adjacent categories logit
-    model,
--   `nomLORgee` for a nominal response scale. Currently, the only option
-    is a marginal baseline category logit model.
+- `ordLORgee` for an ordinal response scale. Options for the marginal
+  model include cumulative link models or an adjacent categories logit
+  model,
+- `nomLORgee` for a nominal response scale. Currently, the only option
+  is a marginal baseline category logit model.
 
 The main arguments in both functions are:
 
--   an optional data frame (`data`),
--   a model formula (`formula`),
--   a cluster identifier variable (`id`),
--   an optional vector that identifies the order of the observations
-    within each cluster (`repeated`).
+- an optional data frame (`data`),
+- a model formula (`formula`),
+- a cluster identifier variable (`id`),
+- an optional vector that identifies the order of the observations
+  within each cluster (`repeated`).
 
 The association structure among the correlated multinomial responses is
 expressed via marginalized local odds ratios (Touloumis et al., 2013).
@@ -89,19 +89,18 @@ model to each of the marginalized contingency tables by setting
 
 There are also four utility functions:
 
--   `confint` for obtaining Wald–type confidence intervals for the
-    regression parameters using the standard errors of the sandwich
-    (`method = "robust"`) or of the model–based (`method = "naive"`)
-    covariance matrix. The default option is the sandwich covariance
-    matrix (`method = "robust"`),
--   `waldts` for assessing the goodness-of-fit of two nested GEE models
-    based on a Wald test statistic,
--   `intrinsic.pars` for assessing whether the underlying association
-    structure does not change dramatically across the level pairs of
-    `repeated`,
--   `vcov` for obtaining the sandwich (`method = "robust"`) or
-    model–based (`method = "naive"`) covariance matrix of the regression
-    parameters.
+- `confint` for obtaining Wald–type confidence intervals for the
+  regression parameters using the standard errors of the sandwich
+  (`method = "robust"`) or of the model–based (`method = "naive"`)
+  covariance matrix. The default option is the sandwich covariance
+  matrix (`method = "robust"`),
+- `waldts` for assessing the goodness-of-fit of two nested GEE models
+  based on a Wald test statistic,
+- `intrinsic.pars` for assessing whether the underlying association
+  structure does not change dramatically across the level pairs of
+  `repeated`,
+- `vcov` for obtaining the sandwich (`method = "robust"`) or model–based
+  (`method = "naive"`) covariance matrix of the regression parameters.
 
 ## Example
 
@@ -211,8 +210,7 @@ browseVignettes("multgee")
 
       Anestis Touloumis (2015). R Package multgee: A Generalized Estimating
       Equations Solver for Multinomial Responses. Journal of Statistical
-      Software, 64(8), 1-14. URL
-      https://www.jstatsoft.org/index.php/jss/article/view/v064i08
+      Software, 64(8), 1-14. URL https://www.jstatsoft.org/v64/i08/.
 
     A BibTeX entry for LaTeX users is
 
@@ -224,8 +222,7 @@ browseVignettes("multgee")
         volume = {64},
         number = {8},
         pages = {1--14},
-        url = {https://www.jstatsoft.org/index.php/jss/article/view/v064i08},
-        doi = {10.18637/jss.v064.i08},
+        url = {https://www.jstatsoft.org/v64/i08/},
       }
 
     To cite the methodology implemented in multgee in publications use:
@@ -233,7 +230,7 @@ browseVignettes("multgee")
       Anestis Touloumis, Alan Agresti and Maria Kateri (2013). R Package
       multgee: A Generalized Estimating Equations Solver for Multinomial
       Responses. Biometrics, 69(3), 633-640. URL
-      https://onlinelibrary.wiley.com/doi/abs/10.1111/biom.12054
+      https://onlinelibrary.wiley.com/doi/full/10.1111/biom.12054
 
     A BibTeX entry for LaTeX users is
 
@@ -245,8 +242,7 @@ browseVignettes("multgee")
         volume = {69},
         number = {3},
         pages = {633--640},
-        url = {https://onlinelibrary.wiley.com/doi/abs/10.1111/biom.12054},
-        doi = {10.1111/biom.12054},
+        url = {https://onlinelibrary.wiley.com/doi/full/10.1111/biom.12054},
       }
 
 # References
@@ -255,17 +251,19 @@ browseVignettes("multgee")
 
 <div id="ref-Touloumis2015" class="csl-entry">
 
-Touloumis, A. (2015) R Package multgee: A Generalized Estimating
-Equations Solver for Multinomial Responses. *Journal of Statistical
+Touloumis, A. (2015) [R Package multgee: A Generalized Estimating
+Equations Solver for Multinomial
+Responses](https://www.jstatsoft.org/v064/i08). *Journal of Statistical
 Software*, **64**, 1–14.
 
 </div>
 
 <div id="ref-Touloumis2013" class="csl-entry">
 
-Touloumis, A., Agresti, A. and Kateri, M. (2013) GEE for Multinomial
-Responses Using a Local Odds Ratios Parameterization. *Biometrics*,
-**69**, 633–640.
+Touloumis, A., Agresti, A. and Kateri, M. (2013) [GEE for Multinomial
+Responses Using a Local Odds Ratios
+Parameterization](https://onlinelibrary.wiley.com/doi/10.1111/biom.12054/full).
+*Biometrics*, **69**, 633–640.
 
 </div>
 

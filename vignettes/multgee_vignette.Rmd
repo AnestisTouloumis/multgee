@@ -1,4 +1,5 @@
 ---
+documentclass: jss
 author:
   - name: Anestis Touloumis
     affiliation: University of Brighton
@@ -32,7 +33,6 @@ preamble: >
   \Submitdate{2013-06-08}
   \Acceptdate{2014-07-24}
   \DOI{10.18637/jss.v064.i08}
-documentclass: jss
 output: if (rmarkdown::pandoc_version() >= 2) rticles::jss_article else rmarkdown::html_vignette
 bibliography: References.bib
 vignette: >
@@ -40,6 +40,7 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+
 
 # Introduction
 In several studies, the interest lies in drawing inference about the regression parameters of a marginal model for correlated, repeated or clustered multinomial variables with ordinal or nominal response categories while the association structure between the dependent responses is of secondary importance.
