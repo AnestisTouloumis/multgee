@@ -51,5 +51,5 @@ jobs:
           upload-snapshots: true
           args: 'c("--no-manual, --as-cran")'
           build_args: 'c("--compact-vignettes=both")'
-          error-on: '"warning"'
+          error-on: '"error"'
           check-dir: '"check"'
