@@ -1,7 +1,7 @@
 Package: multgee
 Type: Package
 Title: GEE Solver for Correlated Nominal or Ordinal Multinomial Responses
-Version: 1.8.2
+Version: 1.8.3
 Authors@R:
     person(given = "Anestis",
            family = "Touloumis",
