@@ -26,7 +26,7 @@ entry = "Article",
   volume       = "69",
   number       = "3",
   pages        = "633--640",
-  url          = "https://onlinelibrary.wiley.com/doi/abs/10.1111/biom.12054",
+  url          = "https://onlinelibrary.wiley.com/doi/full/10.1111/biom.12054",
   doi          = "10.1111/biom.12054",
   textVersion  =
   paste("Anestis Touloumis, Alan Agresti and Maria Kateri (2013).",
