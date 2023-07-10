@@ -138,6 +138,7 @@ fitord <- ordLORgee(formula = y ~ factor(time) + factor(trt) + factor(baseline),
 summary(fitord)
 ```
 
+
 The 95\% Wald confidence intervals for the regression parameters are
 ```{r}
 confint(fitord) 

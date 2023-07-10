@@ -4,7 +4,7 @@
 # multgee: GEE Solver for Correlated Nominal or Ordinal Multinomial Responses
 
 [![Github
-version](https://img.shields.io/badge/GitHub%20-1.8.2-orange.svg)](%22commits/master%22)
+version](https://img.shields.io/badge/GitHub%20-1.8.3-orange.svg)](%22commits/master%22)
 [![R-CMD-check](https://github.com/AnestisTouloumis/multgee/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/AnestisTouloumis/multgee/actions/workflows/R-CMD-check.yaml)
 [![Project Status: Active The project has reached a stable, usable state
 and is being actively
@@ -204,7 +204,6 @@ browseVignettes("multgee")
 ```
 
 ## How to cite
-
 
     To cite multgee in publications use:
 

@@ -1,7 +1,7 @@
 \name{NEWS}
 \title{NEWS file for the \pkg{multgee} package}
 
-\section{Changes in Version 1.8.3 (2023-02-23)}{
+\section{Changes in Version 1.8.3 (2023-10-07)}{
   \subsection{MAJOR CHANGES}{
     \itemize{
       \item{Removed C++11 dependency.}
@@ -11,7 +11,7 @@
     \itemize{
     \item{Updated GitHub Actions.}
     \item{Updated \pkg{Roxygen}.}
-    \item{Updated URL and doi in CITATION.}
+    \item{Updated CITATION.}
     \item{Updated author's contact details in vignette.}
     }
     }
