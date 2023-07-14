@@ -7,7 +7,7 @@
 nomLORgee(formula = formula(data), data = parent.frame(), id = id,
   repeated = NULL, bstart = NULL, LORstr = "time.exch", LORem = "3way",
   LORterm = NULL, add = 0, homogeneous = TRUE,
-  control = LORgee.control(), ipfp.ctrl = ipfp.control(), IM = "solve")
+  control = LORgee_control(), ipfp.ctrl = ipfp.control(), IM = "solve")
 }
 \arguments{
 \item{formula}{a formula expression as for other regression models for
@@ -83,7 +83,7 @@ matrix.}
 \item{xnames}{the regression coefficients' symbolic names.}
 \item{categories}{the number of observed response categories.}
 \item{occasions}{the levels of the \code{repeated} variable.}
-\item{LORgee.control}{the control values for the GEE solver.}
+\item{LORgee_control}{the control values for the GEE solver.}
 \item{ipfp.control}{the control values for the function \code{ipfp}.}
 \item{inverse.method}{the method used for inverting matrices.}
 \item{adding.constant}{the value used for \code{add}.}

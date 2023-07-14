@@ -205,43 +205,44 @@ browseVignettes("multgee")
 
 ## How to cite
 
-    To cite multgee in publications use:
+    To cite 'multgee' in publications, please use:
 
-      Anestis Touloumis (2015). R Package multgee: A Generalized Estimating
-      Equations Solver for Multinomial Responses. Journal of Statistical
-      Software, 64(8), 1-14. URL https://www.jstatsoft.org/v64/i08/.
+      Touloumis A. (2015). "R Package multgee: A Generalized Estimating
+      Equations Solver for Multinomial Responses." _Journal of Statistical
+      Software_, *64*(8), 1-14.
+      <https://www.jstatsoft.org/index.php/jss/article/view/v064i08>.
 
     A BibTeX entry for LaTeX users is
 
       @Article{,
         title = {{R} Package {multgee}: A Generalized Estimating Equations Solver for Multinomial Responses},
-        author = {Anestis Touloumis},
+        author = {{Touloumis A.}},
         journal = {Journal of Statistical Software},
         year = {2015},
         volume = {64},
         number = {8},
-        pages = {1--14},
-        url = {https://www.jstatsoft.org/v64/i08/},
+        pages = {1-14},
+        url = {https://www.jstatsoft.org/index.php/jss/article/view/v064i08},
       }
 
-    To cite the methodology implemented in multgee in publications use:
+    To cite the methodology implemented in 'multgee' in publications,
+    please use:
 
-      Anestis Touloumis, Alan Agresti and Maria Kateri (2013). R Package
-      multgee: A Generalized Estimating Equations Solver for Multinomial
-      Responses. Biometrics, 69(3), 633-640. URL
-      https://onlinelibrary.wiley.com/doi/full/10.1111/biom.12054
+      Touloumis A., Agresti A., Kateri M. (2013). "GEE for multinomial
+      responses using a local odds ratios parameterization." _Biometrics_,
+      *69*(3), 633-640. <https://doi.org/10.1111/biom.12054>.
 
     A BibTeX entry for LaTeX users is
 
       @Article{,
         title = {GEE for multinomial responses using a local odds ratios parameterization},
-        author = {Anestis Touloumis and Alan Agresti and Maria Kateri},
+        author = {{Touloumis A.} and {Agresti A.} and {Kateri M.}},
         journal = {Biometrics},
         year = {2013},
         volume = {69},
         number = {3},
-        pages = {633--640},
-        url = {https://onlinelibrary.wiley.com/doi/full/10.1111/biom.12054},
+        pages = {633-640},
+        url = {https://doi.org/10.1111/biom.12054},
       }
 
 # References

@@ -1,18 +1,19 @@
 \name{NEWS}
 \title{NEWS file for the \pkg{multgee} package}
 
-\section{Changes in Version 1.8.3 (2023-10-07)}{
+\section{Changes in Version 1.8.4 (2023-07-14)}{
   \subsection{MAJOR CHANGES}{
-    \itemize{
-      \item{Removed C++11 dependency.}
-    }
+  \itemize{
+  \item{Renamed function \code{LORgee.control} to \code{LORgee_control}.}
+  }
   }
   \subsection{MINOR CHANGES}{
     \itemize{
+    \item{Removed C++11 dependency.}
+    \item{Updated author's contact details in vignette.}
+    \item{Updated CITATION.}
     \item{Updated GitHub Actions.}
     \item{Updated \pkg{Roxygen}.}
-    \item{Updated CITATION.}
-    \item{Updated author's contact details in vignette.}
     }
     }
   }
@@ -21,7 +22,7 @@
   \subsection{NEW FEATURES}{
     \itemize{
       \item{Added \code{ipfp_cpp} function.}
-      \item{Added cpp functionality.}
+      \item{Added C++ functionality.}
     }
   }
   \subsection{MINOR CHANGES}{

@@ -11,7 +11,7 @@ author:
 title:
   formatted: "\\proglang{R} Package \\pkg{multgee}: A Generalized Estimating Equations Solver for Multinomial Responses"
   # If you use tex in the formatted title, also supply version without
-  plain:     "R Package multgee: A Generalized Estimating Equations Solver for Multinomial Responses"
+  plain: "R Package multgee: A Generalized Estimating Equations Solver for Multinomial Responses"
   # For running headers, if needed
   short:     "\\pkg{multgee}: GEE for Multinomial Responses"
 abstract: >
@@ -167,7 +167,7 @@ In the literature, $\widehat{\boldsymbol {\Sigma}}/N$ is often termed as "sandwi
 
 # Description of core functions {#Description1}
 We describe the arguments of the functions \code{nomLORgee} and \code{ordLORgee}, focusing on the marginal model specification (\code{formula}, \code{link}), data representation (\code{id}, \code{repeated}, \code{data}) and local odds ratios structure specification (\code{LORstr}, \code{LORterm}, \code{homogeneous}, \code{restricted}).
-For completeness' sake, we also present computational related arguments (\code{LORem}, \code{add}, \code{bstart}, \code{LORgee.control}, \code{ipfp.control}, \code{IM}).
+For completeness' sake, we also present computational related arguments (\code{LORem}, \code{add}, \code{bstart}, \code{LORgee_control}, \code{ipfp.control}, \code{IM}).
 The two core functions share the same arguments, except \code{link} and \code{restricted} which are available only in \code{ordLORgee}, and they both create an object of the class \code{LORgee} which admits \code{summary}, \code{coef}, \code{update}, \code{vcov}, \code{confint} and \code{residuals} methods. 
 
 ## Marginal model specification

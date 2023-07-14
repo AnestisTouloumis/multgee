@@ -1,26 +1,23 @@
-note <- sprintf("R package version %s", meta$Version)
-
 bibentry(bibtype = "Article",
          header = "To cite 'multgee' in publications, please use:",
          title = "{R} Package {multgee}: A Generalized Estimating Equations Solver for Multinomial Responses",
-         author = as.person("Anestis Touloumis"),
+         author = person(c("Touloumis", "A.")),
          journal = "Journal of Statistical Software",
          year = "2015",
          volume = "64",
          number = "8",
-         note = note,
          pages = "1-14",
          url = "https://www.jstatsoft.org/index.php/jss/article/view/v064i08")
 
 bibentry(bibtype = "Article",
          header = "To cite the methodology implemented in 'multgee' in publications, please use:",
          title = "GEE for multinomial responses using a local odds ratios parameterization",
-         author = personList(as.person("Anestis Touloumis"),as.person("Alan Agresti"),as.person("Maria Kateri")),
+         author = c(person(c("Touloumis", "A.")), person(c("Agresti", "A.")), person(c("Kateri", "M."))),
          journal = "Biometrics",
          year = "2013",
          volume = "69",
          number = "3",
          pages = "633-640",
-         url = "https://onlinelibrary.wiley.com/doi/full/10.1111/biom.12054"
+         url = "https://doi.org/10.1111/biom.12054"
 )
 

@@ -121,7 +121,7 @@
 #' \item{xnames}{the regression coefficients' symbolic names.}
 #' \item{categories}{the number of observed response categories.}
 #' \item{occasions}{the levels of the \code{repeated} variable.}
-#' \item{LORgee.control}{the control values for the GEE solver.}
+#' \item{LORgee_control}{the control values for the GEE solver.}
 #' \item{ipfp.control}{the control values for the function \code{ipfp}.}
 #' \item{inverse.method}{the method used for inverting matrices.}
 #' \item{adding.constant}{the value used for \code{add}.}
@@ -156,7 +156,7 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
                       repeated = NULL, link = "logit", bstart = NULL,
                       LORstr = "category.exch", LORem = "3way", LORterm = NULL,
                       add = 0, homogeneous = TRUE, restricted = FALSE,
-                      control = LORgee.control(), ipfp.ctrl = ipfp.control(),
+                      control = LORgee_control(), ipfp.ctrl = ipfp.control(),
                       IM = "solve") {
   options(contrasts = c("contr.treatment", "contr.poly"))
   cl <- match.call()
@@ -398,7 +398,7 @@ ordLORgee <- function(formula = formula(data), data = parent.frame(), id = id,
   fit$xnames <- xnames
   fit$categories <- ncategories
   fit$occasions <- sort(unique(repeated))
-  fit$LORgee.control <- control
+  fit$LORgee_control <- control
   fit$ipfp.control <- ipfp.ctrl
   fit$inverse.method <- IM
   fit$adding.constant <- add
