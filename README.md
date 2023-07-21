@@ -87,7 +87,7 @@ the family of association models, one can instead fit an association
 model to each of the marginalized contingency tables by setting
 `LORem = "2way"` in the core functions.
 
-There are also four utility functions:
+There are also five utility functions:
 
 - `confint` for obtaining Wald–type confidence intervals for the
   regression parameters using the standard errors of the sandwich
@@ -100,7 +100,9 @@ There are also four utility functions:
   structure does not change dramatically across the level pairs of
   `repeated`,
 - `vcov` for obtaining the sandwich (`method = "robust"`) or model–based
-  (`method = "naive"`) covariance matrix of the regression parameters.
+  (`method = "naive"`) covariance matrix of the regression parameters,
+- `gee_criteria` reports commonly used criteria in the GEE literature to
+  select variables and/or association structure.
 
 ## Example
 
@@ -191,6 +193,28 @@ confint(fitord)
 #> factor(baseline)4 -3.4601391 -1.85143755
 #> factor(baseline)5 -5.0391534 -2.95195213
 ```
+
+To illustrate model comparison, consider another model with `age` and
+`sex` as additional covariates:
+
+``` r
+fitord1 <- update(fitord, formula = . ~ . + age + factor(sex))
+waldts(fitord, fitord1)
+#> Goodness of Fit based on the Wald test 
+#> 
+#> Model under H_0: y ~ factor(time) + factor(trt) + factor(baseline)
+#> Model under H_1: y ~ factor(time) + factor(trt) + factor(baseline) + age + factor(sex)
+#> 
+#> Wald Statistic = 3.8313, df = 2, p-value = 0.1472
+gee_criteria(fitord, fitord1)
+#>              QIC      CIC     RJC   QICu Parameters
+#> fitord  1268.444 1268.375 11.0347 1.2779         11
+#> fitord1 1279.759 1279.582 13.0885 0.9964         13
+```
+
+According to the Wald test, there is no evidence of no difference
+between the two models. The QICu criterion suggest that `fitord` should
+be preferred over `fitord1`.
 
 ## Getting help
 

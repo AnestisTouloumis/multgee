@@ -75,7 +75,7 @@ Further, one can assess the goodness of fit for two or more nested GEE models.
 This paper is organized as follows.
 In Section [2](#GEENotation), we present the theoretical background of the local odds ratios GEE approach that is necessary for the use of \pkg{multgee}.
 We introduce the marginal models implemented in \pkg{multgee}, the estimation procedure for the "nuisance" parameter vector $\boldsymbol \alpha$ and the asymptotic theory on which GEE inference is based.
-We describe the arguments of the core GEE functions (\code{nomLORgee}, \code{ordLORgee}) in Section [3](#Description1) while the utility functions (\code{waldts}, \code{confint}, \code{intrinsic.pars}, \code{vcov}, \code{matrixLOR}) are described in Section [4](#Description2).
+We describe the arguments of the core GEE functions (\code{nomLORgee}, \code{ordLORgee}) in Section [3](#Description1) while the utility functions (\code{waldts}, \code{confint}, \code{intrinsic.pars}, \code{vcov}, \code{matrixLOR}, \code{gee_criteria}) are described in Section [4](#Description2).
 In Section [5](#Example), we illustrate the use of \pkg{multgee} in a longitudinal study with correlated ordinal multinomial responses.
 We summarize the features of the package and provide a few practical guidelines in Section [6](#Summary). 
 
@@ -279,6 +279,9 @@ The single-argument function \code{matrixLOR} creates a two-way probability tabl
 This function aims to ease the construction of the \code{LORterm} argument in the core functions \code{nomLORgee} and \code{ordLORgee}.
 
 
+The function \code{gee_criteria} reports commonly used criteria for variable selection and for selecting the "working" association structure. The Quasi Information Criterion (QIC), the Correlation Information Criterion (CIC) and the Rotnitzky and Jewell Criterion (RJC) are used for selecting the best association structure. The QICu criterion is used for selecting the best subset of covariates. When choosing among GEE models with different association structures but with the same subset of covariates, the model with the smallest value of QIC, CIC or RJC should be preffered. When choosing between GEE models with different number of covariates, the model with the smallest QICu value should be preferred. This function can be used to obtain the values for these above criteria for one or more models of the class \code{LORgee}.
+
+
 # Example {#Example}
 To illustrate the main features of the package \pkg{multgee}, we follow the GEE analysis performed in @Touloumis2012.
 The data came from a randomized clinical trial [@Lipsitz1994] that aimed to evaluate the effectiveness of the drug Auranofin versus the placebo therapy for the treatment of rheumatoid arthritis.
@@ -338,6 +341,12 @@ The goodness-of-fit of model (\ref{MarginalModelData}) can be tested by comparin
 fit1 <- update(fit, formula = ~. + factor(sex) + age)
 waldts(fit, fit1)
 ```
+
+Alternatively, we can compare these two models using commonly used criteria:
+```{r}
+gee_criteria(fit, fit1)
+```
+
 
 The Wald confidence intervals for the regression parameters of the reduced model are:
 ```{r}

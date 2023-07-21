@@ -1,10 +1,15 @@
 \name{NEWS}
 \title{NEWS file for the \pkg{multgee} package}
 
-\section{Changes in Version 1.8.4 (2023-07-14)}{
+\section{Changes in Version 1.8.5 (2023-07-21)}{
+  \subsection{NEW FEATURES}{
+  \itemize{
+  \item{Added \code{gee_criteria} for model and association structure selection.}
+  }
+  }
   \subsection{MAJOR CHANGES}{
   \itemize{
-  \item{Renamed function \code{LORgee.control} to \code{LORgee_control}.}
+  \item{Renamed \code{LORgee.control} function to \code{LORgee_control}.}
   }
   }
   \subsection{MINOR CHANGES}{
