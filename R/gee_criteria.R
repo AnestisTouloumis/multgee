@@ -48,7 +48,7 @@ gee_criteria <- function(object, ...) {
 #'
 #' @method gee_criteria LORgee
 #' @export 
-gee_criteria.LORgee <- function(object, ..., digits = 3) {
+gee_criteria.LORgee <- function(object, ...) {
   
   if (!("LORgee" %in% class(object)) ) {
     stop("gee_criteria requires a LORgee object as input")
