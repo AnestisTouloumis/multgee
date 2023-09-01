@@ -1,10 +1,10 @@
 \name{NEWS}
 \title{NEWS file for the \pkg{multgee} package}
 
-\section{Changes in Version 1.8.5 (2023-07-21)}{
+\section{Changes in Version 1.9.0 (2023-09-02)}{
   \subsection{NEW FEATURES}{
   \itemize{
-  \item{Added \code{gee_criteria} for model and association structure selection.}
+  \item{Added \code{gee_criteria} for variable and association structure selection.}
   }
   }
   \subsection{MAJOR CHANGES}{
