@@ -33,7 +33,7 @@ preamble: >
   \Submitdate{2013-06-08}
   \Acceptdate{2014-07-24}
   \DOI{10.18637/jss.v064.i08}
-output: if (rmarkdown::pandoc_version() >= 2) rticles::jss_article else rmarkdown::html_vignette
+output: if (rmarkdown::pandoc_version() >= "2") rticles::jss_article else rmarkdown::html_vignette
 bibliography: References.bib
 vignette: >
   %\VignetteIndexEntry{GEE for Multinomial Responses}
@@ -57,7 +57,7 @@ Note that low convergence rates for the GEE approach of @Lipsitz1994 and @Heager
 The \proglang{R} [@RCoreTeam2013] package \pkg{multgee} implements the local odds ratios GEE approach and it is available from the Comprehensive \proglang{R} Archive Network at \url{https://CRAN.R-project.org/package=multgee}.
 To emphasize the importance of reflecting the nature of the response scale on the marginal model specification and on the marginalized local odds ratios structure, two core functions are available in \pkg{multgee}: \code{nomLORgee} which is appropriate for GEE analysis of nominal multinomial responses and \code{ordLORgee} which is appropriate for ordinal multinomial responses.
 In particular, options for the marginal model specification include a baseline category logit model for nominal response categories and a cumulative link model or an adjacent categories logit model for ordinal response categories.
-In addition, there are five utility functions that enable the user to: i) Perform goodness-of-fit tests between two nested GEE models (\code{waldts}), ii) construct Wald type confidence intervals (\code{confint}), iii) select the local odds ratios structure based on the rule of thumb discussed in @Touloumis2012 (\code{intrinsic.pars}), iv) obtain the estimated covariance matrix of the parameter estimates (\code{vcov}), and v) construct a probability table (to be passed in the core functions) that satisfies a desired local odds ratios structure (\code{matrixLOR}).
+In addition, there are six utility functions that enable the user to: i) Perform goodness-of-fit tests between two nested GEE models (\code{waldts}), ii) construct Wald type confidence intervals (\code{confint}), iii) select the local odds ratios structure based on the rule of thumb discussed in @Touloumis2012 (\code{intrinsic.pars}), iv) obtain the estimated covariance matrix of the parameter estimates (\code{vcov}), v) construct a probability table (to be passed in the core functions) that satisfies a desired local odds ratios structure (\code{matrixLOR}), and vi) obtain commonly used criteria for variables and/or association structure selection in the GEE literature.
 
 To appreciate the features of \pkg{multgee}, we briefly review GEE software for multinomial responses in \proglang{SAS} [@SAS] and \proglang{R}.
 The current version of \proglang{SAS} supports only the independence "working" model under a marginal cumulative probit or logit model for ordinal multinomial responses.
@@ -279,7 +279,7 @@ The single-argument function \code{matrixLOR} creates a two-way probability tabl
 This function aims to ease the construction of the \code{LORterm} argument in the core functions \code{nomLORgee} and \code{ordLORgee}.
 
 
-The function \code{gee_criteria} reports commonly used criteria for variable selection and for selecting the "working" association structure. The Quasi Information Criterion (QIC), the Correlation Information Criterion (CIC) and the Rotnitzky and Jewell Criterion (RJC) are used for selecting the best association structure. The QICu criterion is used for selecting the best subset of covariates. When choosing among GEE models with different association structures but with the same subset of covariates, the model with the smallest value of QIC, CIC or RJC should be preffered. When choosing between GEE models with different number of covariates, the model with the smallest QICu value should be preferred. This function can be used to obtain the values for these above criteria for one or more models of the class \code{LORgee}.
+For completeness, the function \code{gee_criteria} reports commonly used criteria for variable selection and for selecting the "working" association structure. The Quasi Information Criterion (QIC) proposed by @pan2001b, the Correlation Information Criterion (CIC) proposed by @hin2009 and the Rotnitzky and Jewell's Criterion (RJC) proposed by @rotnitzky1990 are used for selecting the best association structure. The QICu criterion [@pan2001b] is used for selecting the best subset of covariates. When choosing among GEE models with different association structures but with the same subset of covariates, the model with the smallest value of QIC, CIC or RJC should be preferred. However, note that these criteria might not be very useful for multinomial GEE models with local odds ratios structures and the user should prefer the empirical rule suggested in @Touloumis2012 and implemented in \code{intrinsic.pars}. When choosing between two or more GEE models with different number of covariates that are not nested, the model with the smallest QICu value should be preferred. The function  \code{gee_criteria} can be used to obtain the values for the above criteria for one or more models of the class \code{LORgee}.
 
 
 # Example {#Example}
