@@ -4,7 +4,7 @@
 # multgee: GEE Solver for Correlated Nominal or Ordinal Multinomial Responses
 
 [![Github
-version](https://img.shields.io/badge/GitHub%20-1.8.3-orange.svg)](%22commits/master%22)
+version](https://img.shields.io/badge/GitHub%20-1.8.5-orange.svg)](%22commits/master%22)
 [![R-CMD-check](https://github.com/AnestisTouloumis/multgee/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/AnestisTouloumis/multgee/actions/workflows/R-CMD-check.yaml)
 [![Project Status: Active The project has reached a stable, usable state
 and is being actively
@@ -87,7 +87,7 @@ the family of association models, one can instead fit an association
 model to each of the marginalized contingency tables by setting
 `LORem = "2way"` in the core functions.
 
-There are also five utility functions:
+There are also five useful utility functions:
 
 - `confint` for obtaining Wald–type confidence intervals for the
   regression parameters using the standard errors of the sandwich
@@ -96,13 +96,13 @@ There are also five utility functions:
   matrix (`method = "robust"`),
 - `waldts` for assessing the goodness-of-fit of two nested GEE models
   based on a Wald test statistic,
+- `vcov` for obtaining the sandwich (`method = "robust"`) or model–based
+  (`method = "naive"`) covariance matrix of the regression parameters,
 - `intrinsic.pars` for assessing whether the underlying association
   structure does not change dramatically across the level pairs of
   `repeated`,
-- `vcov` for obtaining the sandwich (`method = "robust"`) or model–based
-  (`method = "naive"`) covariance matrix of the regression parameters,
-- `gee_criteria` reports commonly used criteria in the GEE literature to
-  select variables and/or association structure.
+- `gee_criteria` for reporting commonly used criteria to select
+  variables and/or association structure for GEE models.
 
 ## Example
 
