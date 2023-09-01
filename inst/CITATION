@@ -7,7 +7,7 @@ bibentry(bibtype = "Article",
          volume = "64",
          number = "8",
          pages = "1-14",
-         url = "https://www.jstatsoft.org/index.php/jss/article/view/v064i08")
+         doi = "10.18637/jss.v064.i08")
 
 bibentry(bibtype = "Article",
          header = "To cite the methodology implemented in 'multgee' in publications, please use:",
@@ -17,7 +17,5 @@ bibentry(bibtype = "Article",
          year = "2013",
          volume = "69",
          number = "3",
-         pages = "633-640",
-         url = "https://doi.org/10.1111/biom.12054"
-)
+         pages = "633-640")
 
