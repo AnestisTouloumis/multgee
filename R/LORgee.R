@@ -2,7 +2,7 @@ LORgee <- function(x, ...) { # nolint
   UseMethod("LORgee")
 }
 
-
+#' @export
 LORgee.default <- function(x, ...) {
   object <- list()
   object$title <- x$title

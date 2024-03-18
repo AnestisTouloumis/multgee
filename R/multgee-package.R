@@ -50,8 +50,6 @@
 #'
 #' @aliases multgee
 #'
-#' @docType package
-#'
 #' @author Anestis Touloumis Maintainer: Anestis Touloumis
 #' <A.Touloumis@@brighton.ac.uk>
 #'
@@ -89,5 +87,5 @@ NULL
 ## usethis namespace: end
 NULL
 #'
-#' @keywords package
-NULL
+#' @keywords internal
+"_PACKAGE"

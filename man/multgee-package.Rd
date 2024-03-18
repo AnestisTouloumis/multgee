@@ -9,6 +9,8 @@
 A generalized estimating equations (GEE) solver for fitting marginal
 regression models with correlated nominal or ordinal multinomial responses
 based on a local odds ratios parameterization for the association structure.
+
+GEE solver for correlated nominal or ordinal multinomial responses using a local odds ratios parameterization.
 }
 \details{
 The package contains two functions that fit GEE models for correlated
@@ -71,7 +73,19 @@ Touloumis, A. (2015) R Package multgee: A Generalized Estimating Equations
 Solver for Multinomial Responses. \emph{Journal of Statistical Software}
 \bold{64}, 1--14.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/AnestisTouloumis/multgee}
+  \item Report bugs at \url{https://github.com/AnestisTouloumis/multgee/issues}
+}
+
+}
 \author{
 Anestis Touloumis Maintainer: Anestis Touloumis
 <A.Touloumis@brighton.ac.uk>
+
+\strong{Maintainer}: Anestis Touloumis \email{A.Touloumis@brighton.ac.uk} (\href{https://orcid.org/0000-0002-5965-1639}{ORCID})
+
 }
+\keyword{internal}

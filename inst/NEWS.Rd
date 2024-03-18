@@ -1,6 +1,14 @@
 \name{NEWS}
 \title{NEWS file for the \pkg{multgee} package}
 
+\section{Changes in Version 1.9.1 (2024-03-08)}{
+  \subsection{MINOR CHANGES}{
+    \itemize{
+    \item{Updated \pkg{Roxygen}.}
+    }
+    }
+  }
+
 \section{Changes in Version 1.9.0 (2023-09-02)}{
   \subsection{NEW FEATURES}{
   \itemize{
